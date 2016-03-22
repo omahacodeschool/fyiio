@@ -1,4 +1,4 @@
-class Main_pagesController < ApplicationController
+class HomeController < ApplicationController
 
   def home
     render "home"
