@@ -1,10 +1,10 @@
 class TutorialsController < ApplicationController
   
-  def view
+  def create
     render "create"
   end
 
-  def test
+  def create_confirmation
     render "edit"
   end
 end

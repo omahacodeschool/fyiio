@@ -1,23 +1,14 @@
 <h1>Create Tutorial</h1>
 
+<%= form_for :new_tutorial do |f| %>
+  Video: <%= f.file_field :video %><br />
+  <%= radio_button_tag(:privacy, "1") %>
+  <%= label_tag(:privacy_1, "Public") %><br />
+  <%= radio_button_tag(:privacy, "2") %>
+  <%= label_tag(:privacy_2, "Private") %><br />
+  Category: <%= f.select :category, [['CATEGORY1', 1], ['CATEGORY2', 2], ['CATEGORY3', 3], ['CATEGORY4', 4], ['CATEGORY5', 5]] %><br />
+  Title: <%= f.text_field :title %><br />
+  Description : <%= f.text_area :description %><br />
+  <%= f.submit %>
+<% end %>
 
-<label for="tutorial_video">Video:  </label>
-<input type="file" name="tutorial_video" value="" id="tutorial_video"> <br><br>
-
-<label for="tutorial_privacy">Privacy Settings:  </label><br>
-<input type="radio" name="tutorial_privacy" value="1"> Public
-<input type="radio" name="tutorial_privacy" value="0"> Private<br><br>
-
-<label for="tutorial_category">Category:  </label>
-<select name="tutorial_category" id="tutorial_cateogry">
-  <option value="CATEGORY1">CATEGORY1</option>
-  <option value="CATEGORY2">CATEGORY2</option>
-  <option value="CATEGORY3">CATEGORY3</option>
-  <option value="CATEGORY4">CATEGORY4</option>
-</select> <br><br>
-
-<label for="tutorial_title">Title:  </label>
-<input type="text" name="tutorial_title" value="<%= params[:tutorial_title] %>" id="tutorial_title"> <br><br>
-
-<label for="tutorial_description">Description:  </label><br>
-<textarea name="tutorial_description" textarea rows="4" cols="50" id="tutorial_description"> <%= params[:tutorial_description] %> </textarea> 
