@@ -1,6 +1,6 @@
 class MainPagesController < ActionController::Base
   
-  def devise
+  def home
     render "home"
   end
   

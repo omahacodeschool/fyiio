@@ -1,6 +1,6 @@
-class HomeController < ApplicationController
+# class HomeController < ApplicationController
 
-  def home
-    render "home"
-  end
-end
+#   def home
+#     render "home"
+#   end
+# end
