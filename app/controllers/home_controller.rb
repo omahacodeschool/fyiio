@@ -1,7 +1,6 @@
 class Main_pagesController < ApplicationController
-  
-  def devise
+
+  def home
     render "home"
   end
-  
 end
