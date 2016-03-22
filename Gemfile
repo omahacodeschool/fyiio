@@ -10,6 +10,7 @@ gem "honeybadger"
 gem "jquery-rails"
 gem "newrelic_rpm", ">= 3.9.8"
 gem "pg"
+gem 'devise'
 gem "puma"
 gem "rack-canonical-host"
 gem "rails", "~> 4.2.0"
