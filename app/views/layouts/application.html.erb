@@ -18,8 +18,8 @@
     <a href="/">home</a>
     <a href="/discover">discover</a>
     <a href="/about">about</a>
-    <a href="#">dashboard</a>
     <% if user_signed_in? %>
+      <a href="#">dashboard</a>
       <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
     <% else %>
       <%= link_to('Log In / Sign Up', new_user_session_path)  %>  
