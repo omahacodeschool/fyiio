@@ -1,0 +1,13 @@
+<h1> Create Company </h1>
+<%= form_for  @new_company, :url => "create/confirmation" do |f| %>
+  Profile Image: <%= f.file_field :profle_image %><br />
+  Company Name: <%= f.text_field :name %><br />
+  Description:<br /> <%= f.text_area :bio %><br />
+  Address: <%= f.text_field :address_1 %><br />
+  Suite/Apt#: <%= f.text_field :address_2 %><br />
+  City: <%= f.text_field :city %><br />
+  State: <%= f.text_field :state %><br />
+  Zip Code: <%= f.text_field :state %><br />
+  <%= f.submit %>
+<% end %>
+
