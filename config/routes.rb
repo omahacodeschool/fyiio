@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get 'main/home' => "main#home"
   get 'main/discover' => "main#discover"
 
-  get "signup" => 'users#add'
+  get '/sign_up' => 'main#account_creation'
+  post '/sign_up/confirmation' => 'main#account_creation_confirmation'
   
   get 'tutorials/create' => "tutorials#create"
   post 'tutorials/create/confirmation'=> "tutorials#create_confirmation"
