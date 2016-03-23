@@ -1,6 +1,6 @@
 <h1>Create Tutorial</h1>
 
-<%= form_for  @new_tutorial, :url => "create_confirmation" do |f| %>
+<%= form_for  @new_tutorial, :url => "create/confirmation" do |f| %>
   Video: <%= f.file_field :video %><br />
   Category: <%= f.select :category, [['CATEGORY1', 1], ['CATEGORY2', 2], ['CATEGORY3', 3], ['CATEGORY4', 4], ['CATEGORY5', 5]] %><br />
   Title: <%= f.text_field :title %><br />
