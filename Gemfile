@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby "2.3.0"
 
 gem "autoprefixer-rails"
+gem 'carrierwave'
 gem "delayed_job_active_record"
 gem "flutie"
 gem "high_voltage"
