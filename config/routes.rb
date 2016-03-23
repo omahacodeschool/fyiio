@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get '/about' => "main#about"
   get '/sign_in' => "main#sign_in"
-  get '/sign_up' => "main#sign_up"
+  get 'main/sign_up' => "main#sign_up"
   get '/' => "main#home"
   get '/discover' => "main#discover"
   
