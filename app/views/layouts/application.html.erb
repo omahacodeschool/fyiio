@@ -22,7 +22,8 @@
       <a href="#">Dashboard</a>
       <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
     <% else %>
-      <%= link_to('Log In / Create Account', "/companies/authentication")  %>  
+      <%= link_to('Sign In', new_user_session_path) %>
+      <%= link_to('Create Account', "/companyInvites/authentication")  %>  
     <% end %>
   </div>
   <%= render "flashes" -%>
