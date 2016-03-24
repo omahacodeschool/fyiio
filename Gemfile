@@ -60,3 +60,8 @@ group :staging, :production do
 end
 
 gem 'carrierwave'
+
+gem 'pronto'
+gem 'pronto-rubocop'
+gem 'pronto-reek'
+gem 'pronto-rails_best_practices'
