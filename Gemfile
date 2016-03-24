@@ -58,3 +58,5 @@ group :staging, :production do
   gem "rails_stdout_logging"
   gem "rack-timeout"
 end
+
+gem 'carrierwave'

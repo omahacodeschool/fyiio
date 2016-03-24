@@ -14,6 +14,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
+  <div id="toolbar">
+    <a href="/">Home</a>
+    <a href="/discover">Discover</a>
+    <a href="/about">About</a>
+    <% if user_signed_in? %>
+      <a href="#">Dashboard</a>
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+    <% else %>
+      <%= link_to('Log In / Create Account', new_user_session_path)  %>  
+    <% end %>
+  </div>
   <%= render "flashes" -%>
   <%= yield %>
   <%= render "javascript" %>
