@@ -1,8 +1,8 @@
 <h1>New Step</h1>
-Chapter: @chapter.title<br>
-Tutorial: @tutorial.title<br><br>
+Chapter:  <%= @chapter.title %><br>
+Tutorial: <%= @tutorial.title %><br><br>
 
-<%= form_for  @new_chapter, :url => "create/confirmation" do |f| %>
+<%= form_for  @new_step, :url => "create/confirmation" do |f| %>
   Title: <%= f.text_field :title %><br />
   Draft: <%= f.check_box :draft %><br />
   Warning: <%= f.check_box :warning%><br />
