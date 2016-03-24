@@ -16,13 +16,13 @@ class MainController < ApplicationController
     render "sign_in"
   end
 
-  def search_content
-    debugger
-    # Still need to define by boolean public == true
-    @q = "%#{params[:query]}%"
-    @tutorials = Tutorial.where("title LIKE ? or description LIKE ?", @q @q)
-    @chapters = Chapter.where("title LIKE ? or description LIKE ?", @q @q)
-    @steps = Step.where("title LIKE ? or description LIKE ?", @q @q)    
-  end
+  # def search_content
+  #   debugger
+  #   # Still need to define by boolean public == true
+  #   @q = "%#{params[:query]}%"
+  #   @tutorials = Tutorial.where("title LIKE ? or description LIKE ?", @q @q)
+  #   @chapters = Chapter.where("title LIKE ? or description LIKE ?", @q @q)
+  #   @steps = Step.where("title LIKE ? or description LIKE ?", @q @q)    
+  # end
 
 end 
