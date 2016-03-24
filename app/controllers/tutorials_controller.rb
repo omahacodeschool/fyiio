@@ -10,4 +10,9 @@ class TutorialsController < ApplicationController
     @new_tutorial.save
     redirect_to "/tutorials/#{@new_tutorial.id}/chapters/create"
   end
+
+  def edit
+    @edit_tutorial = Tutorial.new
+    @edit_tutorial.save
+  end
 end

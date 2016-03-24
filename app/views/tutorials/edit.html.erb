@@ -1,8 +1,10 @@
-test
-<div id="toolbar">
-  <a href="/">home</a>
-  <a href="/discover">discover</a>
-  <a href="/about">about</a>
-  <a href="#">dashboard</a>
-  <!-- Setting the sign-in / sign-out to the top of the page -->
-</div>
+
+<%= form_for @edit_tutorial, :url => "update/confirmation" do |f| %>
+  Video: <%= f.file_field :video %><br />
+  Category: <%= f.select :category, [['CATEGORY1', 1], ['CATEGORY2', 2], ['CATEGORY3', 3], ['CATEGORY4', 4], ['CATEGORY5', 5]] %><br />
+  Title: <%= f.text_field :title %><br />
+  Description:<br /> <%= f.text_area :description %><br />
+  Public: <%= f.check_box :public %><br />
+  Draft: <%= f.check_box :draft %><br />
+  <%= f.submit %>
+<% end %>
