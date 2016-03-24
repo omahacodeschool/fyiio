@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create/confirmation'=> "steps#create_confirmation"
 
   get 'tutorials/:tutorial_id/edit' => "tutorials#edit"
-  post 'tutorials/:tutorial_id/update/confirmation' => "tutorials#update_confirmation"
+  patch 'tutorials/:tutorial_id/update/confirmation' => "tutorials#update_confirmation"
 
   devise_for :users
   root to: "main#home"

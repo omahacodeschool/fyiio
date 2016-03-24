@@ -14,14 +14,19 @@ class TutorialsController < ApplicationController
 
   def edit
     @edit_tutorial = Tutorial.find_by_id(params[:tutorial_id])
-    render "edit"
-
-    @edit_tutorial.save
   end
 
-  # def update_confirmation
-  #   @edit_tutorial = Tutorial.find_by_id(params[:tutorial_id])
-  #   @edit_tutorial.save
-  #   redirect_to "/about"
-  # end
+  def update_confirmation
+    @update_tutorial = Tutorial.find_by_id(params[:tutorial_id])
+    @update_tutorial.title = params[:tutorial][:title] 
+    @update_tutorial.description = params[:tutorial][:description]
+    @update_tutorial.video = params[:tutorial][:video]
+    @update_tutorial.public = params[:tutorial][:public]
+    @update_tutorial.draft = params[:tutorial][:draft]
+    @update_tutorial.category = params[:tutorial][:category]
+    @update_tutorial.save
+    redirect_to "/"
+  end
+
+
 end
