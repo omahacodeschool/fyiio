@@ -1,1 +1,9 @@
-<h1>Edit Tutorial</h1>
+<%= form_for  @edit_tutorial, :url => "update/confirmation" do |f| %>
+  Video: <%= f.file_field :video %><br />
+  Category: <%= f.select :category, [['CATEGORY1', 1], ['CATEGORY2', 2], ['CATEGORY3', 3], ['CATEGORY4', 4], ['CATEGORY5', 5]] %><br />
+  Title: <%= f.text_field :title %><br />
+  Description:<br /> <%= f.text_area :description %><br />
+  Public: <%= f.check_box :public %><br />
+  Draft: <%= f.check_box :draft %><br />
+  <%= f.submit %>
+<% end %>

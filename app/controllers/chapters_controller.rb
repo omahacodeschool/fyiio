@@ -12,4 +12,25 @@ class ChaptersController < ApplicationController
     @new_chapter.save
     redirect_to "/tutorials/#{@tutorial.id}/chapters/#{@new_chapter.id}/steps/create"
   end
+
+  def edit
+    @tutorial = Tutorial.find_by_id(params[:tutorial_id])
+    @edit_chapter = Chapter.find_by_id(params[:chapter_id])
+  end
+
+  def update_confirmation
+    @update_chapter = Chapter.find_by_id(params[:chapter_id])
+    @update_chapter.title = params[:chapter][:title] 
+    @update_chapter.description = params[:chapter][:description]
+    @update_chapter.draft = params[:chapter][:draft]
+    @update_chapter.start_time = params[:chapter][:start_time]
+    @update_chapter.end_time = params[:chapter][:end_time]
+    @update_chapter.save
+    redirect_to "/"
+  end
+
+
+
+
 end
+
