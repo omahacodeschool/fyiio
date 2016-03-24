@@ -1,0 +1,14 @@
+<h1>New Step</h1>
+Chapter:  <%= @chapter.title %><br>
+Tutorial: <%= @tutorial.title %><br><br>
+
+<%= form_for  @new_step, :url => "create/confirmation" do |f| %>
+  Title: <%= f.text_field :title %><br />
+  Draft: <%= f.check_box :draft %><br />
+  Warning: <%= f.check_box :warning%><br />
+  Description:<br /> <%= f.text_area :description %><br />
+  Video Start Time: <%= f.text_field :start_time %><br />
+  Video End Time: <%= f.text_field :end_time%><br />
+  <%= f.submit %>
+<% end %>
+
