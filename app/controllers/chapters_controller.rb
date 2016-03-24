@@ -10,6 +10,6 @@ class ChaptersController < ApplicationController
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @new_chapter = Chapter.new(:title => params[:chapter][:title], :description => params[:chapter][:description], :draft => params[:chapter][:draft], :start_time => (params[:chapter][:start_time]).to_i, :end_time => (params[:chapter][:end_time]).to_i, :tutorial_id => @tutorial.id)
     @new_chapter.save
-    render "edit"
+    redirect_to "/tutorials/#{@tutorial.id}/chapters/#{@new_chapter.id}/steps/create"
   end
 end
