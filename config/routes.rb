@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get '/' => "main#home"
   get '/discover' => "main#discover"
 
+  get 'companies/authentication' => "companies#company_authentication"
+  get 'companies/verification' => "companies#company_verification"
+  get 'companies/verification/confirmation' => "companies#company_verification_confirmation"
+
   get 'companies/create' => "companies#create"
   post 'companies/create/confirmation'=> "companies#create_confirmation"
 
