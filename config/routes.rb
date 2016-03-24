@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'main/sign_up' => "main#sign_up"
   get '/' => "main#home"
   get '/discover' => "main#discover"
+  post '/discover/search' => "main#search_content"
 
   get 'companies/create' => "companies#create"
   post 'companies/create/confirmation'=> "companies#create_confirmation"
