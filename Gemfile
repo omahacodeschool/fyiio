@@ -60,3 +60,4 @@ group :staging, :production do
 end
 
 gem 'carrierwave'
+gem 'pg_search'
