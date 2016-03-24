@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get '/sign_in' => "main#sign_in"
   get 'main/sign_up' => "main#sign_up"
   get '/' => "main#home"
+
+  get '/search' => 'searches#index'
   get '/discover' => "main#discover"
 
   get 'companies/create' => "companies#create"
