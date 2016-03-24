@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   get 'tutorials/:tutorial_id/edit' => "tutorials#edit"
   patch 'tutorials/:tutorial_id/update/confirmation' => "tutorials#update_confirmation"
 
+  get 'tutorials/:tutorial_id/chapters/:chapter_id/edit' => "chapters#edit"
+  patch 'tutorials/:tutorial_id/chapters/:chapter_id/update/confirmation' => "chapters#update_confirmation"
+
   devise_for :users
   root to: "main#home"
 end
