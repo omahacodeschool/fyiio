@@ -28,5 +28,9 @@ class TutorialsController < ApplicationController
     redirect_to "/"
   end
 
+  def view_tutorial
+    @tutorial = Tutorial.find_by_id(params[:tutorials_id])
+    render "view"
+  end
 
 end
