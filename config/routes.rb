@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'main/sign_up' => "main#sign_up"
   get '/' => "main#home"
   get '/discover' => "main#discover"
+  get '/tutorial' => "tutorials#view"
 
   get 'companies/create' => "companies#create"
   post 'companies/create/confirmation'=> "companies#create_confirmation"
@@ -22,6 +23,14 @@ Rails.application.routes.draw do
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id/edit' => "chapters#edit"
   patch 'tutorials/:tutorial_id/chapters/:chapter_id/update/confirmation' => "chapters#update_confirmation"
+
+  get 'tutorials/:tutorial_id' => "tutorials#view"
+
+  get 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#view"
+
+  get 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#delete"
+  delete 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#delete"
+
 
   devise_for :users
   root to: "main#home"

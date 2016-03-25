@@ -28,5 +28,9 @@ class TutorialsController < ApplicationController
     redirect_to "/"
   end
 
+  def tutorial
+    render "tutorial"
+  end
+
 
 end

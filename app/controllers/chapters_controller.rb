@@ -29,8 +29,14 @@ class ChaptersController < ApplicationController
     redirect_to "/"
   end
 
+  def chapter
+    render "chapter"
+  end
 
-
+  def delete
+    @chapter = Chapter.find_by_id(params[:chapter_id]).destroy
+    flash[:success] = "Chapter successfully deleted!"
+    redirect_to "/"
+  end
 
 end
-
