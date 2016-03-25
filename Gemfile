@@ -61,6 +61,8 @@ end
 
 gem 'carrierwave'
 
+gem 'pg_search'
+
 gem 'pronto'
 gem 'pronto-rubocop'
 gem 'pronto-reek'

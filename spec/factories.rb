@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :company_invite do
+    company_id 1
+    auth_code "MyString"
+    verified false
+  end
   factory :step do
     title "MyText"
     description "MyText"

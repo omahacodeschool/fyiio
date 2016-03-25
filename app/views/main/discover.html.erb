@@ -1,1 +1,13 @@
-<h1> Discover others content! </h1>
+<div id="discover">
+<!-- Prep for bootstrap design -->
+<!-- Will want to display these inline for desktop and tablet-landscape views -->
+<!-- Will probably want searchbar to be 12 cols when viewing on xs device -->
+  <div><h1>Discover others content!</h1></div>
+  <div> <!-- Search for open content -->
+    <!-- This is generic search form -->
+    <%= form_tag("/search", method: "get") do %>
+      <%= text_field_tag(:q) %>
+      <%= submit_tag("Search") %>
+    <% end %>
+  </div>
+</div>

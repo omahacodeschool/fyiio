@@ -3,8 +3,14 @@ Rails.application.routes.draw do
   get '/sign_in' => "main#sign_in"
   get 'main/sign_up' => "main#sign_up"
   get '/' => "main#home"
+
+  get '/search' => 'searches#index'
   get '/discover' => "main#discover"
   get '/tutorial' => "tutorials#view"
+
+  get 'companyInvites/authentication' => "company_invites#company_authentication"
+  get 'companyInvites/verification' => "company_invites#company_verification"
+  post'companyInvites/verification/confirmation' => "company_invites#company_verification_confirmation"
 
   get 'companies/create' => "companies#create"
   post 'companies/create/confirmation'=> "companies#create_confirmation"

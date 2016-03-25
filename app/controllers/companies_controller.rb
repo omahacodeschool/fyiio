@@ -6,13 +6,11 @@ class CompaniesController < ApplicationController
   end
 
   def create_confirmation
-    @new_company = Company.new
-    render "edit"
+    @new_company = Company.new(:profile_image => params[:company][:profile_image], :name => params[:company][:name], :bio => params[:company][:bio], :address_1 => params[:company][:address_1], :address_2 => params[:company][:address_2], :city => params[:company][:city], :state => params[:company][:state], :zip => params[:company][:zip])
+    @new_company.save
+
+    redirect_to new_user_registration_path(:company_id => @new_company.id)
   end
 
-  def edit
-    @new_company = Company.new(:profile_image => params[:companies][:profile_image], :name => params[:companies][:name], :bio => params[:companies][:bio], :address_1 => params[:companies][:address_1], :address_2 => params[:companies][:address_2], :city => params[:companies][:city], :state => params[:companies][:state], :zip => params[:companies][:zip])
-    render "edit"
-  end
 
 end

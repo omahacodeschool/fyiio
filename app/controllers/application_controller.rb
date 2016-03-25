@@ -13,7 +13,12 @@ def store_location
       request.path != "/users/password/new" &&
       request.path != "/users/password/edit" &&
       request.path != "/users/confirmation" &&
-      request.path != "/users/sign_out" &&
+      request.path != "/companies/create/confirmation" &&
+      request.path != "/companies/create" &&
+      request.path != "/companyInvites/authentication" &&
+      request.path != "/companyInvites/verification" &&
+      request.path != "/companies/create" &&
+      request.path != "/companyInvites/verification/confirmation" &&
       !request.xhr?) # don't store ajax calls
     session[:previous_url] = request.fullpath 
   end
@@ -29,6 +34,7 @@ end
     devise_parameter_sanitizer.for(:sign_up) << :first_name
     devise_parameter_sanitizer.for(:sign_up) << :last_name
     devise_parameter_sanitizer.for(:sign_up) << :profile_image
+    devise_parameter_sanitizer.for(:sign_up) << :company_id
     devise_parameter_sanitizer.for(:sign_up) << :archived
     devise_parameter_sanitizer.for(:account_update) << :first_name
     devise_parameter_sanitizer.for(:account_update) << :last_name
