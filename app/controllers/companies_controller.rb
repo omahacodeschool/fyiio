@@ -12,5 +12,4 @@ class CompaniesController < ApplicationController
     redirect_to new_user_registration_path(:company_id => @new_company.id)
   end
 
-
 end

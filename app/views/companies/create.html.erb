@@ -2,6 +2,7 @@
 <%= form_for  @new_company, :url => "create/confirmation" do |f| %>
   Profile Image: <%= f.file_field :profle_image %><br />
   Company Name: <%= f.text_field :name %><br />
+  URL Name: <%= f.text_field :username, :required => true, :placeholder=>'How users will find your page.'%> %><br />
   Description:<br /> <%= f.text_area :bio %><br />
   Address: <%= f.text_field :address_1 %><br />
   Suite/Apt#: <%= f.text_field :address_2 %><br />

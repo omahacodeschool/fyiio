@@ -1,5 +1,4 @@
 class CompanyInvitesController < ApplicationController
-
   def company_authentication
     render "company_authentication"
   end
@@ -17,7 +16,6 @@ class CompanyInvitesController < ApplicationController
       user_code.verified = true
       redirect_to new_user_registration_path(:company_id => user_code.company_id)
     end
-
   end
 
 end
