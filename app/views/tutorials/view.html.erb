@@ -1,8 +1,8 @@
 <h1>View Tutorial</h1>
 
-<div> <!-- Simple Search Bar -->
-  <%= form_tag("/search", method: "get") do %>
-    <%= text_field_tag(:q) %>
-    <%= submit_tag("Search") %>
+<select> <!-- List of Chapters -->
+  <option>Select Chapter</option>
+  <% @chapters.each do |chapter| %>
+    <option value="<%= chapter.id %>"><%= chapter.title %></option>
   <% end %>
-</div>
+</select>
