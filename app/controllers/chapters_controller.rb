@@ -35,6 +35,7 @@ class ChaptersController < ApplicationController
 
   def delete
     @chapter = Chapter.find_by_id(params[:chapter_id]).destroy
+    binding.pry
     flash[:success] = "Chapter successfully deleted!"
     redirect_to "/"
   end
