@@ -1,8 +1,8 @@
-<h1>View Tutorial</h1>
+<h1>View Tutorial for <%= @tutorial.title %></h1>
 
-<select> <!-- List of Chapters -->
-  <option>Select Chapter</option>
+<div>
   <% @chapters.each do |chapter| %>
-    <option value="<%= chapter.id %>"><%= chapter.title %></option>
+    <%= link_to(chapter.title, "/tutorials/#{@tutorial.id}/chapters/#{chapter.id}") %><br>
   <% end %>
-</select>
+</div>
+
