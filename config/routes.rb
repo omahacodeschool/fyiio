@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get 'companyInvites/authentication' => "company_invites#company_authentication"
   get 'companyInvites/verification' => "company_invites#company_verification"
-  post'companyInvites/verification/confirmation' => "company_invites#company_verification_confirmation"
+  get'companyInvites/verification/:auth_code' => "company_invites#company_verification_confirmation"
 
   get 'companies/create' => "companies#create"
   post 'companies/create/confirmation'=> "companies#create_confirmation"
