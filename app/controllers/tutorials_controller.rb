@@ -30,7 +30,7 @@ class TutorialsController < ApplicationController
 
   def view_tutorial
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
-    @chapters = Chapter.where({:tutorial_id => @tutorial.id})
+    @chapters = Chapter.where({tutorial_id: @tutorial.id})
     render "view"
   end
 
