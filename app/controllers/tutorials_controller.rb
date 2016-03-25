@@ -29,7 +29,8 @@ class TutorialsController < ApplicationController
   end
 
   def view_tutorial
-    @tutorial = Tutorial.find_by_id(params[:tutorials_id])
+    @tutorial = Tutorial.find_by_id(params[:tutorial_id])
+    @chapters = Chapter.where({:tutorial_id => @tutorial.id})
     render "view"
   end
 
