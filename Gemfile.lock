@@ -164,8 +164,6 @@ GEM
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
-    pony (1.11)
-      mail (>= 2.0)
     powerpack (0.1.1)
     pronto (0.6.0)
       gitlab (~> 3.6, >= 3.4.0)
@@ -362,7 +360,6 @@ DEPENDENCIES
   newrelic_rpm (>= 3.9.8)
   pg
   pg_search
-  pony (~> 1.11)
   pronto
   pronto-rails_best_practices
   pronto-reek

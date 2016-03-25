@@ -60,7 +60,6 @@ group :staging, :production do
 end
 
 gem 'carrierwave'
-gem 'pony', '~> 1.11'
 gem 'pg_search'
 
 gem 'pronto'
