@@ -14,7 +14,7 @@ class DashboardController < ApplicationController
     @invite = CompanyInvite.new(:auth_code => SecureRandom.base64(8), :verified => false, :company_id => @company.id, :email => params[:email])
     @invite.save
 
-    redirect_to "/dashboard"
+    render "invite_confirmation"
   end
 
   def view_dashboard
