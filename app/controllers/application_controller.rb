@@ -28,6 +28,14 @@ def after_sign_in_path_for(resource)
   session[:previous_url] || root_path
 end
 
+protected
+
+def after_update_path_for(resource)
+  @company = Company.find_by_id(current_user.company_id)
+  session[:company_username] = @company.username
+  user_path(resource)
+end
+
   protected
 
   def configure_permitted_parameters

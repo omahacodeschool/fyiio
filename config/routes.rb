@@ -10,15 +10,24 @@ Rails.application.routes.draw do
 
   get 'companyInvites/authentication' => "company_invites#company_authentication"
   get 'companyInvites/verification' => "company_invites#company_verification"
-  post'companyInvites/verification/confirmation' => "company_invites#company_verification_confirmation"
+  get'companyInvites/verification/:auth_code' => "company_invites#company_verification_confirmation"
 
   get 'companies/create' => "companies#create"
   post 'companies/create/confirmation'=> "companies#create_confirmation"
 
+  get '/dashboard' => "dashboard#view"
+  get  '/dashboard/invite' => "dashboard#invite_additional_users"
+  post '/dashboard/invite/confirmation' => "dashboard#invite_additional_users_confirmation"
+
   get 'tutorials/create' => "tutorials#create"
   post 'tutorials/create/confirmation'=> "tutorials#create_confirmation"
 
+  get 'tutorials/:tutorial_id/edit' => "tutorials#edit"
+  patch 'tutorials/:tutorial_id/update/confirmation' => "tutorials#update_confirmation"
+
+
   get 'tutorials/:tutorial_id' => "tutorials#view"
+
 
   get 'tutorials/:tutorial_id/chapters/create' => "chapters#create"
   post 'tutorials/:tutorial_id/chapters/create/confirmation'=> "chapters#create_confirmation"
@@ -28,8 +37,6 @@ Rails.application.routes.draw do
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create' => "steps#create"
   post 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create/confirmation'=> "steps#create_confirmation"
 
-  get 'tutorials/:tutorial_id/edit' => "tutorials#edit"
-  patch 'tutorials/:tutorial_id/update/confirmation' => "tutorials#update_confirmation"
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id/edit' => "chapters#edit"
   patch 'tutorials/:tutorial_id/chapters/:chapter_id/update/confirmation' => "chapters#update_confirmation"
@@ -39,7 +46,13 @@ Rails.application.routes.draw do
   get 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#delete"
   delete 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#delete"
 
+  get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#view"
 
+  get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
+  delete 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
+
+  get 'tutorials/:tutorial_id' => "tutorials#delete"
+  delete 'tutorials/:tutorial_id' => "tutorials#delete"
   devise_for :users
   root to: "main#home"
 end

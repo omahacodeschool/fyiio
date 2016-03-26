@@ -1,8 +1,3 @@
 <br><br>
-<% if @errors == true %>
-  Invalid Authentication Code <br><br>
-<% end %>
-<%= form_tag('verification/confirmation') do %>
-   <input id="verification_field" type="text" name="company_verification" value="<%= params[:company_verification] %>">
-    <div id="verification_submit"><%= submit_tag 'Submit' %></div>
-<% end %>
+Talk to your company administrator. Make sure they have sent you an invitation to join.
+Then, check your email for a FYI-IO verification email.

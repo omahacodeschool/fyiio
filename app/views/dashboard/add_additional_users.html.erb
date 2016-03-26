@@ -1,0 +1,5 @@
+<br><br>
+<%= form_tag('invite/confirmation') do %>
+  <input type="email" name="email" value="<%= params[:email] %>" required="true" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" placeholder="email address"> <br />
+  <div id="verification_submit"><%= submit_tag 'Invite' %></div>
+<% end %>
