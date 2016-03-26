@@ -6,7 +6,12 @@
 <% end %>
 <p><%= @ch.description %></p>
 
-<h2>View the steps</h2>
+<h2>View the steps:</h2>
+<div>
+  <% @steps.each do |step| %>
+    <p><%= step.title %></p>
+  <% end %>
+</div>
 
 
 
