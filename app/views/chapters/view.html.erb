@@ -1,6 +1,13 @@
-<h1> This is the view page for Chapters.</h1>
+<h1> This is the view page <%= @ch.title %></h1>
+<% if @ch.draft == true %>
+  <p>This is in Draft Status</p>
+<% else %>
+<% end %>
+<p><%= @ch.description %></p>
 
-<h2><%= @x.title %> </h2>
+<h2>View the steps for <%= @ch.title %></h2>
+<p>steps need to go here</p>
+
 
    <%= link_to "Delete", @chapter, method: :delete,
                                   data: { confirm: "Are you sure you want to delete this chapter?" } %>
