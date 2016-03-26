@@ -14,4 +14,23 @@ class StepsController < ApplicationController
     @new_step.save
     redirect_to "/"
   end
+
+  def step
+    render "step"
+  end
+
+
+
+
+
+
+
+
+  def delete
+    @step = Step.find_by_id(params[:step_id]).destroy
+    flash[:success] = "This step was successfully deleted!"
+    redirect_to "/"
+  end
+
+
 end

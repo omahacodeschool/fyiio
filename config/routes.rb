@@ -22,25 +22,35 @@ Rails.application.routes.draw do
   get 'tutorials/create' => "tutorials#create"
   post 'tutorials/create/confirmation'=> "tutorials#create_confirmation"
 
+  get 'tutorials/:tutorial_id/edit' => "tutorials#edit"
+  patch 'tutorials/:tutorial_id/update/confirmation' => "tutorials#update_confirmation"
+
+
+  get 'tutorials/:tutorial_id' => "tutorials#view"
+
+
   get 'tutorials/:tutorial_id/chapters/create' => "chapters#create"
   post 'tutorials/:tutorial_id/chapters/create/confirmation'=> "chapters#create_confirmation"
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create' => "steps#create"
   post 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create/confirmation'=> "steps#create_confirmation"
 
-  get 'tutorials/:tutorial_id/edit' => "tutorials#edit"
-  patch 'tutorials/:tutorial_id/update/confirmation' => "tutorials#update_confirmation"
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id/edit' => "chapters#edit"
   patch 'tutorials/:tutorial_id/chapters/:chapter_id/update/confirmation' => "chapters#update_confirmation"
-
-  get 'tutorials/:tutorial_id' => "tutorials#view"
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#view"
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#delete"
   delete 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#delete"
 
+  get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#view"
+
+  get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
+  delete 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
+
+  get 'tutorials/:tutorial_id' => "tutorials#delete"
+  delete 'tutorials/:tutorial_id' => "tutorials#delete"
   devise_for :users
   root to: "main#home"
 end
