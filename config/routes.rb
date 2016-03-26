@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   get 'tutorials/create' => "tutorials#create"
   post 'tutorials/create/confirmation'=> "tutorials#create_confirmation"
 
-   get 'tutorials/:tutorial_id/edit' => "tutorials#edit"
-  patch 'tutorials/:tutorial_id/update/confirmation' => "tutorials#update_confirmation"
+
+  get 'tutorials/:tutorial_id' => "tutorials#view"
+
 
   get 'tutorials/:tutorial_id/chapters/create' => "chapters#create"
   post 'tutorials/:tutorial_id/chapters/create/confirmation'=> "chapters#create_confirmation"
@@ -30,8 +31,6 @@ Rails.application.routes.draw do
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id/edit' => "chapters#edit"
   patch 'tutorials/:tutorial_id/chapters/:chapter_id/update/confirmation' => "chapters#update_confirmation"
-
-  get 'tutorials/:tutorial_id' => "tutorials#view"
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#view"
 

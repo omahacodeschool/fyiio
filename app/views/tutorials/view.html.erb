@@ -1,2 +1,8 @@
-<h1>View Tutorial</h1>
+<h1>View Tutorial for <%= @tutorial.title %></h1>
+
+<div>
+  <% @chapters.each do |chapter| %>
+    <%= link_to(chapter.title, "/tutorials/#{@tutorial.id}/chapters/#{chapter.id}") %><br>
+  <% end %>
+</div>
 

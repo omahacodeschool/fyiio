@@ -29,8 +29,8 @@ class ChaptersController < ApplicationController
     redirect_to "/"
   end
 
-  def chapter
-    render "chapter"
+  def view
+    render "view"
   end
 
   def delete

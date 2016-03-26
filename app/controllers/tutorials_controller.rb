@@ -28,8 +28,10 @@ class TutorialsController < ApplicationController
     redirect_to "/"
   end
 
-  def tutorial
-    render "tutorial"
+  def view
+    @tutorial = Tutorial.find_by_id(params[:tutorial_id])
+    @chapters = Chapter.where({tutorial_id: @tutorial.id}).order('id')
+    render "view"
   end
 
 
