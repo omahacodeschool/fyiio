@@ -13,6 +13,12 @@ class ChaptersController < ApplicationController
     redirect_to "/tutorials/#{@tutorial.id}/chapters/#{@new_chapter.id}/steps/create"
   end
 
+  def delete
+    @chapter = Chapter.find_by_id(params[:chapter_id]).destroy
+    flash[:success] = "Chapter successfully deleted!"
+    redirect_to "/"
+  end
+
   def edit
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @edit_chapter = Chapter.find_by_id(params[:chapter_id])
@@ -30,16 +36,10 @@ class ChaptersController < ApplicationController
   end
 
   def view
-    @tut = Tutorial.find_by_id(params[:tutorial_id])
-    @ch = Chapter.find_by_id(params[:chapter_id])
-    @steps = Step.where({chapter_id: @ch.id}).order('id')
+    @tutorial = Tutorial.find_by_id(params[:tutorial_id])
+    @chapter = Chapter.find_by_id(params[:chapter_id])
+    @steps = Step.where({chapter_id: @chapter.id}).order('id')
     render "view"
-  end
-
-  def delete
-    @chapter = Chapter.find_by_id(params[:chapter_id]).destroy
-    flash[:success] = "Chapter successfully deleted!"
-    redirect_to "/"
   end
 
 end

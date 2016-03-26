@@ -1,18 +1,22 @@
 <br>
-<%= link_to("Back to " + @tut.title, "/tutorials/#{@tut.id}") %>
-<h1>Tutorial view: <%= @tut.title %></h1>
-<h2>Chapter view: <%= @ch.title %></h2>
-<% if @ch.draft == true %>
+<%= link_to("Back to " + @tutorial.title, "/tutorials/#{@tutorial.id}") %>
+<h1>Tutorial view: <%= @tutorial.title %></h1>
+<h2>Chapter view: <%= @chapter.title %></h2>
+<% if @chapter.draft == true %>
   <p>This is in Draft Status</p>
 <% else %>
 <% end %>
-<p>Chapter Description: <%= @ch.description %></p>
+<p>Chapter Description: <%= @chapter.description %></p>
 
 <h2>View the steps:</h2>
 <ol>
   <% @steps.each do |step| %>
     <li><%= step.title %>
       <p><%= step.description %></p>
+      <% if step.draft == true %>
+        <p>Draft Step is in Draft Status</p>
+      <% else %>
+      <% end %>
     </li>
     <br>
   <% end %>
