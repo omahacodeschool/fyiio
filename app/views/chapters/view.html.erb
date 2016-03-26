@@ -1,12 +1,13 @@
-<h1> This is the view page <%= @ch.title %></h1>
+<h1>Tutorial view: <%= @tut.title %></h1>
+<h2>Chapter view: <%= @ch.title %></h2>
 <% if @ch.draft == true %>
   <p>This is in Draft Status</p>
 <% else %>
 <% end %>
 <p><%= @ch.description %></p>
 
-<h2>View the steps for <%= @ch.title %></h2>
-<p>steps need to go here</p>
+<h2>View the steps</h2>
+
 
 
    <%= link_to "Delete", @chapter, method: :delete,
