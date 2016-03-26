@@ -30,7 +30,7 @@ class ChaptersController < ApplicationController
   end
 
   def view
-    @tutorial =Tutorial.find_by_id(params[:tutorial_id])
+    @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapter = Chapter.find_by_id(params[:chapter_id])
     render "view"
   end
