@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   get 'tutorials/create' => "tutorials#create"
   post 'tutorials/create/confirmation'=> "tutorials#create_confirmation"
 
+  get 'tutorials/:tutorial_id/edit' => "tutorials#edit"
+  patch 'tutorials/:tutorial_id/update/confirmation' => "tutorials#update_confirmation"
+
 
   get 'tutorials/:tutorial_id' => "tutorials#view"
 
