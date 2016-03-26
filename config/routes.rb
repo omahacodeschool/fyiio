@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'tutorials/:tutorial_id/chapters/create' => "chapters#create"
   post 'tutorials/:tutorial_id/chapters/create/confirmation'=> "chapters#create_confirmation"
 
+  get 'tutorials/:tutorial_id/chapters/:chapter_id/steps' => "steps#view"
+
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create' => "steps#create"
   post 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create/confirmation'=> "steps#create_confirmation"
 

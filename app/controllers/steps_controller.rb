@@ -14,4 +14,8 @@ class StepsController < ApplicationController
     @new_step.save
     redirect_to "/"
   end
+
+  def view
+    render "view"
+  end
 end

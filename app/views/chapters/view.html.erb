@@ -1,6 +1,10 @@
 <h1> This is the view page for Chapters.</h1>
-<h2><%= @chapter.title %></h2>
-<h2><%= @tutorial.title %></h2>
+
+<div>
+  <% @steps.each do |step| %>
+    <%= link_to(step.title, "/tutorials/#{@tutorial.id}/chapters/#{chapter.id}/steps/#{step.id}") %><br>
+  <% end %>
+</div>
 
    <%= link_to "Delete", @chapter, method: :delete,
                                   data: { confirm: "Are you sure you want to delete this chapter?" } %>
