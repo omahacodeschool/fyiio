@@ -45,6 +45,9 @@ Rails.application.routes.draw do
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
   delete 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
 
+  get 'tutorials/:tutorial_id' => "tutorials#delete"
+  delete 'tutorials/:tutorial_id' => "tutorials#delete"
+
 
   devise_for :users
   root to: "main#home"
