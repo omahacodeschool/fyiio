@@ -22,7 +22,4 @@
   <% end %>
 </ol>
 
-
-
-
-    <%= link_to "Delete", delete_chapter_path, method: :delete, data: { confirm: "Are you sure you want to delete the chapter: #{@chapter.title}? It has #{@steps.count} steps." } %>
+<%= link_to "Delete", delete_chapter_path, method: :delete, data: { confirm: "Are you sure you want to delete the chapter: #{@chapter.title}? It has #{@steps.count} steps." } %>

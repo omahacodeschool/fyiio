@@ -14,6 +14,7 @@ class TutorialsController < ApplicationController
 
   def edit
     @edit_tutorial = Tutorial.find_by_id(params[:tutorial_id])
+    @chapters = Chapter.where({tutorial_id: @edit_tutorial.id}).order('id')
   end
 
   def update_confirmation
