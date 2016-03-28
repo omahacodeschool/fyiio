@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'companies/create' => "companies#create"
   post 'companies/create/confirmation'=> "companies#create_confirmation"
 
-  get '/:username/dashboard' => "dashboard#view"
+  get '/:username/dashboard' => "dashboard#view_dashboard"
   get  '/:username/dashboard/invite' => "dashboard#invite_additional_users"
   post '/:username/dashboard/invite/confirmation' => "dashboard#invite_additional_users_confirmation"
 
@@ -52,7 +52,6 @@ Rails.application.routes.draw do
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/edit' => "steps#edit", as: :edit_step
   patch 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/update/confirmation' => "steps#update_confirmation"
 
-  
 
   delete 'tutorials/:tutorial_id/delete' => "tutorials#delete", as: :delete_tutorial
   devise_for :users

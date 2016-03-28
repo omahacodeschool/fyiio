@@ -9,17 +9,19 @@
 <p>Chapter Description: <%= @chapter.description %></p>
 
 <h2>View the steps:</h2>
-<ol>
+<div>
   <% @steps.each do |step| %>
-    <li><%= step.title %>
+    <% if step.warning == true %>
+      <p>WARNING! <%= step.title %></p>
       <p><%= step.description %></p>
-      <% if step.draft == true %>
-        <p>Draft Step is in Draft Status</p>
-      <% else %>
-      <% end %>
-    </li>
-    <br>
+    <% else %>
+      <% @counter +=1 %>
+      <p>Step <%= @counter %>: <%= step.title %></p>
+      <p><%= step.description %></p>
+    <% end %>
   <% end %>
-</ol>
 
-<%= link_to "Delete", delete_chapter_path, method: :delete, data: { confirm: "Are you sure you want to delete the chapter: #{@chapter.title}? It has #{@steps.count} steps." } %>
+</div>
+
+    <%= link_to "Delete", delete_chapter_path, method: :delete, data: { confirm: "Are you sure you want to delete the chapter: #{@chapter.title}? It has #{@steps.count} steps." } %>
+
