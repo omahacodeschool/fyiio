@@ -34,6 +34,18 @@ class TutorialsController < ApplicationController
     render "view"
   end
 
+  def chapters_arr
+    @chapters = Chapter.where({tutorial_id: @tutorial.id})
+  end
+
+  def chapter_counter
+    i = 1
+    while i <= chapters_arr.length
+      return i
+      i += 1
+    end
+  end
+
   def delete
     @tutorials = Tutorial.find_by_id(params[:tutorial_id]).destroy
     flash[:success] = "Tutorial successfully deleted!"
