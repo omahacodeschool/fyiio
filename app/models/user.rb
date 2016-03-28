@@ -11,4 +11,9 @@ class User < ActiveRecord::Base
 
   mount_uploader :profile_image, ProfileImageUploader
 
+  def user_image_check
+    return self.profile_image.presence || "http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png"
+  end
+    
+
 end

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   patch '/companies/update/confirmation' => "companies#update_company_confirmation", as: :update_company_confirmation
   get  '/companies/update/image' => "companies#update_company_image", as: :update_company_image
   patch '/companies/update/image/confirmation' => "companies#update_company_image_confirmation", as: :update_company_image_confirmation
+  get 'companies/view/account/info' => "companies#view_company_info", as: :view_company_info
 
   get 'tutorials/create' => "tutorials#create"
   post 'tutorials/create/confirmation'=> "tutorials#create_confirmation"

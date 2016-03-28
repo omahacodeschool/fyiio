@@ -2,8 +2,8 @@
 <%= form_for  @new_company, :url => "create/confirmation" do |f| %>
   Profile Image: <%= f.file_field :profle_image %><br />
   Company Name: <%= f.text_field :name %><br />
-  URL Name: <%= f.text_field :username, :required => true, :placeholder=>'Page Location.'%><br />
-  Description:<br /> <%= f.text_area :bio %><br />
+  Sub Domain: <%= f.text_field :username, :required => true, :placeholder=>'Page Location.'%> ex: www.fyiio.com/THIS_TEST_IS_WHAT_IS_SET<br />
+  Description:<br /> <%= f.text_area :bio, :value => 'No information available.' %><br />
   Address: <%= f.text_field :address_1 %><br />
   Suite/Apt#: <%= f.text_field :address_2 %><br />
   City: <%= f.text_field :city %><br />

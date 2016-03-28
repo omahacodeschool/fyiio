@@ -23,7 +23,7 @@ class CompaniesController < ApplicationController
     def update_company_confirmation
     @edit_company = Company.find_by_username(session[:company_username])
     @edit_company.update(:username => params[:company][:username], :name => params[:company][:name], :bio => params[:company][:bio], :address_1 => params[:company][:address_1], :address_2 => params[:company][:address_2], :city => params[:company][:city], :state => params[:company][:state], :zip => params[:company][:zip])
-    redirect_to dashboard_path(session[:company_username])
+    redirect_to view_company_info_path
   end
 
   def update_company_image
@@ -35,5 +35,10 @@ class CompaniesController < ApplicationController
     @edit_company = Company.find_by_username(session[:company_username])
     @edit_company.update(:profile_image => params[:company][:profle_image])
     redirect_to update_company_path
+  end
+
+  def view_company_info
+    @company = Company.find_by_username(session[:company_username])
+    render "view_info"
   end
 end
