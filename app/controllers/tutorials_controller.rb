@@ -31,19 +31,8 @@ class TutorialsController < ApplicationController
   def view
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapters = Chapter.where({tutorial_id: @tutorial.id}).order('id')
+    @counter = 0
     render "view"
-  end
-
-  def chapters_arr
-    @chapters = Chapter.where({tutorial_id: @tutorial.id})
-  end
-
-  def chapter_counter
-    i = 1
-    while i <= chapters_arr.length
-      return i
-      i += 1
-    end
   end
 
   def delete
@@ -51,6 +40,5 @@ class TutorialsController < ApplicationController
     flash[:success] = "Tutorial successfully deleted!"
     redirect_to "/"
   end
-
 
 end

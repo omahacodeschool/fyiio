@@ -2,7 +2,8 @@
 
 <div>
   <% @chapters.each do |chapter| %>
-    <%= link_to(chapter.title, "/tutorials/#{@tutorial.id}/chapters/#{chapter.id}") %><br>
+    <% @counter += 1 %>
+    Chapter <%= @counter %> <%= link_to(chapter.title, "/tutorials/#{@tutorial.id}/chapters/#{chapter.id}") %><br>
   <% end %>
 </div>
 <br>
