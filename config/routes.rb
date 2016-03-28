@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'companies/create' => "companies#create"
   post 'companies/create/confirmation'=> "companies#create_confirmation"
 
-  get '/:username/dashboard' => "dashboard#view"
+  get '/:username/dashboard' => "dashboard#view_dashboard"
   get  '/:username/dashboard/invite' => "dashboard#invite_additional_users"
   post '/:username/dashboard/invite/confirmation' => "dashboard#invite_additional_users_confirmation"
 

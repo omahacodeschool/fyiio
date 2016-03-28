@@ -8,4 +8,9 @@ class User < ActiveRecord::Base
   validates_presence_of :company_id
 
   mount_uploader :profile_image, ProfileImageUploader
+
+  
+  def get_all_users_for_company(company_id)
+    return User.where({:company_id => company_id}).pluck(:id)
+  end
 end

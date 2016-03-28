@@ -6,3 +6,8 @@
 
 
 <h3>Company Tutorials</h3>
+<% if @all_tutorials != nil %>
+  <% @all_tutorials.each do |tutorial| %>
+  <%= tutorial.title %>
+  <% end %>
+<% end %>
