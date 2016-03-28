@@ -46,6 +46,9 @@ Rails.application.routes.draw do
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#view"
 
+  get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/edit' => "steps#edit"
+  patch 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/update/confirmation' => "steps#update_confirmation"
+
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
   delete 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
 
