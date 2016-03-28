@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get 'tutorials/:tutorial_id/chapters/create' => "chapters#create"
   post 'tutorials/:tutorial_id/chapters/create/confirmation'=> "chapters#create_confirmation"
 
+  get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#view"
+
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create' => "steps#create"
   post 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create/confirmation'=> "steps#create_confirmation"
 
@@ -41,16 +43,19 @@ Rails.application.routes.draw do
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#view"
 
-  get 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#delete"
-  delete 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#delete"
+  delete 'tutorials/:tutorial_id/chapters/:chapter_id/delete' => "chapters#delete", as: :delete_chapter
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#view"
+
+  delete 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete", as: :delete_step
+
+  get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/edit' => "steps#edit"
+  patch 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/update/confirmation' => "steps#update_confirmation"
 
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
   delete 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
 
-  get 'tutorials/:tutorial_id' => "tutorials#delete"
-  delete 'tutorials/:tutorial_id' => "tutorials#delete"
+  delete 'tutorials/:tutorial_id/delete' => "tutorials#delete", as: :delete_tutorial
   devise_for :users
   root to: "main#home"
 end

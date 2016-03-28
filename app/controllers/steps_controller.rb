@@ -15,22 +15,30 @@ class StepsController < ApplicationController
     redirect_to "/"
   end
 
-  def step
-    render "step"
+  def view
+    render "view"
   end
 
+  def edit
+    @chapter = Chapter.find_by_id(params[:chapter_id])
+    @edit_step = Step.find_by_id(params[:step_id])
+  end
 
-
-
-
-
-
+  def update_confirmation
+    @update_step = Step.find_by_id(params[:step_id])
+    @update_step.title = params[:step][:title] 
+    @update_step.description = params[:step][:description]
+    @update_step.draft = params[:step][:draft]
+    @update_step.start_time = params[:step][:start_time]
+    @update_step.end_time = params[:step][:end_time]
+    @update_step.save
+    redirect_to "/"
+  end
 
   def delete
     @step = Step.find_by_id(params[:step_id]).destroy
     flash[:success] = "This step was successfully deleted!"
     redirect_to "/"
   end
-
 
 end
