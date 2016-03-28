@@ -3,11 +3,17 @@
 <%= link_to("Create Tutorial", tutorials_create_path) %>
 
 <h3>Drafts </h3>
-
+<% if @all_tutorial_drafts != nil %>
+  <% @all_tutorial_drafts.each do |tutorial| %>
+   <%= link_to(tutorial.title, "/tutorials/#{tutorial.id}") %><br>
+   <%= tutorial.description %><br><br>
+  <% end %>
+<% end %>
 
 <h3>Company Tutorials</h3>
-<% if @all_tutorials != nil %>
-  <% @all_tutorials.each do |tutorial| %>
-  <%= tutorial.title %>
+<% if @all_finished_tutorials != nil %>
+  <% @all_finished_tutorials.each do |tutorial| %>
+    <%= link_to(tutorial.title, "/tutorials/#{tutorial.id}") %><br>
+    <%= tutorial.description %><br><br>
   <% end %>
 <% end %>

@@ -21,12 +21,9 @@ class DashboardController < ApplicationController
   def view_dashboard
     @current_user = User.find_by_id(current_user)
     @company = Company.find_by_id(@current_user.company_id)
-    @all_users = @company.get_all_users_for_company
-    puts @all_users
-    @all_tutorials = Tutorial.get_all_tutorials_for_company(@all_users)
-    puts @all_tutorials
+    @all_finished_tutorials = @company.tutorials.where({"draft" =>false})
+    @all_tutorial_drafts =@company.tutorials.where({"draft" => true})
     render "view"
-
   end
 
 end

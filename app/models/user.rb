@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  belongs_to(:company)
+  has_many(:tutorials)
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -9,8 +11,4 @@ class User < ActiveRecord::Base
 
   mount_uploader :profile_image, ProfileImageUploader
 
-  
-  def get_all_users_for_company(company_id)
-    return User.where({:company_id => company_id}).pluck(:id)
-  end
 end
