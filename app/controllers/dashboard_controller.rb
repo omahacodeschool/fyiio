@@ -13,7 +13,7 @@ class DashboardController < ApplicationController
 
     @invite = CompanyInvite.new(:auth_code => SecureRandom.base64(8), :verified => false, :company_id => @company.id, :email => params[:email])
     @invite.save
-    UserMailer.company_invite(@invite).deliver_later
+    UserMailer.company_invite(@invite).deliver_now!
 
     render "invite_confirmation"
   end

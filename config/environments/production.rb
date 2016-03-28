@@ -13,6 +13,7 @@ Rails.application.configure do
   config.assets.js_compressor = :uglifier
   config.assets.compile = false
   config.assets.digest = true
+  config.action_mailer.raise_delivery_errors = true
   config.log_level = :debug
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = SMTP_SETTINGS
