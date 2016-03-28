@@ -7,3 +7,8 @@
   Draft: <%= f.check_box :draft %><br />
   <%= f.submit %>
 <% end %>
+  <br>
+<% @chapters.each do |chapter| %>
+  <%= link_to("Edit Chapter #{chapter.title}", edit_chapter_path(@edit_tutorial.id, chapter.id)) %>
+  <br>
+<% end %>
