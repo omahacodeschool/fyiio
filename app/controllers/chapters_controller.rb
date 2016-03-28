@@ -39,6 +39,7 @@ class ChaptersController < ApplicationController
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapter = Chapter.find_by_id(params[:chapter_id])
     @steps = Step.where({chapter_id: @chapter.id}).order('id')
+    @counter = 0
     render "view"
   end
 
