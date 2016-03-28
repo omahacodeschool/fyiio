@@ -6,7 +6,9 @@
 <% if @all_tutorial_drafts != nil %>
   <% @all_tutorial_drafts.each do |tutorial| %>
    <%= link_to(tutorial.title, "/tutorials/#{tutorial.id}") %><br>
-   <%= tutorial.description %><br><br>
+   <%= tutorial.description %><br>
+    <%= link_to("Edit", "/tutorials/#{tutorial.id}/edit") %> 
+    <%= link_to "Delete", "/tutorials/#{tutorial.id}/delete", method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %><br><br>
   <% end %>
 <% end %>
 
@@ -14,6 +16,8 @@
 <% if @all_finished_tutorials != nil %>
   <% @all_finished_tutorials.each do |tutorial| %>
     <%= link_to(tutorial.title, "/tutorials/#{tutorial.id}") %><br>
-    <%= tutorial.description %><br><br>
+    <%= tutorial.description %><br>
+    <%= link_to("Edit", "/tutorials/#{tutorial.id}/edit") %> 
+    <%= link_to "Delete", "/tutorials/#{tutorial.id}/delete", method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %> <br><br> 
   <% end %>
 <% end %>

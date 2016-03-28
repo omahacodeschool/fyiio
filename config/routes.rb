@@ -52,9 +52,6 @@ Rails.application.routes.draw do
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/edit' => "steps#edit"
   patch 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/update/confirmation' => "steps#update_confirmation"
 
-  get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
-  delete 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete"
-
   delete 'tutorials/:tutorial_id/delete' => "tutorials#delete", as: :delete_tutorial
   devise_for :users
   root to: "main#home"

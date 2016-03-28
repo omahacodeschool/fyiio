@@ -38,7 +38,7 @@ class TutorialsController < ApplicationController
   def delete
     @tutorials = Tutorial.find_by_id(params[:tutorial_id]).destroy
     flash[:success] = "Tutorial successfully deleted!"
-    redirect_to "/"
+    redirect_to "/#{session[:username]}/dashboard"
   end
 
 end
