@@ -4,7 +4,8 @@ class Company < ActiveRecord::Base
   has_many(:users)
   has_many :tutorials, through: "users"
 
-  def get_all_users_for_company
-    return User.where({:company_id => self.id}).pluck(:id)
+  def image_check
+    return self.profile_image.presence || "https://aeseda.psu.edu/wp-content/themes/theme-mingle/assets/images/placeholder.jpg"
   end
+    
 end
