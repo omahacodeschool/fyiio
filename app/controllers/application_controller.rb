@@ -27,8 +27,9 @@ def store_location
 end
 
 def after_sign_in_path_for(resource)
-  @company = Company.find_by_id(current_user.company_id)
-  session[:company_username] = @company.username
+  user = User.find_by_id(current_user)
+  company = Company.find_by_id(user.company_id)
+  session[:company_username] = company.username
   session[:previous_url] || root_path
 end
 
