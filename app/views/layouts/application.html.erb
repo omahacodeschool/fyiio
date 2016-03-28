@@ -19,7 +19,7 @@
     <a href="/discover">Discover</a>
     <a href="/about">About</a>
     <% if user_signed_in? %>
-      <a href="#">Dashboard</a>
+      <%= link_to('Dashboard', "/#{session[:company_username]}/dashboard") %>
       <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
     <% else %>
       <%= link_to('Sign In', new_user_session_path) %>

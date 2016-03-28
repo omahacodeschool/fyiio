@@ -20,8 +20,8 @@ class DashboardController < ApplicationController
 
   def view_dashboard
     @current_user = User.find_by_id(current_user)
-    @company = Company.find_by_id(@current_user.company_id)
-    render
+    @company = Company.find_by_username(params[:username])
+    render "view"
 
   end
 end
