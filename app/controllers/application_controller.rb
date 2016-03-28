@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_filter :store_location
 
+protected
+
 def store_location
   # store last url - this is needed for post-login redirect to whatever the user last visited.
   return unless request.get? 
@@ -25,16 +27,11 @@ def store_location
 end
 
 def after_sign_in_path_for(resource)
+  @company = Company.find_by_id(current_user.company_id)
+  session[:company_username] = @company.username
   session[:previous_url] || root_path
 end
 
-protected
-
-def after_update_path_for(resource)
-  @company = Company.find_by_id(current_user.company_id)
-  session[:company_username] = @company.username
-  user_path(resource)
-end
 
   protected
 

@@ -15,6 +15,7 @@ class CompanyInvitesController < ApplicationController
     else
       @company = Find_by_id(user_code.company_id)
       session[:company_id] = company.id
+      session[:company_username] = company.username
       user_code.delete
       redirect_to new_user_registration_path(:company_id => session[:company_id])
     end
