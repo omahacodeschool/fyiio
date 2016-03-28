@@ -11,9 +11,14 @@
 <h2>View the steps:</h2>
 <div>
   <% @steps.each do |step| %>
-    <% @counter +=1 %>
-    <p>Step <%= @counter %>: <%= step.title %></p>
-    <p><%= step.description %></p>
+    <% if step.warning == true %>
+      <p>WARNING! <%= step.title %></p>
+      <p><%= step.description %></p>
+    <% else %>
+      <% @counter +=1 %>
+      <p>Step <%= @counter %>: <%= step.title %></p>
+      <p><%= step.description %></p>
+    <% end %>
   <% end %>
 </div>
 
