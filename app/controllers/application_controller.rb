@@ -21,6 +21,7 @@ def store_location
       request.path != "/companyInvites/verification" &&
       request.path != "/companies/create" &&
       request.path != "/companyInvites/verification/confirmation" &&
+      request.path != "/companyInvites/verification/:auth_code" &&
       !request.xhr?) # don't store ajax calls
     session[:previous_url] = request.fullpath 
   end
