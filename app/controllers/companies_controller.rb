@@ -19,7 +19,6 @@ class CompaniesController < ApplicationController
   def edit_company
     @current_user = User.find_by_id(current_user)
     @edit_company = Company.find_by_username(session[:company_username])
-    @image = @edit_company.image_check
     render "edit"
   end
 
@@ -27,7 +26,12 @@ class CompaniesController < ApplicationController
     @current_user = User.find_by_id(current_user)
     @edit_company = Company.find_by_username(session[:company_username])
     @edit_company.update(name: params[:company][:name], bio: params[:company][:bio], address_1: params[:company][:address_1], address_2: params[:company][:address_2], city: params[:company][:city], state: params[:company][:state], zip: params[:company][:zip])
-    redirect_to view_company_info_path
+    if @edit_company.valid?
+       @edit_company.save
+       redirect_to view_company_info_path
+    else
+      render "edit"
+    end
   end
 
   def edit_company_image
