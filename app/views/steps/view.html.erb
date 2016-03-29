@@ -1,6 +1,4 @@
-<h1>This is Steps view</h1>
+<h1><%= @step.title %></h1>
+<%= @step.description %>
 
-<h1> Here are the steps to your chapter!</h1>
 
-<%= link_to "Delete", delete_step_path, method: :delete,
-                                  data: { confirm: "Are you sure you want to delete this chapter?" } %>
