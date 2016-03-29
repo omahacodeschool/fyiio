@@ -33,7 +33,7 @@ Rails.application.routes.draw do
  
   # chapters routes
   get 'tutorials/:tutorial_id/chapters/create' => "chapters#create", as: :chapters_create
-  post 'tutorials/:tutorial_id/chapters/create/confirmation'=> "chapters#create_confirmation", as: :chapters_create_confirmation
+  post 'tutorials/:tutorial_id/chapters/create/confirmation' => "chapters#create_confirmation", as: :chapters_create_confirmation
   get 'tutorials/:tutorial_id/chapters/:chapter_id/edit' => "chapters#edit", as: :chapters_edit
   patch 'tutorials/:tutorial_id/chapters/:chapter_id/edit/confirmation' => "chapters#edit_confirmation", as: :chapters_edit_confirmation
   get 'tutorials/:tutorial_id/chapters/:chapter_id' => "chapters#view", as: :chapters
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   
   # steps routes
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create' => "steps#create", as: :steps_create
-  post 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create/confirmation'=> "steps#create_confirmation", as: :steps_create_confirmation
+  post 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create/confirmation' => "steps#create_confirmation", as: :steps_create_confirmation
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/edit' => "steps#edit", as: :steps_edit
   patch 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/update/confirmation' => "steps#update_confirmation", as: :steps_edit_confirmation
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#view", as: :steps
