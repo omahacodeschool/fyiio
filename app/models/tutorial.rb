@@ -5,6 +5,7 @@ class Tutorial < ActiveRecord::Base
     :maximum => 250,
     :too_long  => "Description cannot exceed 250 characters" 
   }
+  validates_presence_of :title, :user_id, :category
   include PgSearch
   pg_search_scope :search_by_title, :against => :title
   mount_uploader :video, VideoUploader

@@ -8,9 +8,13 @@ class TutorialsController < ApplicationController
   def create_confirmation
     @user = User.find_by_id(current_user)
     @new_tutorial = Tutorial.new(title: params[:tutorial][:title], description: params[:tutorial][:description], video: params[:tutorial][:video], public: params[:tutorial][:public], draft: params[:tutorial][:draft], category: params[:tutorial][:category], user_id: @user.id)
-    @new_tutorial.save
-    flash[:success] = "Tutorial Created!"
-    redirect_to tutorials_edit_path(@new_tutorial)
+    if @new_tutorial.valid?
+      @new_tutorial.save
+      flash[:success] = "Tutorial Created!"
+      redirect_to tutorials_edit_path(@new_tutorial)
+    else
+      render "create"
+    end
   end
 
   def edit
@@ -24,9 +28,13 @@ class TutorialsController < ApplicationController
     @edit_tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapters = @edit_tutorial.chapters.order('id')
     @edit_tutorial.update(title: params[:tutorial][:title], description: params[:tutorial][:description], public: params[:tutorial][:public], draft: params[:tutorial][:draft], category: params[:tutorial][:category])
-    @edit_tutorial.save
-    flash[:success] = "Tutorial Information Updated!"
-    redirect_to tutorials_edit_path(@edit_tutorial.id)
+    if @edit_tutorial.valid?
+      @edit_tutorial.save
+      flash[:success] = "Tutorial Information Updated!"
+      redirect_to tutorials_edit_path(@edit_tutorial.id)
+    else
+      render "edit"
+    end
   end
 
   def view

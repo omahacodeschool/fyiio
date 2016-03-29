@@ -1,6 +1,13 @@
 NEED SEPARATE LINKS FOR UPDATING VIDEO. FOR NOW SHOULD JUST VE VIEWABLE HERE
 
 <%= form_for  @edit_tutorial, :url => tutorials_edit_confirmation_path(@edit_tutorial.id) do |f| %>
+  <% if @edit_tutorial.errors.full_messages.any? %>
+     <% @edit_tutorial.errors.full_messages.each do |error_message| %>
+      <%= error_message %> <br />
+    <% end %>
+  <% end %>
+  <br><br>
+
   Category: <%= f.select :category, [['CATEGORY1', 1], ['CATEGORY2', 2], ['CATEGORY3', 3], ['CATEGORY4', 4], ['CATEGORY5', 5]] %><br />
   Title: <%= f.text_field :title %><br />
   Description:<br /> <%= f.text_area :description %><br />
