@@ -1,7 +1,7 @@
 <h1>Edit Chapter</h1>.
 <h3> For <%= @tutorial.title %></h3>
 
-<%= form_for  @edit_chapter, :url => "update/confirmation" do |f| %>
+<%= form_for  @edit_chapter, url: chapters_edit_confirmation_path(@tutorial.id, @edit_chapter.id) do |f| %>
   Title: <%= f.text_field :title %><br />
   Description:<br /> <%= f.text_area :description %><br />
   Start Time: <%= f.text_field :start_time %><br />
@@ -10,7 +10,16 @@
   <%= f.submit %>
 <% end %>
 
-<% @chapters.each do |chapter| %>
-  <%= link_to("Edit Chapter #{chapter.title}", edit_chapter_path(@tutorial.id, chapter.id)) %>
+<br><br>
+
+ <%= link_to("Add New Step", steps_create_path(@tutorial.id, @edit_chapter.id)) %>
+
+ <br><br>
+
+<% @steps.each do |step| %>
+  <%= link_to("Edit Step #{step.title}", steps_edit_path(@tutorial.id, @edit_chapter.id, step.id)) %>
   <br>
 <% end %>
+
+<br><br>
+  <%= link_to "Delete Chapter", delete_chapter_path, method: :delete, data: { confirm: "Are you sure you want to delete the chapter: #{@edit_chapter.title}? It has #{@steps.count} steps." } %>
