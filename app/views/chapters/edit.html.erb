@@ -1,7 +1,14 @@
 <h1>Edit Chapter</h1>.
 <h3> For <%= @tutorial.title %></h3>
 
-<%= form_for  @edit_chapter, url: chapters_edit_confirmation_path(@tutorial.id, @edit_chapter.id) do |f| %>
+<%= form_for @edit_chapter, url: chapters_edit_confirmation_path(@tutorial.id, @edit_chapter.id) do |f| %>
+  <% if @edit_chapter.errors.full_messages.any? %>
+    <% @edit_chapter.errors.full_messages.each do |error_message| %>
+      <%= error_message %> <br />
+    <% end %>
+  <% end %>
+  <br><br>
+
   Title: <%= f.text_field :title %><br />
   Description:<br /> <%= f.text_area :description %><br />
   Start Time: <%= f.text_field :start_time %><br />
