@@ -41,4 +41,25 @@ class Tutorial < ActiveRecord::Base
       return false
     end
   end
+
+  def get_privacy_notice
+    return self.public == true ? "Public" : "Private"
+  end
+
+  def get_category_notice
+    notice = ""
+    if self.category == "1"
+      notice = "CATEGORY 1"
+    elsif self.category == "2"
+      notice = "CATEGORY 2"
+    elsif self.category == "3"
+      notice = "CATEGORY 3"
+    elsif self.category == "4"
+      notice = "CATEGORY 4"
+    elsif self.category == "5"
+      notice = "CATEGORY 5"
+    end
+
+    return notice
+  end
 end

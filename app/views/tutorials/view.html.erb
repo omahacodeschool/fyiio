@@ -1,4 +1,6 @@
 <h1><%= @tutorial.title %></h1>
+<%= "Access: " + @tutorial.get_privacy_notice %><br>
+ <%= "Category: " + @tutorial.get_category_notice %> <br>
 <%= @tutorial.description %><br><br>
 <div id= "chapterTitlesAndDescriptions">
   <% @chapters.each_with_index do |chapter, index| %>
