@@ -22,7 +22,7 @@ class CompaniesController < ApplicationController
 
     def update_company_confirmation
     @edit_company = Company.find_by_username(session[:company_username])
-    @edit_company.update(:username => params[:company][:username], :name => params[:company][:name], :bio => params[:company][:bio], :address_1 => params[:company][:address_1], :address_2 => params[:company][:address_2], :city => params[:company][:city], :state => params[:company][:state], :zip => params[:company][:zip])
+    @edit_company.update(:name => params[:company][:name], :bio => params[:company][:bio], :address_1 => params[:company][:address_1], :address_2 => params[:company][:address_2], :city => params[:company][:city], :state => params[:company][:state], :zip => params[:company][:zip])
     redirect_to view_company_info_path
   end
 

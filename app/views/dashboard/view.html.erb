@@ -15,7 +15,7 @@
    <%= link_to(tutorial.title, "/tutorials/#{tutorial.id}") %><br>
    <%= tutorial.description %><br>
     <%= link_to("Edit", "/tutorials/#{tutorial.id}/edit") %> 
-    <%= link_to "Delete", "/tutorials/#{tutorial.id}/delete", method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %><br><br>
+    <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %> <br><br> 
   <% end %>
 <% end %>
 
@@ -25,6 +25,6 @@
     <%= link_to(tutorial.title, "/tutorials/#{tutorial.id}") %><br>
     <%= tutorial.description %><br>
     <%= link_to("Edit", "/tutorials/#{tutorial.id}/edit") %> 
-    <%= link_to "Delete", "/tutorials/#{tutorial.id}/delete", method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %> <br><br> 
+    <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %> <br><br> 
   <% end %>
 <% end %>
