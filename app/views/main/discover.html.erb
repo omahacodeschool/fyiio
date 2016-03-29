@@ -1,13 +1,20 @@
-<div id="discover">
-<!-- Prep for bootstrap design -->
-<!-- Will want to display these inline for desktop and tablet-landscape views -->
-<!-- Will probably want searchbar to be 12 cols when viewing on xs device -->
-  <div><h1>Discover others content!</h1></div>
-  <div> <!-- Search for open content -->
-    <!-- This is generic search form -->
-    <%= form_tag("/search", method: "get") do %>
-      <%= text_field_tag(:q) %>
-      <%= submit_tag("Search") %>
-    <% end %>
+<div id="discover" class="row">
+  <h1 class="center">Learn how to do something amazing</h1>
+  <div id="discover_search_form" class="center">
+    <div> <!-- Search for open content -->
+      <!-- This is generic search form -->
+      <%= form_tag("/search", method: "get") do %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+      <% end %>
+    </div>
   </div>
 </div>
+<br>
+<div class="row">
+  <div class="col-3"><img src="http://placehold.it/300"></div>
+  <div class="col-3"><img src="http://placehold.it/300"></div>
+  <div class="col-3"><img src="http://placehold.it/300"></div>
+  <div class="col-3"><img src="http://placehold.it/300"></div>
+</div>
+<h2 class="center">Create something awesome today!</h2>
