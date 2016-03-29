@@ -2,6 +2,7 @@
 <h3> For <%= @tutorial.title %></h3>
 
 <%= form_for  @new_chapter, :url => "create/confirmation" do |f| %>
+  <%= f.error_messages %>
   Title: <%= f.text_field :title %><br />
   Description:<br /> <%= f.text_area :description %><br />
   Start Time: <%= f.text_field :start_time %><br />

@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
   has_many(:companyInvites)
   has_many(:users)
   has_many :tutorials, through: "users"
+  validates :bio, :length => { :maximum => 250 }
 
   def image_check
     return self.profile_image.presence || "https://aeseda.psu.edu/wp-content/themes/theme-mingle/assets/images/placeholder.jpg"
