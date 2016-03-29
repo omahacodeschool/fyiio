@@ -9,10 +9,10 @@ Rails.application.routes.draw do
 
   get 'companies/create' => "companies#create", as: :companies_create
   post 'companies/create/confirmation'=> "companies#create_confirmation", as: :companies_create_confirmation
-  get  '/companies/update' => "companies#update_company", as: :update_company
-  patch '/companies/update/confirmation' => "companies#update_company_confirmation", as: :update_company_confirmation
-  get  '/companies/update/image' => "companies#update_company_image", as: :update_company_image
-  patch '/companies/update/image/confirmation' => "companies#update_company_image_confirmation", as: :update_company_image_confirmation
+  get  '/companies/edit' => "companies#edit_company", as: :edit_company
+  patch '/companies/edit/confirmation' => "companies#edit_company_confirmation", as: :edit_company_confirmation
+  get  '/companies/edit/image' => "companies#edit_company_image", as: :edit_company_image
+  patch '/companies/edit/image/confirmation' => "companies#edit_company_image_confirmation", as: :edit_company_image_confirmation
   get 'companies/view/account/info' => "companies#view_company_info", as: :view_company_info
   #dashboard && company invites routes
 
