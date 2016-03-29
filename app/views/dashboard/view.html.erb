@@ -1,1 +1,30 @@
-<h1> View Dashboard </h1>
+<h6><%= image_tag("#{@current_user.user_image_check}", size: "75") %><br>
+<%= link_to("#{@current_user.first_name.capitalize} #{@current_user.last_name.capitalize}", edit_user_registration_path) %></h6>
+
+
+<h1><%= image_tag("#{@company.image_check}", size: "250") %><br>
+ <%= "#{@company.name.capitalize} Dashboard" %></h1>
+<p> <%= @company.bio %> </p>
+
+<%= link_to("Company Account Info", view_company_info_path) %><br>
+<%= link_to("Create Tutorial", tutorials_create_path) %>
+
+<h3>Drafts </h3>
+<% if @all_tutorial_drafts != nil %>
+  <% @all_tutorial_drafts.each do |tutorial| %>
+   <%= link_to(tutorial.title, tutorials_path(tutorial.id)) %><br>
+   <%= tutorial.description %><br>
+    <%= link_to("Edit", tutorials_edit_path(tutorial.id)) %> 
+    <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %> <br><br> 
+  <% end %>
+<% end %>
+
+<h3>Company Tutorials</h3>
+<% if @all_finished_tutorials != nil %>
+  <% @all_finished_tutorials.each do |tutorial| %>
+    <%= link_to(tutorial.title, tutorials_path(tutorial.id)) %><br>
+    <%= tutorial.description %><br>
+    <%= link_to("Edit", tutorials_edit_path(tutorial.id)) %> 
+    <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %> <br><br> 
+  <% end %>
+<% end %>
