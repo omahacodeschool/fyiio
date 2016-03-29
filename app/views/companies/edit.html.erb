@@ -1,7 +1,14 @@
 <h1> Edit <%= @edit_company.name %> </h1>
 
-<%= link_to image_tag("#{@image}"), update_company_image_path %><br><br><br>
-<%= form_for  @edit_company, :url => update_company_confirmation_path do |f| %>
+<%= link_to image_tag("#{@edit_company.image_check}"), edit_company_image_path %><br><br><br>
+<%= form_for  @edit_company, :url => edit_company_confirmation_path do |f| %>
+  <% if @edit_company.errors.full_messages.any? %>
+     <% @edit_company.errors.full_messages.each do |error_message| %>
+      <%= error_message %> <br />
+    <% end %>
+  <% end %>
+  <br><br>
+
   Company Name: <%= f.text_field :name %><br />
   Description:<br /> <%= f.text_area :bio %><br />
   Address: <%= f.text_field :address_1 %><br />

@@ -1,6 +1,14 @@
 <h1>Create Tutorial</h1>
 
-<%= form_for  @new_tutorial, :url => "create/confirmation" do |f| %>
+<%= form_for  @new_tutorial, url: tutorials_create_confirmation_path(@new_tutorial.id) do |f| %>
+
+  <% if @new_tutorial.errors.full_messages.any? %>
+     <% @new_tutorial.errors.full_messages.each do |error_message| %>
+      <%= error_message %> <br />
+    <% end %>
+  <% end %>
+  <br><br>
+
   Video: <%= f.file_field :video %><br />
   Category: <%= f.select :category, [['CATEGORY1', 1], ['CATEGORY2', 2], ['CATEGORY3', 3], ['CATEGORY4', 4], ['CATEGORY5', 5]] %><br />
   Title: <%= f.text_field :title %><br />

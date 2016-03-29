@@ -1,5 +1,12 @@
 <h1> Create Company </h1>
-<%= form_for  @new_company, :url => "create/confirmation" do |f| %>
+<%= form_for  @new_company, url: companies_create_confirmation_path do |f| %>
+  <% if @new_company.errors.full_messages.any? %>
+     <% @new_company.errors.full_messages.each do |error_message| %>
+      <%= error_message %> <br />
+    <% end %>
+  <% end %>
+  <br><br>
+  
   Profile Image: <%= f.file_field :profle_image %><br />
   Company Name: <%= f.text_field :name %><br />
   Sub Domain: <%= f.text_field :username, :required => true, :placeholder=>'Page Location.'%> ex: www.fyiio.com/THIS_TEST_IS_WHAT_IS_SET<br />

@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+  default :from => 'noreply@fyiio.com'
   def company_invite(invite)
     @invite = invite
 

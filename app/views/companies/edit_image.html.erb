@@ -1,4 +1,4 @@
-<%= form_for  @edit_company, :url => update_company_image_confirmation_path do |f| %>
+<%= form_for  @edit_company, :url => edit_company_image_confirmation_path do |f| %>
   Profile Image: <%= f.file_field :profle_image %><br />
   <%= f.submit 'Update' %>
 <% end %>
