@@ -43,6 +43,7 @@ class TutorialsController < ApplicationController
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapters = @tutorial.chapters.order('id')
     access_check = @tutorial.privacy_check(@current_user)
+    @warning_count = 0
 
     if access_check == true
       render "view"
