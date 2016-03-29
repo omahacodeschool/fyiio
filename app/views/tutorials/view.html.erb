@@ -32,9 +32,9 @@
         <ul class="Chapter#{index + 1}StepDescriptions" %> <br>
         <% chapter.steps.each_with_index do |step, step_index| %>
           <% if step.warning == false %>
-              <li class="Chapter#{index + 1}StepDescriptions"> <%= step.description %> <br></li>
+              <li class="Chapter#{index + 1}StepDescriptions"> <input type="checkbox" name="chapter#{chapter.id}Step#{step.id}"><%= step.description %> <br></li>
           <% else %>
-           <li class="Chapter#{index + 1}StepDescriptions"> WARNING! -- <%= step.description %><br> </li>
+           <li class="Chapter#{index + 1}StepDescriptions"> <input type="checkbox" name="chapter#{chapter.id}Step#{step.id}"> WARNING! -- <%= step.description %><br> </li>
           <% end %>
         <% end %>
         </ul>
