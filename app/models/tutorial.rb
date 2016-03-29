@@ -30,4 +30,15 @@ class Tutorial < ActiveRecord::Base
 
   end
 
+  def draft_check
+    draft_tutorial = self.draft
+    draft_chapters = self.chapters.where({draft: true}).empty?
+    draft_steps = self.steps.where({draft: true}).empty?
+
+    if draft_tutorial == true || draft_chapters == false || draft_steps == false
+      return true
+    else
+      return false
+    end
+  end
 end

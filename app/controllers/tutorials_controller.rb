@@ -42,13 +42,18 @@ class TutorialsController < ApplicationController
     @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapters = @tutorial.chapters.order('id')
-    access_check = @tutorial.privacy_check(@current_user)
     @warning_count = 0
+    access_check = @tutorial.privacy_check(@current_user)
+    draft_check = @tutorial.draft_check
 
-    if access_check == true
-      render "view"
-    else
+    if access_check == false
       render "private_tutorial"
+    end
+
+    if draft_check == true
+      render "tutorial_draft"
+    else
+      render "view"
     end
   end
 
