@@ -10,7 +10,10 @@ body {
 #welcome {
   
   background-image: url("http://norkenzie.net/wp-content/uploads/2015/12/cheer-welcome-still.jpg");
-  height: 600px;
+  height: 500px;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 #welcome h1{
@@ -21,7 +24,7 @@ body {
 }
 
 #toolbar {
-  background-image: url("http://norkenzie.net/wp-content/uploads/2015/12/cheer-welcome-still.jpg");
+  background: grey;
   
   padding: 20px;
   
