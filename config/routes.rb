@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create' => "steps#create", as: :steps_create
   post 'tutorials/:tutorial_id/chapters/:chapter_id/steps/create/confirmation' => "steps#create_confirmation", as: :steps_create_confirmation
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/edit' => "steps#edit", as: :steps_edit
-  patch 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/update/confirmation' => "steps#update_confirmation", as: :steps_edit_confirmation
+  patch 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id/edit/confirmation' => "steps#edit_confirmation", as: :steps_edit_confirmation
   get 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#view", as: :steps
   delete 'tutorials/:tutorial_id/chapters/:chapter_id/steps/:step_id' => "steps#delete", as: :delete_step
 

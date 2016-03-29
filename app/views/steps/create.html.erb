@@ -2,7 +2,15 @@
 Chapter:  <%= @chapter.title %><br>
 Tutorial: <%= @tutorial.title %><br><br>
 
-<%= form_for  @new_step, url: steps_create_confirmation(@tutorial.id, @chapter.id, @new_step.id) do |f| %>
+<%= form_for  @new_step, url: steps_create_confirmation_path(@tutorial.id, @chapter.id, @new_step.id) do |f| %>
+
+  <% if @new_step.errors.full_messages.any? %>
+     <% @new_step.errors.full_messages.each do |error_message| %>
+      <%= error_message %> <br />
+    <% end %>
+  <% end %>
+  <br><br>
+
   Title: <%= f.text_field :title %><br />
   Draft: <%= f.check_box :draft %><br />
   Warning: <%= f.check_box :warning %><br />

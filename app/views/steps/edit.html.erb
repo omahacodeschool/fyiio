@@ -1,7 +1,15 @@
-<%= link_to ("Return to Chapter: #{@chapter.title}", chapters_edit_path(@tutorial.id, @chapter.id)) %><br><br>
+<%= link_to("Return to Chapter: #{@chapter.title}", chapters_edit_path(@tutorial.id, @chapter.id)) %><br><br>
 <h1>Edit Step</h1>.
 <h3> For <%= @chapter.title %></h3>
-<%= form_for @edit_step, :url => steps_edit_confirmation(@tutorial.id, @chapter.id, @edit_step.id) do |f| %>
+<%= form_for @edit_step, :url => steps_edit_confirmation_path(@tutorial.id, @chapter.id, @edit_step.id) do |f| %>
+
+  <% if @edit_step.errors.full_messages.any? %>
+     <% @edit_step.errors.full_messages.each do |error_message| %>
+      <%= error_message %> <br />
+    <% end %>
+  <% end %>
+  <br><br>
+
   Title: <%= f.text_field :title %><br />
   Description:<br /> <%= f.text_area :description %><br />
   Start Time: <%= f.text_field :start_time %><br />
@@ -15,4 +23,4 @@
 
 <br><br>
 
-<%= link_to ("Done", tutorials_path(@tutorial.id)) %>
+<%= link_to("Done", tutorials_path(@tutorial.id)) %>

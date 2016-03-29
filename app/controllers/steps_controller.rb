@@ -5,7 +5,6 @@ class StepsController < ApplicationController
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapter = Chapter.find_by_id(params[:chapter_id])
     @new_step = Step.new
-    flash[:success] = "Step Successfully Created!"
     render "create"
   end
 
@@ -14,8 +13,13 @@ class StepsController < ApplicationController
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapter = Chapter.find_by_id(params[:chapter_id])
     @new_step = Step.new(title: params[:step][:title], description: params[:step][:description], draft: params[:step][:draft], warning: params[:step][:warning], start_time: (params[:step][:start_time]).to_i, end_time: (params[:step][:end_time]).to_i, chapter_id: @chapter.id)
-    @new_step.save
-    redirect_to steps_edit_path(@tutorial.id, @chapter.id, @new_step.id)
+    if @new_step.valid?
+      @new_step.save
+      flash[:success] = "Step Successfully Created!"
+      redirect_to steps_edit_path(@tutorial.id, @chapter.id, @new_step.id)
+    else
+      render "create"
+    end
   end
 
   def edit
@@ -32,9 +36,13 @@ class StepsController < ApplicationController
     @chapter = Chapter.find_by_id(params[:chapter_id])
     @edit_step = Step.find_by_id(params[:step_id])
     @edit_step.update(title: params[:step][:title], description: params[:step][:description], draft: params[:step][:draft], start_time: params[:step][:start_time], end_time: params[:step][:end_time])
-    @update_step.save
-    flash[:success] = "Step Successfully Updated!"
-    redirect_to steps_edit_path(@tutorial.id, @chapter.id, @edit_step.id)
+    if @edit_step.valid?
+      @edit_step.save
+      flash[:success] = "Step Successfully Updated!"
+      redirect_to steps_edit_path(@tutorial.id, @chapter.id, @edit_step.id)
+    else
+      render "edit"
+    end
   end
 
   def view    
