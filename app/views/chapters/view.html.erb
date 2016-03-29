@@ -1,5 +1,5 @@
 <br>
-<%= link_to("Back to " + @tutorial.title, "/tutorials/#{@tutorial.id}") %>
+<%= link_to("Back to " + @tutorial.title, tutorials_path(@tutorial.id) ) %>
 <h1>Tutorial view: <%= @tutorial.title %></h1>
 <h2>Chapter view: <%= @chapter.title %></h2>
 <% if @chapter.draft == true %>
@@ -20,6 +20,7 @@
       <p><%= step.description %></p>
     <% end %>
   <% end %>
+
 </div>
 
-    <%= link_to "Delete", delete_chapter_path, method: :delete, data: { confirm: "Are you sure you want to delete the chapter: #{@chapter.title}? It has #{@steps.count} steps." } %>
+

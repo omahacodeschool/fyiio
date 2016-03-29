@@ -1,11 +1,9 @@
 <h1>View Tutorial for <%= @tutorial.title %></h1>
 
 <div>
-  <% @chapters.each do |chapter| %>
+  <% @tutorial.chapters.each do |chapter| %>
     <% @counter += 1 %>
-    Chapter <%= @counter %> <%= link_to(chapter.title, "/tutorials/#{@tutorial.id}/chapters/#{chapter.id}") %><br>
+    Chapter <%= @counter += 1 %> <%= link_to(chapter.title, chapters_path(@tutorial.id, chapter.id)) %><br>
   <% end %>
 </div>
 <br>
-
-<%= link_to "Delete", delete_tutorial_path, method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{@tutorial.title}? It has #{@chapters.count} chapters." } %>
