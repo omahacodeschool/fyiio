@@ -1,5 +1,4 @@
 class CompaniesController < ApplicationController
-
   def create
     @new_company = Company.new
     render "create"
@@ -13,7 +12,6 @@ class CompaniesController < ApplicationController
       session[:company_username] = @new_company.username
       redirect_to new_user_registration_path
     else
-      @new_company.errors
       render "create"
     end
   end
