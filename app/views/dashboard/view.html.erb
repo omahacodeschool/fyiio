@@ -12,9 +12,9 @@
 <h3>Drafts </h3>
 <% if @all_tutorial_drafts != nil %>
   <% @all_tutorial_drafts.each do |tutorial| %>
-   <%= link_to(tutorial.title, "/tutorials/#{tutorial.id}") %><br>
+   <%= link_to(tutorial.title, tutorials_path(tutorial.id)) %><br>
    <%= tutorial.description %><br>
-    <%= link_to("Edit", "/tutorials/#{tutorial.id}/edit") %> 
+    <%= link_to("Edit", tutorials_edit_path(tutorial.id)) %> 
     <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %> <br><br> 
   <% end %>
 <% end %>
@@ -22,9 +22,9 @@
 <h3>Company Tutorials</h3>
 <% if @all_finished_tutorials != nil %>
   <% @all_finished_tutorials.each do |tutorial| %>
-    <%= link_to(tutorial.title, "/tutorials/#{tutorial.id}") %><br>
+    <%= link_to(tutorial.title, tutorials_path(tutorial.id)) %><br>
     <%= tutorial.description %><br>
-    <%= link_to("Edit", "/tutorials/#{tutorial.id}/edit") %> 
+    <%= link_to("Edit", tutorials_edit_path(tutorial.id)) %> 
     <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %> <br><br> 
   <% end %>
 <% end %>
