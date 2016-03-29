@@ -1,8 +1,50 @@
-<h1>View Tutorial for <%= @tutorial.title %></h1>
+<h1><%= @tutorial.title %></h1>
+<%= "Access: " + @tutorial.get_privacy_notice %><br>
+ <%= "Category: " + @tutorial.get_category_notice %> <br>
+<%= @tutorial.description %><br><br>
+<div id= "chapterTitlesAndDescriptions">
+  <% @chapters.each_with_index do |chapter, index| %>
+    Chapter <%= (index + 1) %> <%= ": #{chapter.title}" %> <br>
+    <%= chapter.description %><br><br>
+  <% end %>
+  </div>
+<%= video_tag("#{@tutorial.video}", controls: true, autobuffer: true, id: "video") %>
 
 <div>
-  <% @tutorial.chapters.each_with_index do |chapter, index| %>
-    Chapter <%= index + 1 %> <%= link_to(chapter.title, chapters_path(@tutorial.id, chapter.id)) %><br>
+  <% @chapters.each_with_index do |chapter, index| %>
+    <% @warning_count = 0 %>
+        <ul> Chapter <%= (index + 1) %> <%= ": #{chapter.title}" %> 
+        <%= "  - (#{chapter.video_time_conversion_for_chapters})" %><br>
+        <% chapter.steps.each_with_index do |step, step_index| %>
+          <% if step.warning == false %>
+              <li> Step <%= step_index + 1 - @warning_count %> <%= ": #{step.title}" %>
+              <%= "  - (#{step.video_time_conversion_for_steps})" %><br></li>
+          <% else %>
+            <% @warning_count += 1 %>
+           <li> WARNING! <%= " #{step.title}" %>
+              <%= "  - (#{step.video_time_conversion_for_steps})" %><br>
+            </li>
+          <% end %>
+        <% end %>
+        </ul>
+        <br><br>
+  <% end %>
+</div>
+<br>
+
+<div id= "instructions">
+<div> Instructions: </div>
+  <% @chapters.each_with_index do |chapter, index| %>
+        <ul class="Chapter#{index + 1}StepDescriptions" %> <br>
+        <% chapter.steps.each_with_index do |step, step_index| %>
+          <% if step.warning == false %>
+              <li class="Chapter#{index + 1}StepDescriptions"> <input type="checkbox" name="chapter#{chapter.id}Step#{step.id}"><%= step.description %> <br></li>
+          <% else %>
+           <li class="Chapter#{index + 1}StepDescriptions"> <input type="checkbox" name="chapter#{chapter.id}Step#{step.id}"> WARNING! -- <%= step.description %><br> </li>
+          <% end %>
+        <% end %>
+        </ul>
+        <br><br>
   <% end %>
 </div>
 <br>

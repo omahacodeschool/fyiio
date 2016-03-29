@@ -25,6 +25,7 @@ class TutorialsController < ApplicationController
 
   def edit_confirmation
     @current_user = User.find_by_id(current_user)
+    puts current_user
     @edit_tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapters = @edit_tutorial.chapters.order('id')
     @edit_tutorial.update(title: params[:tutorial][:title], description: params[:tutorial][:description], public: params[:tutorial][:public], draft: params[:tutorial][:draft], category: params[:tutorial][:category])
@@ -38,9 +39,22 @@ class TutorialsController < ApplicationController
   end
 
   def view
+    @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapters = @tutorial.chapters.order('id')
-    render "view"
+    @warning_count = 0
+    access_check = @tutorial.privacy_check(@current_user)
+    draft_check = @tutorial.draft_check
+
+    if access_check == false
+      render "private_tutorial"
+    end
+
+    if draft_check == true
+      render "tutorial_draft"
+    else
+      render "view"
+    end
   end
 
   def delete
