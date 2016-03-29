@@ -11,13 +11,17 @@
 <div>
   <% @chapters.each_with_index do |chapter, index| %>
     <% @warning_count = 0 %>
-        <ul> Chapter <%= (index + 1) %> <%= ": #{chapter.title}" %> <br>
+        <ul> Chapter <%= (index + 1) %> <%= ": #{chapter.title}" %> 
+        <%= "  - (#{chapter.video_time_conversion_for_chapters})" %><br>
         <% chapter.steps.each_with_index do |step, step_index| %>
           <% if step.warning == false %>
-              <li> Step <%= step_index + 1 - @warning_count %> <%= ": #{step.title}" %> <br></li>
+              <li> Step <%= step_index + 1 - @warning_count %> <%= ": #{step.title}" %>
+              <%= "  - (#{step.video_time_conversion_for_steps})" %><br></li>
           <% else %>
             <% @warning_count += 1 %>
-           <li> WARNING! <%= " #{step.title}" %><br> </li>
+           <li> WARNING! <%= " #{step.title}" %>
+              <%= "  - (#{step.video_time_conversion_for_steps})" %><br>
+            </li>
           <% end %>
         <% end %>
         </ul>
