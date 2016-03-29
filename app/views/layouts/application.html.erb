@@ -15,7 +15,6 @@
 </head>
 <body class="<%= body_class %>">
   <div id = "toolbar" class = "row">
-
   <div class = "col-2 center"><%= link_to("Home", "/")%></div>
   <div class = "col-2 center"><%= link_to("Discover", discover_path)%></div>
   <div class = "col-2 center"><%= link_to("About", about_path) %></div>
@@ -23,8 +22,8 @@
     <div class = "col-2 center"><%= link_to('Dashboard', "/#{session[:company_username]}/dashboard")%></div>
       <%= link_to('Logout', destroy_user_session_path, :method => :delete)%>
   <% else %>
-    <div class = "col-2 center"><%= link_to('Sign In', new_user_session_path) %>
-    <%= link_to('Create Account', "/companyInvites/authentication")%></div> 
+    <div class = "col-2 center"><%= link_to('Sign In', new_user_session_path)%>
+    <%= link_to('Create Account', "/companyInvites/authentication")%></div>
   <% end %>
 
 </div>
