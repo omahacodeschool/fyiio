@@ -14,18 +14,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
-  <div id="toolbar">
-    <%= link_to("Home", "/") %>
-    <%= link_to("Discover", discover_path) %>
-    <%= link_to("About", about_path) %>
-    <% if user_signed_in? %>
-      <%= link_to('Dashboard', "/#{session[:company_username]}/dashboard") %>
-      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-    <% else %>
-      <%= link_to('Sign In', new_user_session_path) %>
-      <%= link_to('Create Account', "/companyInvites/authentication")  %>  
-    <% end %>
-  </div>
+  <div id = "toolbar" class = "row">
+  <div class = "col-2 center"><%= link_to("Home", "/")%></div>
+  <div class = "col-2 center"><%= link_to("Discover", discover_path)%></div>
+  <div class = "col-2 center"><%= link_to("About", about_path) %></div>
+  <% if user_signed_in? %>
+    <div class = "col-2 center"><%= link_to('Dashboard', "/#{session[:company_username]}/dashboard")%></div>
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete)%>
+  <% else %>
+    <div class = "col-2 center"><%= link_to('Sign In', new_user_session_path)%>
+    <%= link_to('Create Account', "/companyInvites/authentication")%></div>
+  <% end %>
+
+</div>
   <%= render "flashes" -%>
   <%= yield %>
   <%= render "javascript" %>
