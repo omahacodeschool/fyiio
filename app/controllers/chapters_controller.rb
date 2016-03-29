@@ -22,7 +22,6 @@ class ChaptersController < ApplicationController
   def edit
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @edit_chapter = Chapter.find_by_id(params[:chapter_id])
-    @chapters = Chapter.where({tutorial_id: @tutorial.id}).order('id')
   end
 
   def update_confirmation
