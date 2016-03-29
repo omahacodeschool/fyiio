@@ -1,9 +1,8 @@
 <h1>View Tutorial for <%= @tutorial.title %></h1>
 
 <div>
-  <% @tutorial.chapters.each do |chapter| %>
-    <% @counter += 1 %>
-    Chapter <%= @counter += 1 %> <%= link_to(chapter.title, chapters_path(@tutorial.id, chapter.id)) %><br>
+  <% @tutorial.chapters.each_with_index do |chapter, index| %>
+    Chapter <%= index + 1 %> <%= link_to(chapter.title, chapters_path(@tutorial.id, chapter.id)) %><br>
   <% end %>
 </div>
 <br>

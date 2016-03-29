@@ -40,7 +40,6 @@ class TutorialsController < ApplicationController
   def view
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapters = @tutorial.chapters.order('id')
-    @counter = 0
     render "view"
   end
 
