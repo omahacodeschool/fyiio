@@ -13,11 +13,11 @@ class CompanyInvitesController < ApplicationController
       @errors = true
       render "company_verification"
     else
-      @company = Find_by_id(user_code.company_id)
-      session[:company_id] = company.id
-      session[:company_username] = company.username
+      @company = Company.find_by_id(user_code.company_id)
+      session[:company_id] = @company.id
+      session[:company_username] = @company.username
       user_code.delete
-      redirect_to new_user_registration_path(:company_id => session[:company_id])
+      redirect_to new_user_registration_path
     end
   end
 
