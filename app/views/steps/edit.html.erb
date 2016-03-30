@@ -1,6 +1,8 @@
-<%= link_to("Return to Chapter: #{@chapter.title}", chapters_edit_path(@tutorial.id, @chapter.id)) %><br><br>
-<h1>Edit Step</h1>.
-<h3> For <%= @chapter.title %></h3>
+<%= link_to("<- Chapter: #{@chapter.title}", chapters_edit_path(@tutorial.id, @chapter.id)) %>
+<p><%= link_to("Done", tutorials_finished_editing_path(@tutorial.id)) %></p>
+
+<h1><%= @edit_step.get_draft_title_for_step %></h1>.
+
 <%= form_for @edit_step, :url => steps_edit_confirmation_path(@tutorial.id, @chapter.id, @edit_step.id) do |f| %>
 
   <% if @edit_step.errors.full_messages.any? %>
@@ -15,13 +17,20 @@
   Start Time: <%= f.text_field :start_time %><br />
   End Time: <%= f.text_field :end_time %><br />
   Draft: <%= f.check_box :draft %><br />
+  Warning: <%= f.check_box :warning %><br />
   <%= f.submit 'Update' %>
 <% end %>
 <br><br>
 <%= link_to "Delete", delete_step_path(@tutorial.id, @chapter.id, @edit_step.id), method: :delete,
                                   data: { confirm: "Are you sure you want to delete this step?" } %>
-
 <br><br>
-
-<br><br>
-<p><%= link_to("Done", tutorials_finished_editing_path(@tutorial.id)) %></p>
+<h3> Steps: </h3>
+  <% @steps.each do |step| %>
+    <% if step.draft == true %>
+       <%= link_to("Edit Step #{step.title}", steps_edit_path(@tutorial.id, @chapter.id, step.id)) %> <div class="draft_flag" >-- DRAFT</div>
+    <% else %>
+      <%= link_to("Edit Step #{step.title}", steps_edit_path(@tutorial.id, @chapter.id, step.id)) %>
+    <% end %>
+    <br>
+  <% end %>
+  <%= link_to("+", steps_create_path(@tutorial.id, @chapter.id)) %><br>

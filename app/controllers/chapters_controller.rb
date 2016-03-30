@@ -24,7 +24,7 @@ class ChaptersController < ApplicationController
     @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @edit_chapter = Chapter.find_by_id(params[:chapter_id])
-    @steps = @edit_chapter.steps.order('id')
+    @steps = @edit_chapter.steps
     render "edit"
   end
 

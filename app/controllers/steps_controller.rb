@@ -27,6 +27,7 @@ class StepsController < ApplicationController
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapter = Chapter.find_by_id(params[:chapter_id])
     @edit_step = Step.find_by_id(params[:step_id])
+    @steps = @chapter.steps.order('id')
     render "edit"
   end
 
