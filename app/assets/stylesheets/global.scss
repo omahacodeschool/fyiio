@@ -4,7 +4,9 @@
 // statements for them in application.scss).
 
 body {
-  font-family: "opensans"
+  color: #FFF;
+  background-image: url("http://hdwallpaperslovely.com/wp-content/gallery/black-and-green-wallpapers/3d-green-and-black-cubes-backgrounds-wallpapers.jpg");
+  font-family: "opensans";
 }
 
 #welcome {
@@ -16,15 +18,30 @@ body {
 }
 
 #welcome h1 {
+  color: black;
+  text-decoration: none;
+}
+#about {
+  opacity: 0.9;
+  filter: alpha(opacity=40);
+  color: #FFF;
+  background-image: url("http://www.virtuix.com/wp-content/uploads/2014/11/header_about.jpg");
+  height: 500px;
+
+}
+#about h1 {
   text-decoration: none;
 }
 
 #toolbar {
-  background: grey; 
+  opacity: 0.9;
+  filter: alpha(opacity=40);
+  background: #464947; 
   padding: 20px;
 }
 
 #toolbar a { 
+  color: #FFF;
   text-decoration: none;
 }
 
