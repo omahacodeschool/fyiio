@@ -18,8 +18,18 @@
 <% end %>
 
 <br><br>
+  <%= link_to "Delete Chapter", delete_chapter_path, method: :delete, data: { confirm: "Are you sure you want to delete the chapter: #{@edit_chapter.title}? It has #{@steps.count} steps." } %>
+<br><br>
 
- <%= link_to("Add New Step", steps_create_path(@tutorial.id, @edit_chapter.id)) %>
+
+<p><%= link_to("Done", tutorials_finished_editing_path(@tutorial.id)) %></p>
+
+
+<h3> Steps </h3>
+
+<br><br>
+
+ <%= link_to("+", steps_create_path(@tutorial.id, @edit_chapter.id)) %>
 
  <br><br>
 
@@ -28,5 +38,3 @@
   <br>
 <% end %>
 
-<br><br>
-  <%= link_to "Delete Chapter", delete_chapter_path, method: :delete, data: { confirm: "Are you sure you want to delete the chapter: #{@edit_chapter.title}? It has #{@steps.count} steps." } %>
