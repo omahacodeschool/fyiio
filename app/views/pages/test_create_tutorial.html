@@ -1,7 +1,8 @@
 <div class="container">
+  <div class="create_tutorial_header center">Let's Create Something Awesome!</div>
   <div class="create_tutorial">
     <div class="tutorial_intro">First things first...</div>
-    <div class="name_tutorial">
+    <div class="row">
       <div>Name this tutorial:</div>
       <div>
         <form>
@@ -9,7 +10,7 @@
         </form>        
       </div>
     </div>
-    <div class="describe_tutorial">
+    <div class="row">
       <div>Briefly describe it: (250 characters max)</div>
       <div>      
         <form>
@@ -17,7 +18,7 @@
         </form>
       </div>
     </div>
-    <div class="select_tutorial_category">
+    <div class="row">
       <div>Select a category:</div>
       <div>
         <select>
@@ -25,12 +26,36 @@
         </select>
       </div>
     </div>
+    <div class="tutorial_privacy">
+      <div>Privacy settings:</div>
+      <div>
+        <div>Public (default)</div>
+        <div>Internal use only</div>
+      </div>
+    </div>
   </div>
+
+  <div class="create_tutorial_chapters">
+    <div class="create_tutorial_chapters_header center">Chapters</div>
+    <div></div>
+  </div>
+
 </div>
 
 
 <style>
 .create_tutorial {
   border: 1px solid #000;
+  padding: 10px;
 }
+
+.create_tutorial_header {
+  margin: 10px;
+}
+
+.create_tutorial_chapters_header {
+  margin: 10px;
+}
+
+
 </style>
