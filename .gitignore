@@ -13,4 +13,5 @@
 /tmp/*
 /public/uploads
 /.env
-/smtp.rb
+/config/smtp.rb
+/node_modules
