@@ -12,3 +12,5 @@
 /tags
 /tmp/*
 /public/uploads
+/.env
+/smtp.rb
