@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   post 'tutorials/create/confirmation'=> "tutorials#create_confirmation", as: :tutorials_create_confirmation
   get 'tutorials/:tutorial_id/edit' => "tutorials#edit", as: :tutorials_edit
   patch 'tutorials/:tutorial_id/edit/confirmation' => "tutorials#edit_confirmation", as: :tutorials_edit_confirmation
+  get 'tutorials/:tutorial_id/edit/done' => "tutorials#finished_editing_checks", as: :tutorials_finished_editing
   get 'tutorials/:tutorial_id' => "tutorials#view", as: :tutorials
   delete 'tutorials/:tutorial_id/delete' => "tutorials#delete", as: :delete_tutorial
  

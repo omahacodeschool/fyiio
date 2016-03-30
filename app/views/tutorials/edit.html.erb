@@ -15,10 +15,16 @@ NEED SEPARATE LINKS FOR UPDATING VIDEO. FOR NOW SHOULD JUST VE VIEWABLE HERE
   Draft: <%= f.check_box :draft %><br />
   <%= f.submit %>
 <% end %>
-
 <br><br>
-<%= link_to("Add New Chapter", chapters_create_path(@edit_tutorial.id)) %>
-  <br>
+
+
+<h3> Chapters </h3>
 <% @chapters.each do |chapter| %>
   <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id)) %><br>
 <% end %>
+
+<br><br>
+<%= link_to("+", chapters_create_path(@edit_tutorial.id)) %>
+
+<br><br>
+<p><%= link_to("Done", tutorials_finished_editing_path(@edit_tutorial.id)) %></p>

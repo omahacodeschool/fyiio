@@ -57,6 +57,18 @@ class TutorialsController < ApplicationController
     end
   end
 
+  def finished_editing_checks
+    @current_user = User.find_by_id(current_user)
+    @tutorial = Tutorial.find_by_id(params[:tutorial_id])
+    draft_check = @tutorial.draft_check
+
+    if draft_check == true
+      redirect_to dashboard_path(session[:company_username])
+    else 
+      redirect_to tutorials_path(@tutorial.id)
+    end
+  end
+
   def delete
     @tutorials = Tutorial.find_by_id(params[:tutorial_id]).destroy
     flash[:success] = "Tutorial successfully deleted!"
