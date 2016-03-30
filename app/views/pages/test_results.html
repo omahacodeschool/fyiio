@@ -1,0 +1,11 @@
+<div id = "discover">
+
+  <div><h1 class = "center" >Search results!</h1></div>
+  <div class = "center"> 
+    <%= form_tag("/search", method: "get") do %>
+      <%= text_field_tag(:q) %>
+      <%= submit_tag("Search") %>
+    <% end %>
+  </div>
+</div>
+
