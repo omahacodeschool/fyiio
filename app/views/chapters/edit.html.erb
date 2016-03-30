@@ -1,5 +1,5 @@
-<h1>Edit Chapter</h1>.
-<h3> For <%= @tutorial.title %></h3>
+<%= link_to("<- Tutorial: #{@tutorial.id}", tutorials_edit_path(@tutorial.id)) %><br>
+<h1>Edit <%= @edit_chapter.title %></h1>
 
 <%= form_for @edit_chapter, url: chapters_edit_confirmation_path(@tutorial.id, @edit_chapter.id) do |f| %>
   <% if @edit_chapter.errors.full_messages.any? %>
