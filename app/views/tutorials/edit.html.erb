@@ -1,5 +1,6 @@
 NEED SEPARATE LINKS FOR UPDATING VIDEO. FOR NOW SHOULD JUST VE VIEWABLE HERE
 
+<h1><%= @edit_tutorial.get_draft_title_for_tutorial %></h1>
 <%= form_for  @edit_tutorial, :url => tutorials_edit_confirmation_path(@edit_tutorial.id) do |f| %>
   <% if @edit_tutorial.errors.full_messages.any? %>
      <% @edit_tutorial.errors.full_messages.each do |error_message| %>
@@ -15,10 +16,20 @@ NEED SEPARATE LINKS FOR UPDATING VIDEO. FOR NOW SHOULD JUST VE VIEWABLE HERE
   Draft: <%= f.check_box :draft %><br />
   <%= f.submit %>
 <% end %>
+<br><br>
+
+
+<h3> Chapters </h3>
+<% @chapters.each do |chapter| %>
+  <% if chapter.draft == true %>
+    <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id)) %><div class="draft_flag" >-- DRAFT</div><br>
+  <%else %>
+    <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id)) %><br>
+  <% end %>
+<% end %>
 
 <br><br>
-<%= link_to("Add New Chapter", chapters_create_path(@edit_tutorial.id)) %>
-  <br>
-<% @chapters.each do |chapter| %>
-  <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id)) %><br>
-<% end %>
+<%= link_to("+", chapters_create_path(@edit_tutorial.id)) %>
+<br>
+<br>
+<p><%= link_to("Done", tutorials_finished_editing_path(@edit_tutorial.id)) %></p>

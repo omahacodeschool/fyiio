@@ -1,16 +1,14 @@
-<div id = "discover">
 
-  <div><h1 class = "center" >Search results!</h1></div>
-  <div class = "center"> 
+<div>
+<h1>Search results!</h1>
+  <div> 
     <%= form_tag("/search", method: "get") do %>
       <%= text_field_tag(:q) %>
       <%= submit_tag("Search") %>
     <% end %>
   </div>
-  <div class = "center">
   <% @results.each do |result| %>
     <p><%= link_to(result.title, "/tutorials/#{result.id}") %></p>
   <% end %>
-  </div>
 </div>
 
