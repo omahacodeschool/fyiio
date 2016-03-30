@@ -1,5 +1,3 @@
-alert("foo");
-
 /**
  * @license
  * Video.js 5.8.7 <http://videojs.com/>
