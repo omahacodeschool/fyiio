@@ -6,6 +6,7 @@
  <%= "#{@company.name.capitalize} Dashboard" %></h1>
 <p> <%= @company.bio %> </p>
 
+<%= link_to("Invite/Add New Users", invite_users_path(session[:company_username])) %><br>
 <%= link_to("Company Account Info", view_company_info_path) %><br>
 <%= link_to("Create Tutorial", tutorials_create_path) %>
 
