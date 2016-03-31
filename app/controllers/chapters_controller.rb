@@ -10,7 +10,7 @@ class ChaptersController < ApplicationController
   def create_confirmation
     @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
-    @new_chapter = Chapter.new(title: params[:chapter][:title], description: params[:chapter][:description], draft: params[:chapter][:draft], start_time: (params[:chapter][:start_time]).to_i, end_time: (params[:chapter][:end_time]).to_i, tutorial_id: @tutorial.id)
+    @new_chapter = Chapter.new(title: params[:chapter][:title], description: params[:chapter][:description], draft: params[:chapter][:draft], tutorial_id: @tutorial.id)
     if @new_chapter.valid?
       @new_chapter.save
       flash[:success] = "Chapter Created!"
@@ -33,7 +33,7 @@ class ChaptersController < ApplicationController
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @edit_chapter = Chapter.find_by_id(params[:chapter_id])
     @steps = @edit_chapter.steps.order('id')
-    @edit_chapter.update(title: params[:chapter][:title], description: params[:chapter][:description], draft: params[:chapter][:draft], start_time: params[:chapter][:start_time], end_time: params[:chapter][:end_time])
+    @edit_chapter.update(title: params[:chapter][:title], description: params[:chapter][:description], draft: params[:chapter][:draft])
     if @edit_chapter.valid?
       flash[:success] = "Chapter Successfully Updated!"
       @edit_chapter.save
