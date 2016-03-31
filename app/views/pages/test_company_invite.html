@@ -1,0 +1,64 @@
+<div class="container">
+
+  <div>Were you sent a company invite?</div>
+  <div class = "yes">
+    <ul>
+    <%= link_to('Yes', invite_verification_path) %> 
+    </ul>
+  </div>
+  <br>
+  <div class = "no">
+    <ul>
+      <%= link_to('No', companies_create_path) %>
+    </ul>
+  </div>
+</div>
+
+
+
+<style>
+
+.container {
+    margin: 20px;
+    border: 3px solid black;
+    padding: 10px;
+    padding-left: 428px;
+    padding-right: 560px;
+    text-align: center;
+}
+
+.yes {
+  color: #3494B5;
+  padding: 10px 20px;
+  background-color: #25677D;
+  border: 1px solid black;
+  width: 99px;
+  padding-left: 0px;
+  padding-right: 124px;
+
+}
+.yes:hover {
+  text-decoration: none;
+  color: #31A0E9;
+  background: #175076;
+}
+
+.no {
+  color: #3494B5;
+  padding: 10px 20px;
+  background-color: #25677D;
+  border: 1px solid black;
+  width: 99px;
+    padding-left: 0px;
+    padding-right: 124px;
+
+}
+
+
+
+.no:hover {
+  text-decoration: none;
+  color: #31A0E9;
+  background: #175076;
+}
+</style>
