@@ -8,13 +8,19 @@
       <div class="company_img"><%= image_tag("#{@company.image_check}", size: "250") %>
         <p><%= "#{@company.name.capitalize} Dashboard" %></p>
       </div>
+      <div class="acct_settings">
+        <div class="btn btn--create">
+          <span class="btn__text"><%= link_to("Invite/Add New Users", invite_users_path(session[:company_username])) %></span>
+        </div>
+        
+      </div>
     </div>
   </div>
-  <h6></h6>
+
 
   <p> <%= @company.bio %> </p>
 
-  <%= link_to("Invite/Add New Users", invite_users_path(session[:company_username])) %><br>
+  <br>
   <%= link_to("Company Account Info", view_company_info_path) %><br>
   <%= link_to("Create Tutorial", tutorials_create_path) %>
 

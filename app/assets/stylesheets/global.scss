@@ -64,6 +64,10 @@
   border-radius: 10px;
 }
 
+.individual_img img {
+  border-radius: 10px;
+}
+
 .individual_img p {
   font-size: 12px;
 }
@@ -71,6 +75,10 @@
 .company_img {
   float: left;
   margin: 10px;
+  border-radius: 10px;
+}
+
+.company_img img {
   border-radius: 10px;
 }
 
@@ -118,6 +126,11 @@
 .btn__text {
   padding: 0 10px;
   border-radius: 0 5px 5px 0;
+}
+
+.btn__text a {
+  text-decoration: none;
+  color: #fff;
 }
 
 .btn__price {
