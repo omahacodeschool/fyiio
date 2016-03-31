@@ -11,11 +11,11 @@
   
 <%= video_tag("#{@tutorial.video}", controls: true, autobuffer: true, id: "video") %>
 
-<div>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>
+<h1>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>
 
-<% @chapters.each do |chapter| %>
-  <ul> <%= ": #{chapter.title}" %> 
-        <%= "  - (#{chapter.video_time_conversion_for_chapters})" %><br>
+<% @chapters.each_with_index do |chapter, index| %>
+  <ul>  <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
+        <%= chapter_presenter.content %>
     <% chapter.steps.each do |step| %>
       <% step_presenter = StepPresenter.new(step, chapter.id) %>
       <li><%= step_presenter.content %></li>
@@ -23,29 +23,7 @@
   </ul>
 <% end %>
 
-<div>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>
-
-<div>
-  <% @chapters.each_with_index do |chapter, index| %>
-    <% @warning_count = 0 %>
-        <ul> Chapter <%= (index + 1) %> <%= ": #{chapter.title}" %> 
-        <%= "  - (#{chapter.video_time_conversion_for_chapters})" %><br>
-        <% chapter.steps.each_with_index do |step, step_index| %>
-          <% if step.warning == false %>
-              <li> Step <%= step_index + 1 - @warning_count %> <%= ": #{step.title}" %>
-              <%= "  - (#{step.video_time_conversion_for_steps})" %><br></li>
-          <% else %>
-            <% @warning_count += 1 %>
-           <li> WARNING! <%= " #{step.title}" %>
-              <%= "  - (#{step.video_time_conversion_for_steps})" %><br>
-            </li>
-          <% end %>
-        <% end %>
-        </ul>
-        <br><br>
-  <% end %>
-</div>
-<br>
+<h1>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>
 
 <div id= "instructions">
 <div> Instructions: </div>

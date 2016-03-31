@@ -1,6 +1,7 @@
 class ChapterPresenter
-  def initialize(chapter_object)
+  def initialize(chapter_object, chapter_index)
     @chapter = chapter_object
+    @count = chapter_index += 1
   end
 
   def chapter
@@ -8,11 +9,7 @@ class ChapterPresenter
   end
 
   def content
-      "Chapter #{chapter_number}: #{chapter.title} - (#{chapter.video_time_conversion_for_chapters})"
+      "Chapter #{@count}: #{chapter.title} - (#{chapter.video_time_conversion_for_chapters})"
   end
 
-  def chapter_number
-    # step_index + 1 - @warning_count
-    "NUMBER"
-  end
 end
