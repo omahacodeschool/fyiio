@@ -1,23 +1,96 @@
 <div class="container bg-white text-black">
-  <div class="company_img">company image</div>
-  <div class="bio">bio</div>
-  <div class="settings">settings</div>
-  <div class="dropdown_menu">dropdown menu</div>
-  <div class="btn__create">Create Tutorial button</div>
-  <div class="draft_list">scrollable draft tutorials list</div>
-  <div class="my_tutorials">scollable my tutorials list</div>
+  <div class="company_info">
+    <div class="row">
+      <img class="company_img" src="http://placehold.it/350x150">
+      <img class="company_img" src="http://placehold.it/350x150">
+      <div class="acct_settings">settings
+        <div class="dropdown_menu">dropdown menu</div>
+      </div>  
+    </div>
+  </div>
+
+  <div class="dashboard_tutorials">
+    <div class="row">
+      <div class="col-6">
+        <btn class="btn btn--create">
+          <span class="btn__text">create a tutorial</span>
+        </btn>
+        <div class="scrolling_list">
+          scrollable draft tutorials list
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="scrolling_list">
+          scrollable finished tutorials list
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
 
-
-
-
-
-
-
-
-
 <style>
+
+.company_img {
+  float: left;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.company_img--rounded {
+  border-radius: 10px;
+}
+
+.acct_settings {
+  float: left;
+  margin: 10px;
+  border: 1px solid #888;
+  border-radius: 10px;
+}
+
+.btn {
+  display: inline-block;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px 5px;
+  background-color: white;
+  color: #888;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "fira-sans-2", sans-serif;
+}
+
+.btn__text {
+  padding: 0 10px;
+  border-radius: 0 5px 5px 0;
+}
+
+.btn__price {
+  background-color: white;
+  color: #fff;
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-right: -10px; /* realign button text padding */
+  font-weight: 600;
+  background-color: #333;
+  opacity: .4;
+  border-radius: 5px 0 0 5px;
+}
+
+.btn--create {
+  border-color: #3D9970;
+  color: white;
+  background-color: #3D9970;
+}
+
+.scrolling_list {
+  border: 1px solid #888;
+}
+
 .bg-white {
   background-color: #fff;
 }
