@@ -2,6 +2,22 @@
 <p><%= link_to("Done", tutorials_finished_editing_path(@tutorial.id)) %></p>
 
 <h1><%= @edit_step.get_draft_title_for_step %></h1>.
+  
+  <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
+
+    <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
+
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+
+  </video>
+  <br>
+  <br>
+  <button id="setStepStartTime" class="startTime" > Start </button>
+  <button id="setStepEndTime" class="endTime" > End </button>
+
 
 <%= form_for @edit_step, :url => steps_edit_confirmation_path(@tutorial.id, @chapter.id, @edit_step.id) do |f| %>
 
@@ -14,8 +30,8 @@
 
   Title: <%= f.text_field :title %><br />
   Description:<br /> <%= f.text_area :description %><br />
-  Start Time: <%= f.text_field :start_time %><br />
-  End Time: <%= f.text_field :end_time %><br />
+  <%= f.hidden_field :start_time %><br />
+  <%= f.hidden_field :end_time %><br />
   Draft: <%= f.check_box :draft %><br />
   Warning: <%= f.check_box :warning %><br />
   <%= f.submit 'Update' %>
