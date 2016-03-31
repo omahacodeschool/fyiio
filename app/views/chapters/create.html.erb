@@ -1,6 +1,6 @@
   <h1>New Chapter</h1>.
   <h3> For <%= @tutorial.title %></h3>
-  <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
+  <video id="chapter-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
 
     <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
 
@@ -12,8 +12,8 @@
   </video>
   <br>
   <br>
-  <button id="setStartTime" class="startTime" > Start </button>
-  <button id="setEndTime" class="endTime" > end </button>
+  <button id="setChapterStartTime" class="startTime" > Start </button>
+  <button id="setChapterEndTime" class="endTime" > end </button>
 
 
 <%= form_for  @new_chapter, url: chapters_create_confirmation_path(@tutorial.id, @new_chapter.id) do |f| %>
@@ -26,8 +26,8 @@
   Title: <%= f.text_field :title %><br />
   Description:<br /> <%= f.text_area :description %><br />
   Draft: <%= f.check_box :draft %><br />
-  <%= f.hidden_field :start_time %><br />
-  <%= f.hidden_field :end_time %><br />
+  <%= f.hidden_field :start_time, :value => "0" %><br />
+  <%= f.hidden_field :end_time, :value => "0"%><br />
   <%= f.submit 'Create'%>
 <% end %>
 
