@@ -1,3 +1,55 @@
+<div class="container">
+  <h1><%= "#{@company.name.capitalize} Dashboard" %></h1>
+  <h2>Channel and Account Settings</h2>
+  <div class="row">
+    <div class="col-6">
+      Channel Settings
+    </div>
+    <div class="col-6">
+      Account Settings
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <h2>Your Content</h2>
+    <btn>drafts</btn>
+    <btn>published</btn>
+  <div class="row">
+    <div class="col-4">
+      Tutorial 1
+    </div>
+    <div class="col-4">
+      Tutorial 2
+    </div>
+    <div class="col-4">
+      Tutorial 3
+    </div>
+    <div class="col-4">
+      Tutorial 4
+    </div>
+    <div class="col-4">
+      Tutorial 5
+    </div>
+    <div class="col-4">
+      Tutorial 6
+    </div>    
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <h6><%= image_tag("#{@current_user.user_image_check}", size: "75") %><br>
 <%= link_to("#{@current_user.first_name.capitalize} #{@current_user.last_name.capitalize}", edit_user_registration_path) %></h6>
