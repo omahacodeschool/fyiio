@@ -14,5 +14,3 @@
 //= require jquery_ujs
 //= require video
 //= require_tree .
-
-var myPlayer = videojs('my-video');
