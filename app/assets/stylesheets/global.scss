@@ -106,7 +106,9 @@
 }
 
 .scrollbox {
-  height: 100px;
+  height: 300px;
+  overflow: scroll;
+  border: 1px solid #888;
 }
 
 
@@ -149,8 +151,4 @@
   border-color: #3D9970;
   color: white;
   background-color: #3D9970;
-}
-
-.scrolling_list {
-  border: 1px solid #888;
 }
