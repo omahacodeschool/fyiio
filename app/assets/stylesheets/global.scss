@@ -57,3 +57,98 @@
   background-image: url("http://affordablequalitywriting.com/sites/default/files/boat-dock-windermere-lake-engl-248732_0.jpg");
   height: 300px;
 }
+
+.individual_img {
+  float: left;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.individual_img img {
+  border-radius: 10px;
+}
+
+.individual_img p {
+  font-size: 12px;
+}
+
+.company_img {
+  float: left;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.company_img img {
+  border-radius: 10px;
+}
+
+.company_img--rounded {
+  border-radius: 10px;
+}
+
+.acct_settings {
+  width: 300px;
+  float: left;
+  margin: 10px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.acct_info {
+  margin: 10px;
+  background: url(http://lorempixel.com/20/20/);
+  background-repeat: no-repeat;
+}
+
+.acct_info a {
+  margin-left: 25px;
+}
+
+.scrollbox {
+  height: 300px;
+  overflow: scroll;
+  border: 1px solid #888;
+}
+
+
+.btn {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 10px 5px;
+  background-color: white;
+  color: #888;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "fira-sans-2", sans-serif;
+}
+
+.btn__text {
+  padding: 0 10px;
+  border-radius: 0 5px 5px 0;
+}
+
+.btn__text a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn__price {
+  background-color: white;
+  color: #fff;
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-right: -10px; /* realign button text padding */
+  font-weight: 600;
+  background-color: #333;
+  opacity: .4;
+  border-radius: 5px 0 0 5px;
+}
+
+.btn--create {
+  border-color: #3D9970;
+  color: white;
+  background-color: #3D9970;
+}
