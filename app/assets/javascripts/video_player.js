@@ -1,38 +1,33 @@
 window.onload = function() {
-  var chapterPlayer = videojs('chapter-video');
-  var stepPlayer = videojs('step-video');
-  var chapterStartTime = document.getElementById("chapter_start_time");
-  var chapterEndTime = document.getElementById("chapter_end_time");
-  var stepStartTime = document.getElementById("step_start_time");
-  var stepEndTime = document.getElementById("step_end_time");
-  var chapterStartButton = document.getElementById("setChapterStartTime");
-  var chapterEndButton = document.getElementById("setChapterEndTime");
-  var stepStartButton = document.getElementById("setStepStartTime");
-  var stepEndButton = document.getElementById("setStepEndTime");
+  var myPlayer = videojs('my-video');
 
-  function captureVideoStartTime(start, player){
-    start.value = player.currentTime();
-    player.pause();
+  function captureVideoStartTime(start){
+    start.value = myPlayer.currentTime();
+    myPlayer.pause();
   };
 
-  function captureVideoEndTime(end, player){
-    end.value = player.currentTime();
-    player.pause();
+  function captureVideoEndTime(end){
+    end.value = myPlayer.currentTime();
+    myPlayer.pause();
   };
 
-  chapterStartButton.addEventListener("click", function(){
-    var startOutcome = captureVideoStartTime(chapterStartTime, chapterPlayer);
+  $("#setChapterStartTime").on('click', function(){
+    var chapterStartTime = document.getElementById("chapter_start_time");
+    captureVideoStartTime(chapterStartTime);
   });
 
-  chapterEndButton.addEventListener("click", function(){
-    var endOutcome = captureVideoEndTime(chapterEndTime, chapterPlayer);
+  $("#setChapterEndTime").on('click', function(){
+    var chapterEndTime = document.getElementById("chapter_end_time");
+    captureVideoEndTime(chapterEndTime);
   });
 
-  stepStartButton.addEventListener("click", function(){
-    var startOutcome = captureVideoStartTime(stepStartTime, stepPlayer);
+  $("#setStepStartTime").on('click', function(){
+    var stepStartTime = document.getElementById("step_start_time");
+    captureVideoStartTime(stepStartTime);
   });
 
-  stepEndButton.addEventListener("click", function(){
-    var endOutcome = captureVideoEndTime(stepEndTime, stepPlayer);
+  $("#setStepEndTime").on('click', function(){
+    var stepEndTime = document.getElementById("step_end_time");
+    captureVideoEndTime(stepEndTime);
   });
-};
+}
