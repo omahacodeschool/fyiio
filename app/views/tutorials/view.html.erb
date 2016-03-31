@@ -11,6 +11,19 @@
   
 <%= video_tag("#{@tutorial.video}", controls: true, autobuffer: true, id: "video") %>
 
+<h1>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>
+
+<% @chapters.each do |chapter| %>
+  <ul>
+    <% chapter.steps.each do |step| %>
+      <% step_presenter = StepPresenter.new(step) %>
+      <li><%= step_presenter.content %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h1>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>
+
 <div>
   <% @chapters.each_with_index do |chapter, index| %>
     <% @warning_count = 0 %>
