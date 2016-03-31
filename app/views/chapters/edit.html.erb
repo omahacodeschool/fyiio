@@ -3,7 +3,7 @@
 
 
 <h1><%= @edit_chapter.get_draft_title_for_chapter %></h1>
-
+<%= "Duration: #{@edit_chapter.video_time_conversion_for_chapters}" %>
 <%= form_for @edit_chapter, url: chapters_edit_confirmation_path(@tutorial.id, @edit_chapter.id) do |f| %>
   <% if @edit_chapter.errors.full_messages.any? %>
     <% @edit_chapter.errors.full_messages.each do |error_message| %>

@@ -10,7 +10,7 @@ class ChaptersController < ApplicationController
   def create_confirmation
     @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
-    @new_chapter = Chapter.new(title: params[:chapter][:title], description: params[:chapter][:description], draft: params[:chapter][:draft], tutorial_id: @tutorial.id)
+    @new_chapter = Chapter.new(title: params[:chapter][:title], description: params[:chapter][:description], draft: params[:chapter][:draft], tutorial_id: @tutorial.id, start_time: 0, end_time: 0)
     if @new_chapter.valid?
       @new_chapter.save
       flash[:success] = "Chapter Created!"

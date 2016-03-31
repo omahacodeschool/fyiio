@@ -1,7 +1,8 @@
 <%= link_to("<- Chapter: #{@chapter.title}", chapters_edit_path(@tutorial.id, @chapter.id)) %>
 <p><%= link_to("Done", tutorials_finished_editing_path(@tutorial.id)) %></p>
 
-<h1><%= @edit_step.get_draft_title_for_step %></h1>.
+<h1><%= @edit_step.get_draft_title_for_step %></h1>
+<%= "Current Duration (will updated after any changes are saved): #{@edit_step.video_time_conversion_for_steps}" %>
   
   <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
 
