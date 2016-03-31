@@ -14,15 +14,3 @@
 //= require jquery_ujs
 //= require video
 //= require_tree .
-
-var myPlayer = videojs('my-video');
-var startTime = document.getElementById("recordStartTime");
-var endTime = document.getElementById("recordEndTime");
-
-document.getElementById("setStartTime").addEventListener("click", function(){
-  startTime.innerHTML = myPlayer.currentTime();
-});
-
-document.getElementById("setEndTime").addEventListener("click", function(){
-  endTime.innerHTML = myPlayer.currentTime();
-});
