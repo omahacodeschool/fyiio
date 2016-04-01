@@ -28,7 +28,7 @@ class StepsController < ApplicationController
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapter = Chapter.find_by_id(params[:chapter_id])
     @edit_step = Step.find_by_id(params[:step_id])
-    @steps = @chapter.steps.order('id')
+    @steps = @chapter.steps.order(:start_time)
     render "edit"
   end
 
@@ -52,6 +52,7 @@ class StepsController < ApplicationController
     @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapter = Chapter.find_by_id(params[:chapter_id])
+    @steps = @chapter.steps.order(:start_time)
     @step = Step.find_by_id(params[:step_id])
     render "view"
   end
