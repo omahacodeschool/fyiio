@@ -1,6 +1,7 @@
 <h1> Edit <%= @edit_company.name %> </h1>
-
+<!-- Below is the form to edit company information. Just above this displays the name of which companies information is being altered. -->
 <%= link_to image_tag("#{@edit_company.image_check}"), edit_company_image_path %><br><br><br>
+<!-- The loop below checks for any errors much like the other pages for editing. if there is an error it will display on the page and alert the user that they are either missing information or the information they have provided is incorrect / already used. -->
 <%= form_for  @edit_company, :url => edit_company_confirmation_path do |f| %>
   <% if @edit_company.errors.full_messages.any? %>
      <% @edit_company.errors.full_messages.each do |error_message| %>
@@ -8,7 +9,7 @@
     <% end %>
   <% end %>
   <br><br>
-
+<!-- these are the forms fields that are being edited. Altered information is passed into the params and stored in the database for this user / company. -->
   Company Name: <%= f.text_field :name %><br />
   Description:<br /> <%= f.text_area :bio %><br />
   Address: <%= f.text_field :address_1 %><br />

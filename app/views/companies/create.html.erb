@@ -1,12 +1,14 @@
 <h1> Create Company </h1>
+<!-- Below is the form for creating a company. It passes in params to be assigned such as the desired url path, profile image, name, username, description of the company, address, suite/apt if there is one, city, state, and zipcode.  -->
 <%= form_for  @new_company, url: companies_create_confirmation_path do |f| %>
+<!-- Searches for any errors in the entry of information and displays a message for the user to address before they continue. -->
   <% if @new_company.errors.full_messages.any? %>
      <% @new_company.errors.full_messages.each do |error_message| %>
       <%= error_message %> <br />
     <% end %>
   <% end %>
   <br><br>
-  
+  <!-- Takes in new information for the fields and stores them in the database for the user. -->
   Profile Image: <%= f.file_field :profle_image %><br />
   Company Name: <%= f.text_field :name %><br />
   Sub Domain: <%= f.text_field :username, :required => true, :placeholder=>'Page Location.'%> ex: www.fyiio.com/THIS_TEST_IS_WHAT_IS_SET<br />
@@ -16,6 +18,7 @@
   City: <%= f.text_field :city %><br />
   State: <%= f.text_field :state %><br />
   Zip Code: <%= f.text_field :zip %><br />
+  <!-- submits the changes to the database -->
   <%= f.submit %>
 <% end %>
 
