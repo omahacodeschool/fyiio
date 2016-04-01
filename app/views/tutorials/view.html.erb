@@ -32,7 +32,7 @@
 <% @chapters.each_with_index do |chapter, index| %>
   <ul>  <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
   <%= chapter_presenter.content %>
-  <% step_presenter = StepCollectionPresenter.new(chapter.steps) %>
+  <% step_presenter = StepCollectionPresenter.new(chapter.steps.order(:start_time) %>
   <% step_presenter.empty_check.each do |step| %>
     <li>
       <%= step[0] %>
@@ -48,7 +48,7 @@
 
 <h1> Instructions </h1>
 <% @chapters.each_with_index do |chapter, index| %>
-  <% step_presenter = StepCollectionPresenter.new(chapter.steps) %>
+  <% step_presenter = StepCollectionPresenter.new(chapter.steps.order(:start_time) %>
   <% step_presenter.empty_check.each do |step| %>
     <li class="Chapter#{index + 1}StepDescriptions"> <input type="checkbox" name="chapter#{chapter.id}Step#{step.id}">
       <%= step[0] %>
