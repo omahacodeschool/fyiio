@@ -1,8 +1,7 @@
-<h1>New Chapter</h1>.
-<h3> For <%= @tutorial.title %></h3>
+  <h1>New Chapter</h1>.
+  <h3> For <%= @tutorial.title %></h3>
 
 <%= form_for  @new_chapter, url: chapters_create_confirmation_path(@tutorial.id, @new_chapter.id) do |f| %>
-  
   <% if @new_chapter.errors.full_messages.any? %>
     <% @new_chapter.errors.full_messages.each do |error_message| %>
       <%= error_message %> <br />
@@ -11,8 +10,6 @@
   <br><br>
   Title: <%= f.text_field :title %><br />
   Description:<br /> <%= f.text_area :description %><br />
-  Start Time: <%= f.text_field :start_time %><br />
-  End Time: <%= f.text_field :end_time %><br />
   Draft: <%= f.check_box :draft %><br />
   <%= f.submit 'Create'%>
 <% end %>

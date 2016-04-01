@@ -1,6 +1,19 @@
 <h1>New Step</h1>
-Chapter:  <%= @chapter.title %><br>
-Tutorial: <%= @tutorial.title %><br><br>
+  <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
+
+    <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
+
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+
+  </video>
+  <br>
+  <br>
+  <button id="setStepStartTime" class="startTime" > Set Video Start Time </button>
+  <button id="setStepEndTime" class="endTime" > Set Video End Time </button>
+
 
 <%= form_for @new_step, url: steps_create_confirmation_path(@tutorial.id, @chapter.id, @new_step.id) do |f| %>
 
@@ -15,8 +28,8 @@ Tutorial: <%= @tutorial.title %><br><br>
   Draft: <%= f.check_box :draft %><br />
   Warning: <%= f.check_box :warning %><br />
   Description:<br /> <%= f.text_area :description %><br />
-  Video Start Time: <%= f.text_field :start_time %><br />
-  Video End Time: <%= f.text_field :end_time%><br />
+  <%= f.hidden_field :start_time %><br />
+  <%= f.hidden_field :end_time %><br />
   <%= f.submit 'Create' %>
 <% end %>
 
