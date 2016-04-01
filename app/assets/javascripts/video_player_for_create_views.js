@@ -1,4 +1,4 @@
-window.onload = function() {
+window.addEventListener("load", function(){
   if (document.getElementById('my-video') != undefined || document.getElementById('my-video') != null) {
     var myPlayer = videojs('my-video');
 
@@ -22,4 +22,4 @@ window.onload = function() {
       captureVideoEndTime(stepEndTime);
     });
   }
-}
+});

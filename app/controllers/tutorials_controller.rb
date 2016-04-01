@@ -1,4 +1,6 @@
 class TutorialsController < ApplicationController
+  require 'tutorial_view_step_collection_presenter'
+  require 'tutorial_view_chapter_presenter'
   
   def create
     @new_tutorial = Tutorial.new

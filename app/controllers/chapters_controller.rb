@@ -24,7 +24,7 @@ class ChaptersController < ApplicationController
     @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @edit_chapter = Chapter.find_by_id(params[:chapter_id])
-    @steps = @edit_chapter.steps
+    @steps = @edit_chapter.steps.order(:start_time)
     render "edit"
   end
 
@@ -32,7 +32,7 @@ class ChaptersController < ApplicationController
     @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @edit_chapter = Chapter.find_by_id(params[:chapter_id])
-    @steps = @edit_chapter.steps.order('id')
+    @steps = @edit_chapter.steps.order(:start_time)
     @edit_chapter.update(title: params[:chapter][:title], description: params[:chapter][:description], draft: params[:chapter][:draft])
     if @edit_chapter.valid?
       flash[:success] = "Chapter Successfully Updated!"
@@ -55,7 +55,7 @@ class ChaptersController < ApplicationController
     @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapter = Chapter.find_by_id(params[:chapter_id])
-    @steps = Step.where({chapter_id: @chapter.id}).order('id')
+    @steps = @chapter.steps.order(:start_time)
     @counter = 0
     render "view"
   end
