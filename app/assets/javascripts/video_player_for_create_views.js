@@ -22,4 +22,13 @@ window.addEventListener("load", function(){
       captureVideoEndTime(stepEndTime);
     });
   }
+
+  if (document.getElementById('view-video') != undefined || document.getElementById('view-video') != null) {
+    var myPlayer = videojs('view-video');
+
+    $("stepVideoPlayerTrigger").on('click', function(){
+      var startTime = $(".stepVideoPlayerTrigger").attr("value");
+      myPlayer.currentTime(startTime);
+    });
+  }
 });

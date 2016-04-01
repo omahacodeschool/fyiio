@@ -9,7 +9,7 @@
       Bullet.bullet_logger = true
       Bullet.rails_logger = true
     end
-    config.action_mailer.delivery_method = :file
+    config.action_mailer.delivery_method = :smtp
     config.active_support.deprecation = :log
     config.active_record.migration_error = :page_load
     config.assets.debug = true
