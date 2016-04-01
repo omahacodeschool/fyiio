@@ -21,12 +21,13 @@
 </div>
 
 <div class="container">
-  <h2>Your Content</h2>
-  <btn>drafts</btn>
-  <btn>published</btn>
-  <btn><%= link_to("Create Tutorial", tutorials_create_path) %></btn>
+  <div class="content_navbar">
+    <h2>Your Content</h2>
+    <btn>drafts</btn>
+    <btn>published</btn>
+    <btn><%= link_to("Create Tutorial", tutorials_create_path) %></btn>
+  </div>
   <div class="row">
-
     <% if @all_finished_tutorials != nil %>
       <% @all_finished_tutorials.each do |tutorial| %>
         <div class="col-4 thumbnail">
@@ -38,6 +39,19 @@
         </div>
       <% end %>
     <% end %>  
+  </div>
+  <div class="row">
+    <% if @all_tutorial_drafts != nil %>
+      <% @all_tutorial_drafts.each do |tutorial| %>
+        <div class="col-4 thumbnail">
+        <img class="thumbnail__image" src="http://lorempixel.com/200/150/cats"
+        <%= link_to(tutorial.title, tutorials_path(tutorial.id)) %><br>
+        <%= tutorial.description %><br>
+        <%= link_to("Edit", tutorials_edit_path(tutorial.id)) %> 
+        <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
@@ -67,14 +81,3 @@
 
 <%= link_to("Invite/Add New Users", invite_users_path(session[:company_username])) %><br>
 
-
-
-<h3>Drafts </h3>
-<% if @all_tutorial_drafts != nil %>
-  <% @all_tutorial_drafts.each do |tutorial| %>
-   <%= link_to(tutorial.title, tutorials_path(tutorial.id)) %><br>
-   <%= tutorial.description %><br>
-    <%= link_to("Edit", tutorials_edit_path(tutorial.id)) %> 
-    <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %> <br><br> 
-  <% end %>
-<% end %>
