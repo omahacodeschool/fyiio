@@ -1,41 +1,88 @@
+<!-- <div id="nav-wrapper">
+  <ul id="nav">
+    <li><a href="">Yes</a></li>
+    <li><a href="">No</a></li>
+  </ul>
+</div>
+<style>
+#nav-wrapper {
+width:465px;
+margin:0 auto;
+padding:20px 0;
+background:#3D3331;
+}
+
+ul#nav {
+font-family: Verdana;
+font-size:14px;
+list-style:none;
+margin:0 auto;
+padding:0;
+width:455px;
+overflow: auto;
+}
+
+ul#nav li {
+display:inline;
+}
+
+ul#nav li a {
+text-decoration:none;
+display: block;
+padding:5px 21px;
+background:#135482;
+color:#eee;
+float:left;
+text-align:center;
+border-top:2px solid #175076;
+border-right:2px solid #195A87;
+border-bottom:2px solid #207DBF;
+border-left:2px solid #228EDC;
+}
+
+ul#nav li a:hover {
+background:#a37666;
+
+border-top:2px solid #815444;
+border-right:2px solid #c59888;
+border-bottom:2px solid #c59888;
+border-left:2px solid #815444;
+}
+
+</style> -->
+
 <div class="container">
 
   <div>Were you sent a company invite?</div>
-  <div class = "yes">
-    <ul>
-    <%= link_to('Yes', invite_verification_path) %> 
-    </ul>
+  <br>
+  <div id = "yes">
+    <div>Yes</div>
   </div>
   <br>
-  <div class = "no">
-    <ul>
-      <%= link_to('No', companies_create_path) %>
-    </ul>
+  <div id = "no">
+    <div>No</div>
   </div>
 </div>
+
 
 
 
 <style>
 
 .container {
-    margin: 20px;
-    border: 3px solid black;
-    padding: 10px;
-    padding-left: 428px;
-    padding-right: 560px;
-    text-align: center;
+  margin: 20px;
+  border: 3px solid black;
+  padding: 10px;
+  text-align: center;
 }
 
-.yes {
+#yes {
   color: #3494B5;
-  padding: 10px 20px;
   background-color: #25677D;
   border: 1px solid black;
-  width: 99px;
-  padding-left: 0px;
-  padding-right: 124px;
-
+  width: 100px;
+  padding: 10px;
+  margin-left: 490px;
 }
 .yes:hover {
   text-decoration: none;
@@ -43,22 +90,20 @@
   background: #175076;
 }
 
-.no {
+#no {
   color: #3494B5;
-  padding: 10px 20px;
   background-color: #25677D;
   border: 1px solid black;
-  width: 99px;
-    padding-left: 0px;
-    padding-right: 124px;
-
+  width: 100px;
+  padding: 10px;
+  margin-left: 490px;
 }
-
-
 
 .no:hover {
   text-decoration: none;
   color: #31A0E9;
   background: #175076;
 }
+
+
 </style>
