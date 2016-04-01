@@ -1,7 +1,8 @@
 <div class="container">
   <h1><%= "#{@company.name.capitalize} Dashboard" %></h1>
-  <h2>Settings</h2>
-  <btn><%= link_to("Create Tutorial", tutorials_create_path) %></btn>
+  <div class="btn btn--create">
+    <%= link_to("Create Tutorial", tutorials_create_path) %>
+  </div>
   <div class="row">
     <div class="col-6">
       <h3>Channel Settings</h3>
@@ -27,7 +28,7 @@
     <input type="radio" id="tab-1" name="tab-group-1" checked>
     <label for="tab-1">Published Content</label>
        
-    <div class="row content"> <!-- Published tutorials will go here -->
+    <div class="row tab_content"> <!-- Published tutorials will go here -->
       <% if @all_finished_tutorials != nil %>
         <% @all_finished_tutorials.each do |tutorial| %>
           <div class="col-4 thumbnail">
@@ -46,7 +47,7 @@
     <input type="radio" id="tab-2" name="tab-group-1">
     <label for="tab-2">Draft Content</label>
        
-    <div class="row content"> <!-- Draft tutorials will go here -->
+    <div class="row tab_content"> <!-- Draft tutorials will go here -->
       <% if @all_tutorial_drafts != nil %>
         <% @all_tutorial_drafts.each do |tutorial| %>
           <div class="col-4 thumbnail">
@@ -63,71 +64,11 @@
 </div>
 
 
-
-
-
-
-
-
-
-
 <style>
-
-.tabs {
-  position: relative;   
-  min-height: 600px; /* This part sucks */
-  clear: both;
-}
-.tab {
-  float: left;
-}
-.tab label {
-  background: #eee; 
-  padding: 10px; 
-  border: 1px solid #ccc; 
-  margin-left: -1px; 
-  position: relative;
-  left: 1px; 
-}
-.tab [type=radio] {
-  display: none;   
-}
-.content {
-  position: absolute;
-  top: 28px;
-  left: 0;
-  background: white;
-  right: 0;
-  bottom: 0;
-  padding: 20px;
-  border: 1px solid #ccc; 
-}
-[type=radio]:checked ~ label {
-  background: white;
-  border-bottom: 1px solid white;
-  z-index: 2;
-}
-[type=radio]:checked ~ label ~ .content {
-  z-index: 1;
-}
-
-.thumbnail {
-  margin: 0 0 10px 0;
-}
-
-.thumbnail__image {
-  display: block;
-}
-
-.thumbnail__title a {
-  font-weight: 600;
-  text-decoration: none;
-  color: #000;
-}
-
-.thumbnail_desc {
+btn{
 
 }
+
 </style>
 
 <!-- Hiding these for now since we initially had them visible 
