@@ -57,3 +57,84 @@
   background-image: url("http://affordablequalitywriting.com/sites/default/files/boat-dock-windermere-lake-engl-248732_0.jpg");
   height: 300px;
 }
+
+.tabs {
+  position: relative;   
+  margin-top: 20px;
+  min-height: 650px; /* This part sucks */
+  clear: both;
+}
+.tab {
+  float: left;
+}
+.tab label {
+  background: #eee; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  margin-left: -1px; 
+  position: relative;
+  left: 1px; 
+}
+.tab [type=radio] {
+  display: none;   
+}
+.tab_content {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  background: white;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  border: 1px solid #ccc; 
+}
+[type=radio]:checked ~ label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+}
+[type=radio]:checked ~ label ~ .tab_content {
+  z-index: 1;
+}
+
+.thumbnail {
+  margin: 0 0 50px 0;
+}
+
+.thumbnail__image {
+  display: block;
+}
+
+.thumbnail__title a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #000;
+}
+
+.thumbnail_desc {
+
+}
+
+/* Block */
+.btn a {
+  text-decoration: none;
+  background-color: white;
+  color: #888;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 10px 5px;
+}
+
+/* Modifier */
+.btn--create a{
+  border-color: #3D9970;
+  color: white;
+  background-color: #3D9970;
+}
+
+.btn--create a:active {
+  background-color: green;
+}
