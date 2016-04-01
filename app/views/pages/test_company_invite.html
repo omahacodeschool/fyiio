@@ -4,16 +4,12 @@
 
   <div>Were you sent a company invite?</div>
   <br>
-  <div id = "yes">
-    <div>Yes</div>
+  <div class="btn btn--create">
+    <span class="btn__text">Yes</span>
   </div>
-  <br>
-  <div id = "no">
-    <div>No</div>
-  </div>
+    <div class="btn btn--create">
+    <span class="btn__text">No</span>
 </div>
-
-
 
 
 <style>
@@ -25,34 +21,35 @@
   text-align: center;
 }
 
-#yes {
-  color: #3494B5;
-  background-color: #25677D;
-  border: 1px solid black;
-  width: 100px;
-  padding: 10px;
-  margin-left: 490px;
-}
-.yes:hover {
+/*.yes:hover {
   text-decoration: none;
   color: #31A0E9;
   background: #175076;
-}
+}*/
 
-#no {
-  color: #3494B5;
-  background-color: #25677D;
-  border: 1px solid black;
-  width: 100px;
-  padding: 10px;
-  margin-left: 490px;
-}
+.btn {
+  display: inline-block;
 
-.no:hover {
+  border-radius: 5px;
+  padding: 10px 5px;
+  background-color: white;
+  color: #888;
   text-decoration: none;
-  color: #31A0E9;
-  background: #175076;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "fira-sans-2", sans-serif;
 }
+
+.btn__text {
+  padding: 0 10px;
+  border-radius: 0 5px 5px 0;
+}
+
+.btn--create {
+  border-color: #3D9970;
+  color: white;
+  background-color: #2C739F;
 
 
 </style>
