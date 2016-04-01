@@ -9,7 +9,11 @@ class ChapterPresenter
   end
 
   def content
-      "Chapter #{@count}: #{chapter.title} - (#{chapter.video_time_conversion_for_chapters})"
+       "Chapter #{@count}: #{chapter.title} - (#{chapter.video_time_conversion_for_chapters})"
+  end
+
+  def get_description()
+   return  @chapter.description
   end
 
 end
