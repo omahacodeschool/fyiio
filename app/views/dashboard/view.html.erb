@@ -1,9 +1,11 @@
 <div class="container">
   <h1><%= "#{@company.name.capitalize} Dashboard" %></h1>
   <h2>Settings</h2>
+  <btn><%= link_to("Create Tutorial", tutorials_create_path) %></btn>
   <div class="row">
     <div class="col-6">
       <h3>Channel Settings</h3>
+      <p><%= link_to("Invite/Add New Users", invite_users_path(session[:company_username])) %></p>
       <p>Channel Location: </p>
       <p>Channel Category: </p>
       <p>Privacy Settings: </p>
@@ -12,7 +14,7 @@
     <div class="col-6">
       <h3>Account Settings</h3>
       <p><%= link_to("Company Account Info", view_company_info_path) %></p>
-      <p>Name: </p>
+      <p><%= link_to("#{@current_user.first_name.capitalize} #{@current_user.last_name.capitalize}", edit_user_registration_path) %></p>
       <p>Permissions: </p>
       <p>Users: </p>
       <p>Payment Method:</p>
@@ -20,42 +22,94 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="content_navbar">
-    <h2>Your Content</h2>
-    <btn>drafts</btn>
-    <btn>published</btn>
-    <btn><%= link_to("Create Tutorial", tutorials_create_path) %></btn>
+<div class="tabs container">  
+  <div class="tab">
+    <input type="radio" id="tab-1" name="tab-group-1" checked>
+    <label for="tab-1">Published Content</label>
+       
+    <div class="row content"> <!-- Published tutorials will go here -->
+      <% if @all_finished_tutorials != nil %>
+        <% @all_finished_tutorials.each do |tutorial| %>
+          <div class="col-4 thumbnail">
+          <img class="thumbnail__image" src="http://lorempixel.com/200/150/">
+          <p class="thumbnail__title"><%= link_to(tutorial.title, tutorials_path(tutorial.id)) %></p>
+          <p class="thumbnail__desc"><%= tutorial.description %></p>
+          <%= link_to("Edit", tutorials_edit_path(tutorial.id)) %> 
+          <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %>
+          </div>
+        <% end %>
+      <% end %>  
+    </div> 
   </div>
-  <div class="row">
-    <% if @all_finished_tutorials != nil %>
-      <% @all_finished_tutorials.each do |tutorial| %>
-        <div class="col-4 thumbnail">
-        <img class="thumbnail__image" src="http://lorempixel.com/200/150/"
-        <%= link_to(tutorial.title, tutorials_path(tutorial.id)) %><br>
-        <%= tutorial.description %><br>
-        <%= link_to("Edit", tutorials_edit_path(tutorial.id)) %> 
-        <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %>
-        </div>
+    
+  <div class="tab">
+    <input type="radio" id="tab-2" name="tab-group-1">
+    <label for="tab-2">Draft Content</label>
+       
+    <div class="row content"> <!-- Draft tutorials will go here -->
+      <% if @all_tutorial_drafts != nil %>
+        <% @all_tutorial_drafts.each do |tutorial| %>
+          <div class="col-4 thumbnail">
+          <img class="thumbnail__image" src="http://lorempixel.com/200/150/cats">
+          <p class="thumbnail__title"><%= link_to(tutorial.title, tutorials_path(tutorial.id)) %></p>
+          <p class="thumbnail__desc"><%= tutorial.description %></p>
+          <%= link_to("Edit", tutorials_edit_path(tutorial.id)) %> 
+          <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>  
-  </div>
-  <div class="row">
-    <% if @all_tutorial_drafts != nil %>
-      <% @all_tutorial_drafts.each do |tutorial| %>
-        <div class="col-4 thumbnail">
-        <img class="thumbnail__image" src="http://lorempixel.com/200/150/cats"
-        <%= link_to(tutorial.title, tutorials_path(tutorial.id)) %><br>
-        <%= tutorial.description %><br>
-        <%= link_to("Edit", tutorials_edit_path(tutorial.id)) %> 
-        <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" } %>
-        </div>
-      <% end %>
-    <% end %>
+    </div> 
   </div>
 </div>
 
+
+
+
+
+
+
+
+
+
 <style>
+
+.tabs {
+  position: relative;   
+  min-height: 600px; /* This part sucks */
+  clear: both;
+}
+.tab {
+  float: left;
+}
+.tab label {
+  background: #eee; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  margin-left: -1px; 
+  position: relative;
+  left: 1px; 
+}
+.tab [type=radio] {
+  display: none;   
+}
+.content {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  background: white;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  border: 1px solid #ccc; 
+}
+[type=radio]:checked ~ label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+}
+[type=radio]:checked ~ label ~ .content {
+  z-index: 1;
+}
 
 .thumbnail {
   margin: 0 0 10px 0;
@@ -64,20 +118,25 @@
 .thumbnail__image {
   display: block;
 }
+
+.thumbnail__title a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #000;
+}
+
+.thumbnail_desc {
+
+}
 </style>
 
 <!-- Hiding these for now since we initially had them visible 
 
 <%= image_tag("#{@current_user.user_image_check}", size: "75") %>
-<%= link_to("#{@current_user.first_name.capitalize} #{@current_user.last_name.capitalize}", edit_user_registration_path) %>
+
 <%= image_tag("#{@company.image_check}", size: "250") %>
- <%= "#{@company.name.capitalize} Dashboard" %>
 
 <p> <%= @company.bio %> </p>
 
 -->
-
-
-
-<%= link_to("Invite/Add New Users", invite_users_path(session[:company_username])) %><br>
 
