@@ -1,13 +1,15 @@
   <h1>New Chapter</h1>.
   <h3> For <%= @tutorial.title %></h3>
-
+<!-- This is the form for entering new chapter information. -->
 <%= form_for  @new_chapter, url: chapters_create_confirmation_path(@tutorial.id, @new_chapter.id) do |f| %>
   <% if @new_chapter.errors.full_messages.any? %>
+  <!-- This checks to see if there are any errors and if there are it will display an error message for each item that has an error. -->
     <% @new_chapter.errors.full_messages.each do |error_message| %>
       <%= error_message %> <br />
     <% end %>
   <% end %>
   <br><br>
+  <!-- Here is where we are assigning our entries to the params so that when we type something into the title or description field, and it saves whether or not draft is a true or false. -->
   Title: <%= f.text_field :title %><br />
   Description:<br /> <%= f.text_area :description %><br />
   Draft: <%= f.check_box :draft %><br />
