@@ -1,10 +1,12 @@
 <%= link_to("<- Tutorial: #{@tutorial.title}", tutorials_edit_path(@tutorial.id)) %><br>
+<!-- The above code brings in the title of the tutorial we are currently going to edit. The code below is a done link that takes us away from this page and out of our editing status. -->
 <p><%= link_to("Done", tutorials_finished_editing_path(@tutorial.id)) %></p>
 
-
+<!-- The code below brings in the chapter title. It then creates the form with previously filled in information for the user to edit and change. -->
 <h1><%= @edit_chapter.get_draft_title_for_chapter %></h1>
 <%= "Duration: #{@edit_chapter.video_time_conversion_for_chapters}" %>
 <%= form_for @edit_chapter, url: chapters_edit_confirmation_path(@tutorial.id, @edit_chapter.id) do |f| %>
+  <!-- This loops through the edit_chapter objects and checks to see if there are any entries that cause errors, and if there are it will display them up top and tell the user to correct them before continuing. -->
   <% if @edit_chapter.errors.full_messages.any? %>
     <% @edit_chapter.errors.full_messages.each do |error_message| %>
       <%= error_message %> <br />
@@ -19,11 +21,12 @@
 <% end %>
 
 <br><br>
+<!-- This is a simple link to delete the chapter and the contents within. This will also delete the corresponding steps thanks to the 'belongs_to' relation in the chapter model. It will alert you to how many steps are within the chapter before deleting. -->
   <%= link_to "Delete Chapter", delete_chapter_path, method: :delete, data: { confirm: "Are you sure you want to delete the chapter: #{@edit_chapter.title}? It has #{@steps.count} steps." } %>
 <br><br>
 
 <h3> Edit Steps </h3>
-
+<!-- This loops through each of the steps for the chapter and lists them out for easy viewing. If there is a draft object detected it will flag it with a "DRAFT" notification to let you know that it is not yet published. If no draft is detected it will list them as complete steps. The steps are links to their own view pages so you can click on each step if you wish to see just that steps page and info. -->
   <% @steps.each do |step| %>
     <% if step.draft == true %>
        <%= link_to("#{step.title}", steps_edit_path(@tutorial.id, @edit_chapter.id, step.id)) %> <div class="draft_flag" >-- DRAFT</div>
@@ -33,5 +36,6 @@
     <br>
   <% end %>
   <br><br>
+  <!-- This link below takes you to the creation page for steps within this chapter. You can create a new step and once done you can click that button again to create more. -->
    <%= link_to("+", steps_create_path(@tutorial.id, @edit_chapter.id)) %>
 

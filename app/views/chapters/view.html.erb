@@ -1,15 +1,20 @@
 <br>
+<!-- The first portion is a link back to the corresponding tutorial page for that chapter. -->
 <%= link_to("Back to " + @tutorial.title, tutorials_path(@tutorial.id) ) %>
+<!-- Below displays the tutorial title and the chapter title. -->
 <h1>Tutorial view: <%= @tutorial.title %></h1>
 <h2>Chapter view: <%= @chapter.title %></h2>
+<!-- The below code checks to see if the current chapter being viewed is in a draft status. If so it displays a message to alert the user. -->
 <% if @chapter.draft == true %>
   <p>This is in Draft Status</p>
 <% else %>
 <% end %>
+<!-- This code brings in the chapters description. -->
 <p>Chapter Description: <%= @chapter.description %></p>
 
 <h2>View the steps:</h2>
 <div>
+<!-- This loops through each step for that chapter and displays them. If the step is a warning and not an actual step it will display that warning and continue to show the steps in the correct order. ex:(step 1, step 2, Warning!, step 3, etc...) -->
   <% @steps.each do |step| %>
     <% if step.warning == true %>
       <p>WARNING! <%= step.title %></p>
