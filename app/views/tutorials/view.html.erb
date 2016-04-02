@@ -31,14 +31,12 @@
 <h1> Chapter Table of Contents </h1>
 <% @chapters.each_with_index do |chapter, index| %>
   <ul>  <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-  <a href="#" class="chapterVideoPlayerTrigger" value="<%= chapter_presenter.get_start_time() %>"> <%= chapter_presenter.content %>
-  <p style="display: none" class="chapterEndTime"><%= chapter_presenter.get_start_time() %></p>
+  <a href="#" class="videoPlayerTrigger" value=<%= chapter_presenter.get_start_time() %>> <%= chapter_presenter.content %>
   <p style="display: none" class="chapterEndTime"><%= chapter_presenter.get_end_time() %></p></a>
   <% chapter.steps.order(:start_time).each do |step| %>
   <% step_presenter = StepPresenter.new(step, chapter) %>
     <li>
-      <a href="#"class="stepVideoPlayerTrigger" value="<%= step_presenter.get_start_time() %>"><%= step_presenter.content %><br>
-      <p style="display: none" class="stepStartTime"><%= step_presenter.get_start_time() %></p>
+      <a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %><br>
       <p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a>
      <% end %>
    </li>

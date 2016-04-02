@@ -5,20 +5,6 @@ class ChapterPresenter
     @count = chapter_index += 1
   end
 
-  def step_ordering
-    ordering = {}
-    counter = 0
-    @chapter.steps.each do |step|
-      if step.warning?
-        ordering[s] = "WARNING"
-      else
-        counter += 1
-        ordering[s] = "STEP: #{@counter}"
-      end
-    end
-    return ordering
-  end
-
   def chapter
     @chapter
   end

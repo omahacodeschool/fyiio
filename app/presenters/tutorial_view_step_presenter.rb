@@ -10,7 +10,7 @@ class StepPresenter
   def step_ordering()
     ordering = {}
     counter = 0
-    @chapter.steps.each do |step|
+    @chapter.steps.order(:start_time).each do |step|
       if step.warning?
         ordering[step] = "WARNING"
       else

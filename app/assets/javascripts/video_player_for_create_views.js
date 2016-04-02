@@ -26,9 +26,10 @@ window.addEventListener("load", function(){
   if (document.getElementById('view-video') != undefined || document.getElementById('view-video') != null) {
     var myPlayer = videojs('view-video');
 
-    $("stepVideoPlayerTrigger").on('click', function(){
-      var startTime = $(".stepVideoPlayerTrigger").attr("value");
+    $(".videoPlayerTrigger").on('click', function(){
+    var startTime = $(this).attr("value");
       myPlayer.currentTime(startTime);
+      myPlayer.play()
     });
   }
 });
