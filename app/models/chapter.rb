@@ -7,17 +7,6 @@ class Chapter < ActiveRecord::Base
   }
   validates_presence_of :title, :tutorial_id
 
-  def video_time_conversion_for_chapters
-    start_time = Time.at(self.start_time).utc.strftime("%H:%M:%S")
-    end_time = Time.at(self.end_time).utc.strftime("%H:%M:%S")
-
-    return "#{start_time} - #{end_time}"
-  end
-
-  def get_draft_title_for_chapter
-    return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
-  end
-
    def get_start_time_step_array_for_chapter
      start_times = self.steps.pluck(:start_time)
     return start_times.empty? ? 0 : start_times.min
@@ -33,6 +22,18 @@ class Chapter < ActiveRecord::Base
     ends = get_end_time_step_array_for_chapter
     self.update(start_time: starts, end_time: ends)
     self.save
+  end
+
+  def video_time_conversion_for_chapters
+    start_time = Time.at(self.start_time).utc.strftime("%H:%M:%S")
+    end_time = Time.at(self.end_time).utc.strftime("%H:%M:%S")
+
+    return "#{start_time} - #{end_time}"
+  end
+
+
+  def get_draft_title_for_chapter
+    return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
 end
 
