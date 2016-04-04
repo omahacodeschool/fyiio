@@ -36,7 +36,7 @@
   <% chapter.steps.order(:start_time).each do |step| %>
   <% step_presenter = StepPresenter.new(step, chapter) %>
     <li>
-      <a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %><br>
+      <a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %> <%= step_presenter.get_percentage_left_in_chapter %><br>
       <p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a>
      <% end %>
    </li>
