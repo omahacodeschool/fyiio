@@ -10,6 +10,7 @@ class StepsController < ApplicationController
 
   def create_confirmation
     #AMY EDIT THIS ACTION
+    binding.pry
     @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapter = Chapter.find_by_id(params[:chapter_id])
