@@ -1,6 +1,7 @@
 class Chapter < ActiveRecord::Base
   belongs_to(:tutorial)
   has_many :steps, dependent: :destroy
+  accepts_nested_attributes_for :steps
   validates :description, :length => { 
     :maximum => 250,
     :too_long  => "Description cannot exceed 250 characters" 

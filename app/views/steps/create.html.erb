@@ -15,6 +15,26 @@
   <button id="setStepEndTime" class="endTime" > Set Video End Time </button>
 
 
+<%= form_for @chapter, url: steps_create_confirmation_path(@tutorial.id, @chapter.id) do |f| %>
+  <% if @new_step.errors.full_messages.any? %>
+     <% @new_step.errors.full_messages.each do |error_message| %>
+      <%= error_message %> <br />
+    <% end %>
+  <% end %>
+  <br><br>
+  <%= f.fields_for :steps do |step| %>
+    Title: <%= step.text_field :title %><br />
+    Draft: <%= step.check_box :draft %><br />
+    Warning: <%= step.check_box :warning %><br />
+    Description:<br /> <%= step.text_area :description %><br />
+    Start Time: <%= step.text_field :start_time %><br />
+    End Time: <%= step.text_field :end_time %><br />
+
+
+
+
+
+
 <%= form_for @new_step, url: steps_create_confirmation_path(@tutorial.id, @chapter.id, @new_step.id) do |f| %>
 
   <% if @new_step.errors.full_messages.any? %>
@@ -28,8 +48,14 @@
   Draft: <%= f.check_box :draft %><br />
   Warning: <%= f.check_box :warning %><br />
   Description:<br /> <%= f.text_area :description %><br />
-  <%= f.hidden_field :start_time %><br />
-  <%= f.hidden_field :end_time %><br />
+  Start Time: <%= f.text_field :start_time %><br />
+  End Time: <%= f.text_field :end_time %><br />
+
+  <%= f.button "Add More" #do
+    #content_tag(:strong, 'Add More')
+  #end 
+  %>
+
   <%= f.submit 'Create' %>
 <% end %>
 
