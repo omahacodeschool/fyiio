@@ -8,7 +8,7 @@ class Tutorial < ActiveRecord::Base
   }
   validates_presence_of :title, :user_id, :category
   include PgSearch
-  pg_search_scope :primary_search, :against => [:title, :description]
+  pg_search_scope :primary_search, :against => [:title, :description, :category]
 
   mount_uploader :video, VideoUploader
 
