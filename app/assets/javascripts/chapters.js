@@ -79,5 +79,5 @@ function addStepField() {
     document.getElementById("myList").appendChild(li);
  
     //show address header
-    $("#addressHeader").show(); 
+    $("#stepHeader").show(); 
 }

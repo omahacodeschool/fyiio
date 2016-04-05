@@ -25,14 +25,6 @@ class StepsController < ApplicationController
       redirect_to chapters_edit_path(@tutorial.id, @chapter.id)
     else 
       render "create"
-
-    #  if @new_step.valid?
-    #    @new_step.save
-    #    @chapter.set_chapter_start_and_end_time_based_on_step_times
-    #   flash[:success] = "Step Successfully Created!"
-    #   redirect_to steps_edit_path(@tutorial.id, @chapter.id, @new_step.id)
-    # #else
-    #   render "create"
     end
   end
 
