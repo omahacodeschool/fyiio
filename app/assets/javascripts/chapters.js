@@ -38,9 +38,12 @@ function addStepField() {
     nameAttributEndTime =  
           "chapter[steps_attributes][0][end_time]".replace("0", mSec);
   
-        
-    var ul = document.getElementById("myList");
 
+    var stepFieldDiv = document.getElementById("stepFieldDiv");
+
+    var stepFields = document.createElement("ul");
+
+    stepFieldDiv.appendChild(stepFields)
 
     //create <li> tag
     var li = document.createElement("li");
@@ -62,7 +65,7 @@ function addStepField() {
     li.appendChild(inputTitle);
 
     //append the Title li to the <ul> element
-    ul.appendChild(li);
+    stepFields.appendChild(li);
 
     //create <li> tag
     var draftLi = document.createElement("li");
@@ -85,7 +88,7 @@ function addStepField() {
     draftLi.appendChild(inputDraft);
 
     //append the Title li to the <ul> element
-    ul.appendChild(draftLi);
+    stepFields.appendChild(draftLi);
 
     //create <li> tag
     var warningLi = document.createElement("li");
@@ -108,7 +111,7 @@ function addStepField() {
     warningLi.appendChild(inputWarning);
 
     //append the Title li to the <ul> element
-    ul.appendChild(warningLi);
+    stepFields.appendChild(warningLi);
 
 
     //create <li> tag
@@ -131,7 +134,7 @@ function addStepField() {
     descriptionLi.appendChild(inputDescription);
 
     //append the description li to the <ul> element
-    ul.appendChild(descriptionLi);
+    stepFields.appendChild(descriptionLi);
 
      //create <li> tag
     var startTimeLi = document.createElement("li");
@@ -153,7 +156,7 @@ function addStepField() {
     startTimeLi.appendChild(inputStartTime);
 
     //append the StartTime li to the <ul> element
-    ul.appendChild(startTimeLi);
+    stepFields.appendChild(startTimeLi);
 
     //create <li> tag
     var endTimeLi = document.createElement("li");
@@ -175,7 +178,7 @@ function addStepField() {
     endTimeLi.appendChild(inputEndTime);
 
     //append the EndTime li to the <ul> element
-    ul.appendChild(endTimeLi);
+    stepFields.appendChild(endTimeLi);
 
  
     //show step header
