@@ -10,16 +10,12 @@
 
 window.addEventListener("load", function(){
 
-  var previewLinkClass = document.getElementsByClassName("previewLink");
-
-  for (var i = 0; i < previewLinkClass.length; i++) {
-    previewLinkClass[i].addEventListener("click", function(){ 
-      var previewWindowClass = document.getElementsByClassName("previewWindow");
-
-      for (var i = 0; i < previewWindowClass.length; i++) {    
-        previewWindowClass[i].style.display = "block";
-      }
+  var previewLinks = document.getElementsByClassName("previewLink");
+  
+  for (i = 0; i < previewLinks.length; i++) {
+    previewLinks[i].addEventListener("click", function(event){ 
+    var previewWindow = event.target.nextSibling;    
+    previewWindow.style.display = "block";
     });
   }
-
 });
