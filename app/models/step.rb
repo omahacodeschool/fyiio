@@ -16,4 +16,6 @@ class Step < ActiveRecord::Base
   def get_draft_title_for_step
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
+
+
 end

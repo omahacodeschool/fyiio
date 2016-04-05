@@ -35,5 +35,45 @@ class Chapter < ActiveRecord::Base
     self.update(start_time: starts, end_time: ends)
     self.save
   end
+
+ # Sorts through params in the controller to validate and save multiple steps for a chapter at once
+
+  def create_many_steps(params)
+    @new_steps = []
+    params.each do |key, value|
+      step = self.steps.new(title: params[key][:title], description: params[key][:description], draft: params[key][:draft], warning: params[key][:warning], start_time: (params[key][:start_time]).to_i, end_time: (params[key][:end_time]).to_i)
+      @new_steps << step 
+    end
+  end
+
+  def save_valid_steps
+    @invalid_steps = []
+    @valid_steps = []
+    @new_steps.each do |step|
+      if step.valid?
+        step.save
+        @valid_steps << step
+      else
+        @invalid_steps << step
+      end
+    end
+  end
+
+  def get_invalid_steps
+    @invalid_steps
+  end
+
+  def get_valid_steps
+    @valid_steps
+  end
+
+  def get_all_steps
+    @new_steps
+  end
+ 
+
+
+
+
 end
 
