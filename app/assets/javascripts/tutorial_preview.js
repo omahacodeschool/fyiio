@@ -5,4 +5,16 @@
 // description, number of  chapters, estimated completion time.
 
 // What triggers the preview info? Clicking on 'preview'
-// 
+// For now, we can still display the info we need without
+// the use of XHR.
+
+window.addEventListener("load", function(){
+
+  var previewLink = document.getElementById("previewLink");
+
+  previewLink.addEventListener("click", function(){ 
+    var previewWindow = document.getElementById("previewWindow");    
+    previewWindow.style.display = "block";
+  });
+
+});
