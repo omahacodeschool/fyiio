@@ -14,13 +14,12 @@ class StepsController < ApplicationController
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapter = Chapter.find_by_id(params[:chapter_id])
     
+    new_steps = []
     params[:chapter][:steps_attributes].each do |key, value|
       @chapter.steps.create(title: params[:chapter][:steps_attributes][key][:title], description: params[:chapter][:steps_attributes][key][:description], draft: params[:chapter][:steps_attributes][key][:draft], warning: params[:chapter][:steps_attributes][key][:warning], start_time: (params[:chapter][:steps_attributes][key][:start_time]).to_i, end_time: (params[:chapter][:steps_attributes][key][:end_time]).to_i)
-        # , description: params[:step][:description], draft: params[:step][:draft], warning: params[:step][:warning], start_time: (params[:step][:start_time]).to_i, end_time: (params[:step][:end_time]).to_i, chapter_id: @chapter.id))
     end
     binding.pry
-    # # @new_step = Step.new(title: params[:step][:title], description: params[:step][:description], draft: params[:step][:draft], warning: params[:step][:warning], start_time: (params[:step][:start_time]).to_i, end_time: (params[:step][:end_time]).to_i, chapter_id: @chapter.id)
-    # if @new_step.valid?
+     if @new_step.valid?
     #   @new_step.save
     #   @chapter.set_chapter_start_and_end_time_based_on_step_times
       flash[:success] = "Step Successfully Created!"
