@@ -18,10 +18,11 @@ class StepsController < ApplicationController
     @chapter.save_valid_steps
     @invalid_steps = @chapter.get_invalid_steps
     @valid_steps = @chapter.get_valid_steps
+    @new_steps = @chapter.get_all_new_steps
     if @invalid_steps.empty?
       @chapter.set_chapter_start_and_end_time_based_on_step_times
       flash[:success] = "Steps Successfully Created!"
-      redirect_to chapters_path(@tutorial.id, @chapter.id)
+      redirect_to chapters_edit_path(@tutorial.id, @chapter.id)
     else 
       render "create"
 

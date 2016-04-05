@@ -16,9 +16,13 @@
 
 
 <%= form_for @chapter, url: steps_create_confirmation_path(@tutorial.id, @chapter.id), method: :post do |f| %>
-  <% if @new_step.errors.full_messages.any? %>
-     <% @new_step.errors.full_messages.each do |error_message| %>
+  <% if !@new_steps.empty? %>
+    <% @new_steps.each do |step| %>
+    <%  if step.errors.full_messages.any? %>
+      <% step.errors.full_messages.each do |error_message| %>
       <%= error_message %> <br />
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
   <br><br>
@@ -36,31 +40,4 @@
 
 
 
-
-
-
-
-<%= form_for @new_step, url: steps_create_confirmation_path(@tutorial.id, @chapter.id, @new_step.id) do |f| %>
-
-  <% if @new_step.errors.full_messages.any? %>
-     <% @new_step.errors.full_messages.each do |error_message| %>
-      <%= error_message %> <br />
-    <% end %>
-  <% end %>
-  <br><br>
-
-  Title: <%= f.text_field :title %><br />
-  Draft: <%= f.check_box :draft %><br />
-  Warning: <%= f.check_box :warning %><br />
-  Description:<br /> <%= f.text_area :description %><br />
-  Start Time: <%= f.text_field :start_time %><br />
-  End Time: <%= f.text_field :end_time %><br />
-
-  <%= f.button "Add More" #do
-    #content_tag(:strong, 'Add More')
-  #end 
-  %>
-
-  <%= f.submit 'Create' %>
-<% end %>
 

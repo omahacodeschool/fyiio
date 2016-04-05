@@ -67,7 +67,7 @@ class Chapter < ActiveRecord::Base
     @valid_steps
   end
 
-  def get_all_steps
+  def get_all_new_steps
     @new_steps
   end
  
