@@ -11,10 +11,10 @@
 window.addEventListener("load", function(){
 
   var previewLinks = document.getElementsByClassName("previewLink");
-  
+
   for (i = 0; i < previewLinks.length; i++) {
     previewLinks[i].addEventListener("click", function(event){ 
-    var previewWindow = event.target.nextSibling;    
+    var previewWindow = event.target.nextElementSibling;    
     previewWindow.style.display = "block";
     });
   }
