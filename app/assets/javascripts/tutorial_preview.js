@@ -10,11 +10,16 @@
 
 window.addEventListener("load", function(){
 
-  var previewLink = document.getElementById("previewLink");
+  var previewLinkClass = document.getElementsByClassName("previewLink");
 
-  previewLink.addEventListener("click", function(){ 
-    var previewWindow = document.getElementById("previewWindow");    
-    previewWindow.style.display = "block";
-  });
+  for (var i = 0; i < previewLinkClass.length; i++) {
+    previewLinkClass[i].addEventListener("click", function(){ 
+      var previewWindowClass = document.getElementsByClassName("previewWindow");
+
+      for (var i = 0; i < previewWindowClass.length; i++) {    
+        previewWindowClass[i].style.display = "block";
+      }
+    });
+  }
 
 });

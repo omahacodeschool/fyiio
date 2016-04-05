@@ -9,10 +9,15 @@
   </div>
   <% @results.each do |result| %>
     <p><%= link_to(result.title, "/tutorials/#{result.id}") %></p>
-    <a href="#" id="previewLink">Preview</a>
-    <div id="previewWindow" style="display: none"> <%= result.description %>
+    <a href="#" class="previewLink">Preview</a>
+    <div class="previewWindow" style="display: none"> 
+      Description: 
+      <%= result.description %>
       <br>
+    Number of Chapters:
     <%= result.chapters.count %>
+      <br>
+
     </div>
   <% end %>
 </div>
