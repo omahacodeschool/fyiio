@@ -29,7 +29,10 @@ NEED SEPARATE LINKS FOR UPDATING VIDEO. FOR NOW SHOULD JUST VE VIEWABLE HERE
 <% end %>
 
 <br><br>
+ <%= link_to("Add New Chapter", :update => "new_chapter_form",
+    :url => { :action => "show_new_chapter_form", :controller => "chapter", :id => @edit_tutorial.id }, :remote => true) %>
 <%= link_to("+", chapters_create_path(@edit_tutorial.id)) %>
 <br>
+<div id="new_chapter_form"></div>
 <br>
 <p><%= link_to("Done", tutorials_finished_editing_path(@edit_tutorial.id)) %></p>
