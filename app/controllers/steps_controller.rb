@@ -10,19 +10,24 @@ class StepsController < ApplicationController
 
   def create_confirmation
     #AMY EDIT THIS ACTION
-    binding.pry
     @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])
     @chapter = Chapter.find_by_id(params[:chapter_id])
-    @new_step = Step.new(title: params[:step][:title], description: params[:step][:description], draft: params[:step][:draft], warning: params[:step][:warning], start_time: (params[:step][:start_time]).to_i, end_time: (params[:step][:end_time]).to_i, chapter_id: @chapter.id)
-    if @new_step.valid?
-      @new_step.save
-      @chapter.set_chapter_start_and_end_time_based_on_step_times
+    
+    params[:chapter][:steps_attributes].each do |key, value|
+      @chapter.steps.create(title: params[:chapter][:steps_attributes][key][:title], description: params[:chapter][:steps_attributes][key][:description], draft: params[:chapter][:steps_attributes][key][:draft], warning: params[:chapter][:steps_attributes][key][:warning], start_time: (params[:chapter][:steps_attributes][key][:start_time]).to_i, end_time: (params[:chapter][:steps_attributes][key][:end_time]).to_i)
+        # , description: params[:step][:description], draft: params[:step][:draft], warning: params[:step][:warning], start_time: (params[:step][:start_time]).to_i, end_time: (params[:step][:end_time]).to_i, chapter_id: @chapter.id))
+    end
+    binding.pry
+    # # @new_step = Step.new(title: params[:step][:title], description: params[:step][:description], draft: params[:step][:draft], warning: params[:step][:warning], start_time: (params[:step][:start_time]).to_i, end_time: (params[:step][:end_time]).to_i, chapter_id: @chapter.id)
+    # if @new_step.valid?
+    #   @new_step.save
+    #   @chapter.set_chapter_start_and_end_time_based_on_step_times
       flash[:success] = "Step Successfully Created!"
       redirect_to steps_edit_path(@tutorial.id, @chapter.id, @new_step.id)
-    else
-      render "create"
-    end
+    #else
+     # render "create"
+    #end
   end
 
   def edit

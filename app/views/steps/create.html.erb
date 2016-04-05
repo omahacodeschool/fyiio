@@ -22,13 +22,13 @@
     <% end %>
   <% end %>
   <br><br>
-  <%= f.fields_for :steps, Step.new do |step| %>
+  <%= f.fields_for :steps, [Step.new]*3 do |step| %>
     Title: <%= step.text_field :title %><br />
     Draft: <%= step.check_box :draft %><br />
     Warning: <%= step.check_box :warning %><br />
     Description:<br /> <%= step.text_area :description %><br />
     Start Time: <%= step.text_field :start_time %><br />
-    End Time: <%= step.text_field :end_time %><br />
+    End Time: <%= step.text_field :end_time %><br /><br /><br />
     <% end %>
   <%= f.submit 'Create' %>
   <% end %>
