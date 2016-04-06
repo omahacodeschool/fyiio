@@ -10,12 +10,17 @@
 
 window.addEventListener("load", function(){
 
-  var previewLinks = document.getElementsByClassName("previewLink");
+  var results = document.getElementsByClassName("results");
 
-  for (i = 0; i < previewLinks.length; i++) {
-    previewLinks[i].addEventListener("click", function(event){ 
-    var previewWindow = event.target.nextElementSibling;    
-    previewWindow.style.display = "block";
+  for (i = 0; i < results.length; i++) {
+    results[i].firstChild.addEventListener("mouseover", function(event){ 
+      var previewWindow = event.target.parentElement.nextElementSibling;    
+      previewWindow.style.display = "block";
+    });
+
+    results[i].firstChild.addEventListener("mouseout", function(event) { 
+      var previewWindow = event.target.parentElement.nextElementSibling;      
+      previewWindow.style.display = "none";          
     });
   }
 });
