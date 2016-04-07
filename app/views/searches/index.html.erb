@@ -8,7 +8,11 @@
     <% end %>
   </div>
   <% @results.each do |result| %>
-    <div class="results"><%= link_to(result.title, "/tutorials/#{result.id}") %></div>
+    <div class="results"><%= link_to(result.title, "/tutorials/#{result.id}") %>
+      <p>
+        <a href="#" class="PreviewLink">PreviewThing</a>
+      </p>
+    </div>
     <div class="previewWindow" style="display: none"> 
       Description: 
       <%= result.description %>

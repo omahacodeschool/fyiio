@@ -8,19 +8,54 @@
 // For now, we can still display the info we need without
 // the use of XHR.
 
+
+
+//   var results = document.getElementsByClassName("results");
+
+//   for (i = 0; i < results.length; i++) {
+//     results[i].firstChild.addEventListener("mouseover", function(event){ 
+//       var previewWindow = event.target.parentElement.nextElementSibling;    
+//       previewWindow.style.display = "block";
+//     });
+
+//     results[i].firstChild.addEventListener("mouseout", function(event) { 
+//       var previewWindow = event.target.parentElement.nextElementSibling;      
+//       previewWindow.style.display = "none";          
+//     });
+//   }
+
+
+// Here's how I imagine this will have to work. 
+
+// Event listeners will have to be set up so that when a link (or preferably a thumbnail image of a tutorial) is clicked:
+// 1. a new div is created. 
+// 2. We would need to have a view file that contains all of the data needed to fill the div with. 
+//    a). An HXR would be triggered that would request all the data from the view designated for the XHR, and this data would be stored in a variable?
+//    b). We would then use some JQuery magic to create said div taking in the variable (containing the data) so that the data gets put inside of the div.
+// 3. I have no idea what will need to be done CSS-wise to make it look like a little window box... thing.
+// The above order is not necessarily accurate or meaningful. 
+
 window.addEventListener("load", function(){
 
-  var results = document.getElementsByClassName("results");
+  var previewLinks = document.getElementsByClassName("previewLink");
+  for (i = 0; i < previewLinks.length; i++) {
+    previewLinks[i].firstChild.addEventListener("mouseover", function(event){ 
 
-  for (i = 0; i < results.length; i++) {
-    results[i].firstChild.addEventListener("mouseover", function(event){ 
-      var previewWindow = event.target.parentElement.nextElementSibling;    
-      previewWindow.style.display = "block";
-    });
+      var loadTutorialPreview = function(){
 
-    results[i].firstChild.addEventListener("mouseout", function(event) { 
-      var previewWindow = event.target.parentElement.nextElementSibling;      
-      previewWindow.style.display = "none";          
+        var tutorialRequest = new XMLHttpRequest();
+        tutorialRequest.open ("GET", "tutorials/1");
+        tutorialRequest.addEventListener("load", function() {
+          
+          var previewWindow = event.target.nextElementSibling;    
+          previewWindow.style.display = "block";
+
+        })
+      }
     });
   }
 });
+
+
+
+
