@@ -50,11 +50,12 @@
 
   
   <div id="new_chapter_form" style="display:none">
-  <%= form_for  @edit_tutorial, :url => tutorials_edit_confirmation_path(@edit_tutorial.id) do |f| %>
+  <%= form_for  @edit_tutorial, :url => tutorials_add_chapter_path(@edit_tutorial) do |f| %>
   <%= f.fields_for :chapters, Chapter.new do |chapter| %>
   Title:<%= chapter.text_field :title %><br />
   Description:<%= chapter.text_area :description %><br />
   Draft: <%= chapter.check_box :draft %><br />
+  <%= f.submit "Add Chapter to #{@edit_tutorial.title} Tutorial" %>
   <% end %>
 <% end %>
   </div>

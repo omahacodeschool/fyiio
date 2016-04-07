@@ -70,7 +70,7 @@ class Tutorial < ActiveRecord::Base
 def create_chapters(params)
     #@new_chapters = []
     #params.each do |key, value|
-      @new_chapter=chapter = self.chapters.new(title: params[:title], description: params[:description], draft: params[:draft])
+      @new_chapter = self.chapters.new(title: params[:title], description: params[:description], draft: params[:draft])
       #@new_chapters << chapter 
     end
 

@@ -32,14 +32,25 @@ class TutorialsController < ApplicationController
     @chapters = @edit_tutorial.chapters.order('id')
     @edit_tutorial.update(title: params[:tutorial][:title], description: params[:tutorial][:description], public: params[:tutorial][:public], draft: params[:tutorial][:draft], category: params[:tutorial][:category])
     if @edit_tutorial.valid?
-      @edit_tutorial.create_chapters(params[:chapters])
-      @edit_tutorial.save_if_valid
       @edit_tutorial.save
       flash[:success] = "Tutorial Information Updated!"
       redirect_to tutorials_edit_path(@edit_tutorial.id)
     else
       render "edit"
     end
+  end
+
+
+  def edit_add_chapter
+    @tutorial = Tutorial.find_by_id(params[:tutorial_id])
+    @new_chapter = Chapter.new(title: params[:tutorial][:chapters][:title], description: params[:tutorial][:chapters][:description], draft: params[:tutorial][:chapters][:draft], tutorial_id: @tutorial.id, start_time: 0, end_time: 0)
+    if @new_chapter.valid?
+      @new_chapter.save
+      flash[:success] = "Chapter added to tutorial"
+    else
+      flash[:notice] = "Chapter failed to save"
+    end
+    redirect_to tutorials_edit_path(@tutorial)
   end
 
   def view
