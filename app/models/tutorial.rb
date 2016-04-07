@@ -67,38 +67,47 @@ class Tutorial < ActiveRecord::Base
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
 
-def create_many_chapters(params)
-    @new_chapters = []
-    params.each do |key, value|
-      chapter = self.chapters.new(title: params[key][:title], description: params[key][:description], draft: params[key][:draft])
-      @new_chapters << chapter 
+def create_chapters(params)
+    #@new_chapters = []
+    #params.each do |key, value|
+      @new_chapter=chapter = self.chapters.new(title: params[:title], description: params[:description], draft: params[:draft])
+      #@new_chapters << chapter 
     end
-  end
 
-  def save_valid_chapter
-    @invalid_chapters = []
-    @valid_chapters = []
-    @new_chapters.each do |chapter|
-      if chapter.valid?
-        chapter.save
-        @valid_chapters << chapter
-      else
-        @invalid_chapters << chapter
-      end
-    end
+def save_if_valid
+  if @new_chapter.valid?
+    @new_chapter.save
   end
+end
 
-  def get_invalid_chapters
-    @invalid_chapters
-  end
 
-  def get_valid_chapter
-    @valid_chapters
-  end
+  # def save_valid_chapter
+  #   if @new_chapter.valid?
+  #     @new_chapter.save
+  #   else
+  #   @invalid_chapters = []
+  #   @valid_chapters = []
+  #   @new_chapters.each do |chapter|
+  #     if chapter.valid?
+  #       chapter.save
+  #       @valid_chapters << chapter
+  #     else
+  #       @invalid_chapters << chapter
+  #     end
+  #   end
+  # end
 
-  def get_all_new_chapters
-    @new_chapters
-  end
+  # def get_invalid_chapters
+  #   @invalid_chapters
+  # end
+
+  # def get_valid_chapter
+  #   @valid_chapters
+  # end
+
+  # def get_all_new_chapters
+  #   @new_chapters
+  # end
 
 
 

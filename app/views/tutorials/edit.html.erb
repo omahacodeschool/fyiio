@@ -29,6 +29,8 @@
   Public: <%= f.check_box :public %><br />
   Draft: <%= f.check_box :draft %><br />
   Replace Video: <%= f.file_field :video %><br />
+  <%= f.submit %>
+<% end %>
   
 <br><br>
 
@@ -41,26 +43,25 @@
     <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id)) %><br>
   <% end %>
 <% end %>
+  
 
-  <div>
-  Add New Chapter:<br />
-  <%= fields_for :chapters, Chapter.new do |chapter| %>
+<button id="showNewChapterForm">Add New Chapter</button>
+
+
+  
+  <div id="new_chapter_form" style="display:none">
+  <%= form_for  @edit_tutorial, :url => tutorials_edit_confirmation_path(@edit_tutorial.id) do |f| %>
+  <%= f.fields_for :chapters, Chapter.new do |chapter| %>
   Title:<%= chapter.text_field :title %><br />
   Description:<%= chapter.text_area :description %><br />
   Draft: <%= chapter.check_box :draft %><br />
+  <% end %>
 <% end %>
-
   </div>
-  <%= f.submit %>
-<% end %>
-
-
 
 <br><br>
- <%= link_to("Add New Chapter", :update => "new_chapter_form",
-    :url => { :action => "show_new_chapter_form", :controller => "chapters", :id => @edit_tutorial.id }, :remote => true) %>
+
 <%= link_to("+", chapters_create_path(@edit_tutorial.id)) %>
 <br>
-<div id="new_chapter_form"></div>
 <br>
 <p><%= link_to("Done", tutorials_finished_editing_path(@edit_tutorial.id)) %></p>

@@ -29,10 +29,11 @@ class TutorialsController < ApplicationController
     @current_user = User.find_by_id(current_user)
     puts current_user
     @edit_tutorial = Tutorial.find_by_id(params[:tutorial_id])
-    @edit_tutorial.chapters.create_many_chapters(params[:tutorial][:chapters_attributes])
     @chapters = @edit_tutorial.chapters.order('id')
     @edit_tutorial.update(title: params[:tutorial][:title], description: params[:tutorial][:description], public: params[:tutorial][:public], draft: params[:tutorial][:draft], category: params[:tutorial][:category])
     if @edit_tutorial.valid?
+      @edit_tutorial.create_chapters(params[:chapters])
+      @edit_tutorial.save_if_valid
       @edit_tutorial.save
       flash[:success] = "Tutorial Information Updated!"
       redirect_to tutorials_edit_path(@edit_tutorial.id)
