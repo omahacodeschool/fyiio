@@ -60,6 +60,7 @@ class ChaptersController < ApplicationController
     render "view"
   end
 
+# I HAVE ABANDONED THE BELOW TODO DELETE IT WHEN SURE - AMY
   def show_new_chapter_form
     @tutorial = Tutorial.find_by_id(params[:id])
     binding.pry
