@@ -41,7 +41,7 @@ window.addEventListener("load", function(){
   for (i = 0; i < results.length; i++) {
     results[i].childNodes[2].addEventListener("click", function(event){
       var previewWindow = event.target.parentElement.nextElementSibling;
-      var tutorialUrl = event.target.parentElement.firstChild.href;
+      var tutorialUrl = event.target. parentElement.firstChild.href;
 
       var loadTutorialPreview = function(){
         var tutorialRequest = new XMLHttpRequest();
@@ -57,20 +57,12 @@ window.addEventListener("load", function(){
       };
       loadTutorialPreview();
     });
+    results[i].childNodes[2].addEventListener("mouseleave", function(event){
+      var previewWindow = event.target.parentElement.nextElementSibling;
+      previewWindow.style.display = "none";
+    });
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
