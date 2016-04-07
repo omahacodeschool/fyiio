@@ -15,21 +15,64 @@
   <button id="setStepEndTime" class="endTime" > Set Video End Time </button>
 
 
-<%= form_for @new_step, url: steps_create_confirmation_path(@tutorial.id, @chapter.id, @new_step.id) do |f| %>
+<%= form_for @chapter, url: steps_create_confirmation_path(@tutorial.id, @chapter.id), method: :post do |f| %>
+  <% if !@new_steps.nil? && !@new_steps.empty? %>
+    <% @new_steps.each do |step| %>
+    <%  if step.errors.full_messages.any? %>
+      <div id="error_explanation">
+      <br><%= pluralize(step.errors.count, "error") %> 
+          prohibited this step from being saved: <br>
+            <ul>
+      <% step.errors.full_messages.each do |error_message| %>
+        <li><%= error_message %></li>
+        </ul>
+    </div>
+      
+    <%= f.fields_for :step, step do |step| %>
+    Title: <%= step.text_field :title %><br />
+    Draft: <%= step.check_box :draft %><br />
+    Warning: <%= step.check_box :warning %><br />
+    Description:<br /> <%= step.text_area :description %><br />
+    Start Time: <%= step.text_field :start_time %><br />
+    End Time: <%= step.text_field :end_time %><br /><br /><br />
+    <%= f.submit 'Create' %>
+    <% end %>
 
-  <% if @new_step.errors.full_messages.any? %>
-     <% @new_step.errors.full_messages.each do |error_message| %>
-      <%= error_message %> <br />
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
   <br><br>
 
-  Title: <%= f.text_field :title %><br />
-  Draft: <%= f.check_box :draft %><br />
-  Warning: <%= f.check_box :warning %><br />
-  Description:<br /> <%= f.text_area :description %><br />
-  <%= f.hidden_field :start_time %><br />
-  <%= f.hidden_field :end_time %><br />
-  <%= f.submit 'Create' %>
+    <%= f.fields_for :steps, Step.new do |step| %>
+    Title: <%= step.text_field :title %><br />
+    Draft: <%= step.check_box :draft %><br />
+    Warning: <%= step.check_box :warning %><br />
+    Description:<br /> <%= step.text_area :description %><br />
+    Start Time: <%= step.text_field :start_time %><br />
+    End Time: <%= step.text_field :end_time %><br /><br /><br />
+ 
+  <div id="stepHeader" style="display:none">Step information:  </div>
+   
+ 
+  <div id="stepFieldDiv">
+  </div>
+
+  <%= submit_tag "Add Another Step", :type => 'button', :id => 'addStep', 
+          :onclick => 'addStepField()' %>    
+
+
+  <div class="actions">
+    <%= f.submit "Create Steps" %>
+  <div>
+  <% end %>
 <% end %>
+
+
+
+
+
+
+
+
 
