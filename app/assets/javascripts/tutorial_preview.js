@@ -37,25 +37,25 @@
 
 window.addEventListener("load", function(){
 
-  var previewLinks = document.getElementsByClassName("previewLink");
-  for (i = 0; i < previewLinks.length; i++) {
-    previewLinks[i].addEventListener("click", function(event){ 
-      console.log("click detected");
+  var results = document.getElementsByClassName("results");
+  for (i = 0; i < results.length; i++) {
+    results[i].firstChild.addEventListener("click", function(event){
+    var previewWindow = event.target.parentElement.nextElementSibling;
+    debugger;
 
       var loadTutorialPreview = function(){
-
         var tutorialRequest = new XMLHttpRequest();
         tutorialRequest.open ("GET", "tutorials/1");
 
         tutorialRequest.addEventListener("load", function(event) {
           var thisRequest = event.target;
-          var data = thisRequest.responseText;
-          var previewWindow = previewLinks[i].nextElementSibling;    
+          var data = thisRequest.responseText; 
           previewWindow.style.display = "block";
           previewWindow.innerHTML = data; 
         });
         tutorialRequest.send();
       };
+      loadTutorialPreview();
     });
   }
 });
