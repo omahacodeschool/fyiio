@@ -39,11 +39,9 @@ window.addEventListener("load", function(){
 
   var results = document.getElementsByClassName("results");
   for (i = 0; i < results.length; i++) {
-    var tutorialUrl = results[i].firstChild.href;
     results[i].childNodes[2].addEventListener("click", function(event){
       var previewWindow = event.target.parentElement.nextElementSibling;
-
-
+      var tutorialUrl = event.target.parentElement.firstChild.href;
 
       var loadTutorialPreview = function(){
         var tutorialRequest = new XMLHttpRequest();
