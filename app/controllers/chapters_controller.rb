@@ -62,6 +62,7 @@ class ChaptersController < ApplicationController
 
   def show_new_chapter_form
     @tutorial = Tutorial.find_by_id(params[:id])
+    binding.pry
    render :partial=>"chapters/new_chapter_form", locals: {tutorial: @tutorial, new_chapter: Chapter.new}
   end
 

@@ -1,4 +1,15 @@
-NEED SEPARATE LINKS FOR UPDATING VIDEO. FOR NOW SHOULD JUST VE VIEWABLE HERE
+
+  <video id="view-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
+
+    <source src=<%= "#{@edit_tutorial.video}"%> type='video/mp4'>
+
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+
+  </video>
+
 
 <h1><%= @edit_tutorial.get_draft_title_for_tutorial %></h1>
 <%= form_for  @edit_tutorial, :url => tutorials_edit_confirmation_path(@edit_tutorial.id) do |f| %>
@@ -8,6 +19,8 @@ NEED SEPARATE LINKS FOR UPDATING VIDEO. FOR NOW SHOULD JUST VE VIEWABLE HERE
     <% end %>
   <% end %>
   <br><br>
+
+
 
   Category: <%= f.select :category, [['CATEGORY1', 1], ['CATEGORY2', 2], ['CATEGORY3', 3], ['CATEGORY4', 4], ['CATEGORY5', 5]] %><br />
   Title: <%= f.text_field :title %><br />
@@ -30,7 +43,7 @@ NEED SEPARATE LINKS FOR UPDATING VIDEO. FOR NOW SHOULD JUST VE VIEWABLE HERE
 
 <br><br>
  <%= link_to("Add New Chapter", :update => "new_chapter_form",
-    :url => { :action => "show_new_chapter_form", :controller => "chapter", :id => @edit_tutorial.id }, :remote => true) %>
+    :url => { :action => "show_new_chapter_form", :controller => "chapters", :id => @edit_tutorial.id }, :remote => true) %>
 <%= link_to("+", chapters_create_path(@edit_tutorial.id)) %>
 <br>
 <div id="new_chapter_form"></div>
