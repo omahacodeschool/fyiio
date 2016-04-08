@@ -1,4 +1,4 @@
-NEED SEPARATE LINKS FOR UPDATING VIDEO. FOR NOW SHOULD JUST VE VIEWABLE HERE
+
 
 <h1><%= @edit_tutorial.get_draft_title_for_tutorial %></h1>
 <%= form_for  @edit_tutorial, :url => tutorials_edit_confirmation_path(@edit_tutorial.id) do |f| %>
@@ -9,13 +9,29 @@ NEED SEPARATE LINKS FOR UPDATING VIDEO. FOR NOW SHOULD JUST VE VIEWABLE HERE
   <% end %>
   <br><br>
 
+
+  <video id="view-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
+
+    <source src=<%= "#{@edit_tutorial.video}"%> type='video/mp4'>
+
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+
+  </video>
+
+
+
   Category: <%= f.select :category, [['CATEGORY1', 1], ['CATEGORY2', 2], ['CATEGORY3', 3], ['CATEGORY4', 4], ['CATEGORY5', 5]] %><br />
   Title: <%= f.text_field :title %><br />
   Description:<br /> <%= f.text_area :description %><br />
   Public: <%= f.check_box :public %><br />
   Draft: <%= f.check_box :draft %><br />
+  Replace Video: <%= f.file_field :video %><br />
   <%= f.submit %>
 <% end %>
+  
 <br><br>
 
 
@@ -27,8 +43,25 @@ NEED SEPARATE LINKS FOR UPDATING VIDEO. FOR NOW SHOULD JUST VE VIEWABLE HERE
     <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id)) %><br>
   <% end %>
 <% end %>
+  
+
+<button id="showNewChapterForm">Add New Chapter</button>
+
+
+  
+  <div id="new_chapter_form" style="display:none">
+  <%= form_for  @edit_tutorial, :url => tutorials_add_chapter_path(@edit_tutorial) do |f| %>
+  <%= f.fields_for :chapters, Chapter.new do |chapter| %>
+  Title:<%= chapter.text_field :title %><br />
+  Description:<%= chapter.text_area :description %><br />
+  Draft: <%= chapter.check_box :draft %><br />
+  <%= f.submit "Add Chapter to #{@edit_tutorial.title} Tutorial" %>
+  <% end %>
+<% end %>
+  </div>
 
 <br><br>
+
 <%= link_to("+", chapters_create_path(@edit_tutorial.id)) %>
 <br>
 <br>

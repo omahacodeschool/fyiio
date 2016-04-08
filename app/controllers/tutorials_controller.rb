@@ -40,6 +40,19 @@ class TutorialsController < ApplicationController
     end
   end
 
+
+  def edit_add_chapter
+    @tutorial = Tutorial.find_by_id(params[:tutorial_id])
+    @new_chapter = Chapter.new(title: params[:tutorial][:chapters][:title], description: params[:tutorial][:chapters][:description], draft: params[:tutorial][:chapters][:draft], tutorial_id: @tutorial.id, start_time: 0, end_time: 0)
+    if @new_chapter.valid?
+      @new_chapter.save
+      flash[:success] = "Chapter added to tutorial"
+    else
+      flash[:notice] = "Chapter failed to save"
+    end
+    redirect_to tutorials_edit_path(@tutorial)
+  end
+
   def view
     @current_user = User.find_by_id(current_user)
     @tutorial = Tutorial.find_by_id(params[:tutorial_id])

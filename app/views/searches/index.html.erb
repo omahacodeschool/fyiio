@@ -7,8 +7,13 @@
       <%= submit_tag("Search") %>
     <% end %>
   </div>
+  <div class="resultsContainer">
   <% @results.each do |result| %>
-    <p><%= link_to(result.title, "/tutorials/#{result.id}") %></p>
+     <div class="results"><%= link_to(result.title, "/tutorials/#{result.id}") %>
+    <a href="#" class="previewLink">PreviewThing</a>
+    </div>
+    <div class="previewWindow" style="display: none"> 
+    </div>
   <% end %>
+  </div>
 </div>
-
