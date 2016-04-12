@@ -1,24 +1,28 @@
 <div class="container">
 
+  <div class="page-header tutorial_info">
+    <h1><%= @tutorial.title %> 
+      <small> 
+          <%=  @tutorial.get_category_notice %>
+          <%= @tutorial.get_privacy_notice %>
+      </small></h1>
+  </div>
 
-<div class="tutorial_info"> 
-  <h1><%= @tutorial.title %></h1>
-  <%= @tutorial.get_privacy_notice %><br>
-   <%=  @tutorial.get_category_notice %> <br>
-  <%= @tutorial.description %><br><br>
-</div>
+  <div class="well well-lg">
+    <%= @tutorial.description %>
+  </div>
 
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages</a></li>
-</ul>
 
-<ul class="nav nav-pills">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages</a></li>
-</ul>
+  <div id="chapterTitlesAndDescriptions">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#">Chapters:</a></li>
+       <% @chapters.each_with_index do |chapter, index| %>
+       <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
+      <li role="presentation"><a href="#"><%= chapter_presenter.content %></a></li>
+        <% end %>
+    </ul>
+  </div>
+
 
 
 <div id= "chapterTitlesAndDescriptions">
