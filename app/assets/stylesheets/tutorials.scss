@@ -1,0 +1,13 @@
+.resultsContainer {
+  position: relative;
+}
+
+.previewWindow {
+  position: absolute;
+  width: 500px;
+  background: #fff;
+  padding-left: 40px;
+  border: 1px solid #ccc;
+    left: 50%;
+    margin-left: -390px;
+}
