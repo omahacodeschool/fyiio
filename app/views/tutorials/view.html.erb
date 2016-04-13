@@ -33,25 +33,28 @@
   </div>
 
 
-  <% @chapters.each_with_index do |chapter, index| %>
-  <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-  <div id="chapterContentDisplay<%= index %>" class="chapterContentDisplay">
-  <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">Chapter:<%= (index + 1) %> "<%= chapter_presenter.chapter_name %>"</div>
-    <div class="panel-body">
-      <p><i><%= chapter_presenter.get_description %></i></p>
+ 
+  <div class="chapterContentDisplay">
+     <% @chapters.each_with_index do |chapter, index| %>
+    <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
+    <div id="chapterContentDisplay<%= index %>" >
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading">Chapter:<%= (index + 1) %> "<%= chapter_presenter.chapter_name %>"</div>
+          <div class="panel-body">
+            <p><i><%= chapter_presenter.get_description %></i></p>
+          </div>
+          
+          <!-- List group -->
+          <ul class="list-group">
+          <% chapter.steps.order(:start_time).each do |step| %>
+          <% step_presenter = StepPresenter.new(step, chapter) %>
+            <li class="list-group-item"><%= step_presenter.content %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
-    
-    <!-- List group -->
-    <ul class="list-group">
-    <% chapter.steps.order(:start_time).each do |step| %>
-    <% step_presenter = StepPresenter.new(step, chapter) %>
-      <li class="list-group-item"><%= step_presenter.content %></li>
-    <% end %>
-    </ul>
-  </div>
-    <% end %>
   </div>
 
 
