@@ -7,6 +7,9 @@
       <%= submit_tag("Search") %>
     <% end %>
   </div>
+  <div>
+  Categories
+  </div>
   <div class="resultsContainer">
   <% @results.each do |result| %>
      <div class="results"><%= link_to(result.title, "/tutorials/#{result.id}") %>
