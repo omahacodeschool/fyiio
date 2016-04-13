@@ -1,4 +1,4 @@
-<div class="container" id="tutorial">
+<div class="container">
 
   <div class="page-header tutorial_info">
     <h1><%= @tutorial.title %> 
@@ -15,7 +15,7 @@
 
   <div>
     <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="#">Tutorial Content Overview</a></li>
+      <li role="presentation" class="active"><a href="#" id="tutorialOverview">Tutorial Content Overview</a></li>
        <% @chapters.each_with_index do |chapter, index| %>
       <li role="presentation" value="<%= index %>"><a href="#" class="showChapterTab">Chapter <%= (index + 1) %></a></li>
         <% end %>
@@ -24,20 +24,20 @@
 
 
 
-  <div id= "chapterTitlesAndDescriptions">
+ 
+  
+
+    <div id= "chapterTitlesAndDescriptions">
     <% @chapters.each_with_index do |chapter, index| %>
       <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
       <%= chapter_presenter.content %><br>
       <%= chapter_presenter.get_description %><br>
      <% end %>
-  </div>
+    </div>
 
-
- 
-  <div id="chapterDisplay">
-     <% @chapters.each_with_index do |chapter, index| %>
+    <% @chapters.each_with_index do |chapter, index| %>
     <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-    <div id="chapterContentDisplay<%= index %>" >
+    <div class="chapterDisplay" id="chapterContentDisplay<%= index %>" >
         <div class="panel panel-default">
           <!-- Default panel contents -->
           <div class="panel-heading">Chapter:<%= (index + 1) %> "<%= chapter_presenter.chapter_name %>"</div>
@@ -53,9 +53,9 @@
           <% end %>
           </ul>
         </div>
-      <% end %>
     </div>
-  </div>
+    <% end %>
+  
 
 
     <div class="tableOfContents">

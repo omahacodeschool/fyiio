@@ -8,7 +8,20 @@ $("#showNewChapterForm").on('click', function(event){
     });
 
 
-// $(document).ready(function() {
+$("#tutorialOverview").on('click', function() {
+  $("#chapterTitlesAndDescriptions").show();
+  $(".chapterDisplay").hide();
+});
+
+$(".showChapterTab").on('click', function(event) {
+  var li = event.target;
+  var currentChapter = li.parentElement.value;
+  $("#chapterTitlesAndDescriptions").hide();
+  $(".chapterDisplay").hide();
+  $("#chapterContentDisplay" + currentChapter).show();
+})
+
+
 //   $('#tutorial').show();
 //   // $('#chapterTitlesAndDescriptions').show();
 //   $('#chapterDisplay').hide();
@@ -37,11 +50,11 @@ $("#showNewChapterForm").on('click', function(event){
 // // });
 
 
-// // $(document).ready(function () {
-// //   $('.group').hide();
-// //   $('#option1').show();
-// //   $('#selectMe').change(function () {
-// //     $('.group').hide();
-// //     $('#'+$(this).val()).show();
-// //   })
-// // });
+// $(document).ready(function () {
+//   $('.group').hide();
+//   $('#option1').show();
+//   $('#selectMe').change(function () {
+//     $('.group').hide();
+//     $('#'+$(this).val()).show();
+//   })
+// });
