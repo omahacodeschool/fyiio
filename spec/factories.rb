@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :progress do
+    
+  end
   factory :company_invite do
     company_id 1
     auth_code "MyString"

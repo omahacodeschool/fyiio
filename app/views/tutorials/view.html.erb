@@ -15,10 +15,9 @@
 
   <div>
     <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="#">Chapters:</a></li>
+      <li role="presentation" class="active"><a href="#">Tutorial Content Overview</a></li>
        <% @chapters.each_with_index do |chapter, index| %>
-       <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-      <li role="presentation"><a href="#"><%= chapter_presenter.chapter_name %></a></li>
+      <li role="presentation"><a href="#">Chapter <%= (index + 1) %></a></li>
         <% end %>
     </ul>
   </div>
@@ -33,22 +32,25 @@
      <% end %>
   </div>
 
-  <div class="panel panel-default">
+  <% @chapters.each_with_index do |chapter, index| %>
+  <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
+  <div id="chapterContentDisplay<%= index %>"class="panel panel-default">
     <!-- Default panel contents -->
-    <div class="panel-heading">Panel heading</div>
+    <div class="panel-heading">Chapter:<%= (index + 1) %> "<%= chapter_presenter.chapter_name %>"</div>
     <div class="panel-body">
-      <p>...</p>
+      <p><i><%= chapter_presenter.get_description %></i></p>
     </div>
-
+    
     <!-- List group -->
     <ul class="list-group">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Morbi leo risus</li>
-      <li class="list-group-item">Porta ac consectetur ac</li>
-      <li class="list-group-item">Vestibulum at eros</li>
+    <% chapter.steps.order(:start_time).each do |step| %>
+    <% step_presenter = StepPresenter.new(step, chapter) %>
+      <li class="list-group-item"><%= step_presenter.content %></li>
+    <% end %>
     </ul>
 </div>
+    <% end %>
+
 
     <div>
 
