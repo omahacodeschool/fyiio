@@ -15,6 +15,8 @@ $("#tutorialOverview").on('click', function() {
 
 $(".showChapterTab").on('click', function(event) {
   var li = event.target;
+  $("#tutorialOverview").parent().removeClass("active");
+  li.className += " active";
   var currentChapter = li.parentElement.value;
   $("#chapterTitlesAndDescriptions").hide();
   $(".chapterDisplay").hide();
