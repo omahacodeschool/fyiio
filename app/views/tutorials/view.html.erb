@@ -13,25 +13,61 @@
   </div>
 
 
-  <div id="chapterTitlesAndDescriptions">
+  <div>
     <ul class="nav nav-tabs">
       <li role="presentation" class="active"><a href="#">Chapters:</a></li>
        <% @chapters.each_with_index do |chapter, index| %>
        <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-      <li role="presentation"><a href="#"><%= chapter_presenter.content %></a></li>
+      <li role="presentation"><a href="#"><%= chapter_presenter.chapter_name %></a></li>
         <% end %>
     </ul>
   </div>
 
 
 
-<div id= "chapterTitlesAndDescriptions">
-  <% @chapters.each_with_index do |chapter, index| %>
-    <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-    <%= chapter_presenter.content %><br>
-    <%= chapter_presenter.get_description %><br>
-   <% end %>
+  <div id= "chapterTitlesAndDescriptions">
+    <% @chapters.each_with_index do |chapter, index| %>
+      <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
+      <%= chapter_presenter.content %><br>
+      <%= chapter_presenter.get_description %><br>
+     <% end %>
+  </div>
+
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Panel heading</div>
+    <div class="panel-body">
+      <p>...</p>
+    </div>
+
+    <!-- List group -->
+    <ul class="list-group">
+      <li class="list-group-item">Cras justo odio</li>
+      <li class="list-group-item">Dapibus ac facilisis in</li>
+      <li class="list-group-item">Morbi leo risus</li>
+      <li class="list-group-item">Porta ac consectetur ac</li>
+      <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
 </div>
+
+    <div>
+
+        <h1> Chapter Table of Contents </h1>
+      <% @chapters.each_with_index do |chapter, index| %>
+        <ul>  <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
+        <a href="#" class="videoPlayerTrigger" value=<%= chapter_presenter.get_start_time() %>> <%= chapter_presenter.content %>
+        <p style="display: none" class="chapterEndTime"><%= chapter_presenter.get_end_time() %></p></a>
+        <% chapter.steps.order(:start_time).each do |step| %>
+        <% step_presenter = StepPresenter.new(step, chapter) %>
+          <li>
+            <a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %> <%= step_presenter.get_percentage_left_in_chapter %><br>
+            <p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a>
+           <% end %>
+         </li>
+        </ul>
+      <% end %>
+
+    </div>
   
   <video id="view-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
 
@@ -47,20 +83,7 @@
   <br>
 
 
-<h1> Chapter Table of Contents </h1>
-<% @chapters.each_with_index do |chapter, index| %>
-  <ul>  <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-  <a href="#" class="videoPlayerTrigger" value=<%= chapter_presenter.get_start_time() %>> <%= chapter_presenter.content %>
-  <p style="display: none" class="chapterEndTime"><%= chapter_presenter.get_end_time() %></p></a>
-  <% chapter.steps.order(:start_time).each do |step| %>
-  <% step_presenter = StepPresenter.new(step, chapter) %>
-    <li>
-      <a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %> <%= step_presenter.get_percentage_left_in_chapter %><br>
-      <p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a>
-     <% end %>
-   </li>
-  </ul>
-<% end %>
+
 
 
 
