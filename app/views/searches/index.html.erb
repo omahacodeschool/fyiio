@@ -7,8 +7,11 @@
       <%= submit_tag("Search") %>
     <% end %>
   </div>
-  <div>
-  Categories
+  <div class="results_present">
+  Categories 
+    <% @tutorials.limit(6).each do |category| %>
+      <%= category.category %>
+  <% end %>
   </div>
   <div class="resultsContainer">
   <% @results.each do |result| %>
