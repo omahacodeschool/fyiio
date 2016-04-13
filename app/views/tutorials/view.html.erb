@@ -27,12 +27,21 @@
  
   
 
-    <div id= "chapterTitlesAndDescriptions">
+    <div class="panel panel-default" id= "chapterTitlesAndDescriptions">
+    <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @tutorial.title %></h3>
+      </div>
+      <div class="panel-body">
+        <p><%= @tutorial.description %></p>
+      </div>
+      <ul class="list-group">
     <% @chapters.each_with_index do |chapter, index| %>
       <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-      <%= chapter_presenter.content %><br>
-      <%= chapter_presenter.get_description %><br>
+      <li class="list-group-item"><%= chapter_presenter.content %></li>
+      <li class="list-group-item"><%= chapter_presenter.get_description %></li>
      <% end %>
+     </ul>
     </div>
 
     <% @chapters.each_with_index do |chapter, index| %>
@@ -56,6 +65,7 @@
     </div>
     <% end %>
   
+
 
 
     <div class="tableOfContents">
