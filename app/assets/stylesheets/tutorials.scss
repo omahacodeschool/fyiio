@@ -11,3 +11,26 @@
     left: 50%;
     margin-left: -390px;
 }
+
+.chapterDisplay {
+  position: relative;
+}
+
+.videoOverlay {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.videoPlayer {
+  max-width: 90%;
+  max-height: 80%;
+  margin: 33%;
+  padding: 50px;
+  background-color: #cdcdcd;
+  width: 1280px;
+  height: 528px;
+
+}

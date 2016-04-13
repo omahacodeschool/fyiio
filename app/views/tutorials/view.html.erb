@@ -1,4 +1,23 @@
+  
+<div class="popover" style="display:inline">
+    <div class="videoPlayer">
+    
+        <video id="view-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
+
+          <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
+
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+
+        </video>
+    
+    </div>
+</div>
+
 <div class="container">
+
 
   <div class="page-header tutorial_info">
     <h1><%= @tutorial.title %> 
@@ -22,13 +41,7 @@
     </ul>
   </div>
 
-
-
- 
-  
-
     <div class="panel panel-default" id= "chapterTitlesAndDescriptions">
-    <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
       <div class="panel-heading">
         <h3 class="panel-title"><%= @tutorial.title %></h3>
       </div>
@@ -58,12 +71,13 @@
           <ul class="list-group">
           <% chapter.steps.order(:start_time).each do |step| %>
           <% step_presenter = StepPresenter.new(step, chapter) %>
-            <li class="list-group-item"><%= step_presenter.content %></li>
+            <li class="list-group-item"><a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %><p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a></li>
           <% end %>
           </ul>
         </div>
     </div>
     <% end %>
+</div>
   
 
 
@@ -87,21 +101,9 @@
 
     </div>
 
-    <div class="videoPlayer">
-  
-  <video id="view-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
 
-    <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
 
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a web browser that
-      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-    </p>
-
-  </video>
-  <br>
-  <br>
-  </div>
+    
 
 
 
@@ -122,4 +124,3 @@
 <% end %>
 </div>
 
-</div>
