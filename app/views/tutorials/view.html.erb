@@ -33,10 +33,10 @@
   </div>
 
 
-  <div class=chapterContentDisplay>
   <% @chapters.each_with_index do |chapter, index| %>
   <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-  <div id="chapter<%= index %>"class="panel panel-default">
+  <div id="chapterContentDisplay<%= index %>" class="chapterContentDisplay">
+  <div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading">Chapter:<%= (index + 1) %> "<%= chapter_presenter.chapter_name %>"</div>
     <div class="panel-body">

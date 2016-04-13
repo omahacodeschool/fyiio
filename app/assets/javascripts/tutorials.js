@@ -11,12 +11,15 @@ $(document).ready(function () {
   $('.chapterContentDisplay').hide();
   $('#chapterTitlesAndDescriptions').show();
   $('.showChapterTab').on('click', function (event) {
-    var tabLink = event.target;
-    var chapterId = tabLink.parent.value;
-    var chapterDisplayDiv = document.getElementById(chapterId);
+    var chapterTab = event.target;
+    var chapterId = chapterTab.parentElement.value;
+    // var chapterDisplay = document.getElementById("chapter"+chapterId)
+    // var chapterDisplayDiv = document.getElementById(chapterId);
     $('#chapterTitlesAndDescriptions').hide();
     $('.chapterContentDisplay').hide();
-    chapterDisplayDiv.show();
+    $('#chapterContentDisplay'+chapterId).show();
+    // chapterDisplay.style.display = "";
+    // $('#chapter'+$(chapterId).val()).show();
   // $('.showChapterTab').on('click', function(event) {
   //   var tab = event.target;
   //   var chapterNumber = tab.value;
