@@ -17,7 +17,7 @@
     <ul class="nav nav-tabs">
       <li role="presentation" class="active"><a href="#">Tutorial Content Overview</a></li>
        <% @chapters.each_with_index do |chapter, index| %>
-      <li role="presentation"><a href="#">Chapter <%= (index + 1) %></a></li>
+      <li role="presentation" value="<%= index %>"><a href="#" class="showChapterTab">Chapter <%= (index + 1) %></a></li>
         <% end %>
     </ul>
   </div>
@@ -32,9 +32,11 @@
      <% end %>
   </div>
 
+
+  <div class=chapterContentDisplay>
   <% @chapters.each_with_index do |chapter, index| %>
   <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-  <div id="chapterContentDisplay<%= index %>"class="panel panel-default">
+  <div id="chapter<%= index %>"class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading">Chapter:<%= (index + 1) %> "<%= chapter_presenter.chapter_name %>"</div>
     <div class="panel-body">
@@ -48,8 +50,9 @@
       <li class="list-group-item"><%= step_presenter.content %></li>
     <% end %>
     </ul>
-</div>
+  </div>
     <% end %>
+  </div>
 
 
     <div>
