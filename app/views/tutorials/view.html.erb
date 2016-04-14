@@ -96,7 +96,7 @@
           <ul class="list-group">
           <% chapter.steps.order(:start_time).each do |step| %>
           <% step_presenter = StepPresenter.new(step, chapter) %>
-            <li class="list-group-item"><a href="#"class="videoPlayerTrigger" id="viewStep" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %><p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a></li>
+            <li class="list-group-item"><a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %><p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a></li>
           <% end %>
           </ul>
         </div>
