@@ -6,6 +6,9 @@
 @import "global";
 
 // Import additional stylesheets as you make them.
+@import "bootstrap.min";
+@import "bootstrap-theme.min";
+
 @import "video-js";
 @import "tutorials";
 @import "search_results";

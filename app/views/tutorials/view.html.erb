@@ -1,48 +1,139 @@
-<div class="tutorial_info"> 
-  <h1><%= @tutorial.title %></h1>
-  <%= @tutorial.get_privacy_notice %><br>
-   <%=  @tutorial.get_category_notice %> <br>
-  <%= @tutorial.description %><br><br>
-</div>
+
+<!-- Video Lightbox -->
+
+<div id="videoLightBox" class="modal">
+ 
+  <!-- Modal content -->
+  <div class="modal-content">
+  <span class="close">×</span>
+    <div class="stepInstructions">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+         <h3 id="stepTitle" class="panel-title">Step Info Goes Here</h3>
+        </div>
+      </div>
+    </div>
 
 
-<div id= "chapterTitlesAndDescriptions">
-  <% @chapters.each_with_index do |chapter, index| %>
+      
+      <div class="videoWrapper">
+          <video id="view-video" class="video-js videoPlayer" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
+
+            <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a web browser that
+              <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+            </video>
+
+      </div>
+
+      <div id="stepDescriptions" class="well">Step Description Goes Here</div>
+   
+  </div>
+
+</div>    
+
+<!-- End Video Lightbox -->
+
+
+
+
+<div class="container">
+
+<button id="playVideo">Open Modal</button>
+
+
+  <div class="page-header tutorial_info">
+    <h1><%= @tutorial.title %> 
+      <small> 
+          <%=  @tutorial.get_category_notice %>
+          <%= @tutorial.get_privacy_notice %>
+      </small></h1>
+  </div>
+
+  <div class="well well-lg">
+    <%= @tutorial.description %>
+  </div>
+
+
+  <div>
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#" id="tutorialOverview">Tutorial Content Overview</a></li>
+       <% @chapters.each_with_index do |chapter, index| %>
+      <li role="presentation" value="<%= index %>"><a href="#" class="showChapterTab">Chapter <%= (index + 1) %></a></li>
+        <% end %>
+    </ul>
+  </div>
+
+    <div class="panel panel-default" id= "chapterTitlesAndDescriptions">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @tutorial.title %></h3>
+      </div>
+      <div class="panel-body">
+        <p><%= @tutorial.description %></p>
+      </div>
+      <ul class="list-group">
+    <% @chapters.each_with_index do |chapter, index| %>
+      <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
+      <li class="list-group-item"><%= chapter_presenter.content %></li>
+      <li class="list-group-item"><%= chapter_presenter.get_description %></li>
+     <% end %>
+     </ul>
+    </div>
+
+    <% @chapters.each_with_index do |chapter, index| %>
     <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-    <%= chapter_presenter.content %><br>
-    <%= chapter_presenter.get_description %><br>
-   <% end %>
+    <div class="chapterDisplay" id="chapterContentDisplay<%= index %>" >
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading">Chapter:<%= (index + 1) %> "<%= chapter_presenter.chapter_name %>"</div>
+          <div class="panel-body">
+            <p><i><%= chapter_presenter.get_description %></i></p>
+          </div>
+          
+          <!-- List group -->
+          <ul class="list-group">
+          <% chapter.steps.order(:start_time).each do |step| %>
+          <% step_presenter = StepPresenter.new(step, chapter) %>
+            <li class="list-group-item"><a href="#"class="videoPlayerTrigger" id="viewStep" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %><p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a></li>
+          <% end %>
+          </ul>
+        </div>
+    </div>
+    <% end %>
 </div>
   
-  <video id="view-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
-
-    <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
-
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a web browser that
-      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-    </p>
-
-  </video>
-  <br>
-  <br>
 
 
-<h1> Chapter Table of Contents </h1>
-<% @chapters.each_with_index do |chapter, index| %>
-  <ul>  <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
-  <a href="#" class="videoPlayerTrigger" value=<%= chapter_presenter.get_start_time() %>> <%= chapter_presenter.content %>
-  <p style="display: none" class="chapterEndTime"><%= chapter_presenter.get_end_time() %></p></a>
-  <% chapter.steps.order(:start_time).each do |step| %>
-  <% step_presenter = StepPresenter.new(step, chapter) %>
-    <li>
-      <a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %> <%= step_presenter.get_percentage_left_in_chapter %><br>
-      <p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a>
-     <% end %>
-   </li>
-  </ul>
-<% end %>
 
+    <div class="tableOfContents" style="display:none">
+
+        <h1> Chapter Table of Contents </h1>
+      <% @chapters.each_with_index do |chapter, index| %>
+        <ul>  <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
+        <a href="#" class="videoPlayerTrigger" value=<%= chapter_presenter.get_start_time() %>> <%= chapter_presenter.content %>
+        <p style="display: none" class="chapterEndTime"><%= chapter_presenter.get_end_time() %></p></a>
+        <% chapter.steps.order(:start_time).each do |step| %>
+        <% step_presenter = StepPresenter.new(step, chapter) %>
+          <li>
+            <a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %> <%= step_presenter.get_percentage_left_in_chapter %><br>
+            <p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a>
+           <% end %>
+         </li>
+        </ul>
+      <% end %>
+
+    </div>
+
+
+
+    
+
+
+
+
+<div class="instructions" style="display:none">
 
 
 <h1> Instructions </h1>
@@ -56,4 +147,5 @@
   <% end %>
      </li>
 <% end %>
+</div>
 
