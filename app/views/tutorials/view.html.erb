@@ -1,32 +1,47 @@
 
-<div id="myModal" class="modal">
+<!-- Video Lightbox -->
 
+<div id="videoLightBox" class="modal">
+ 
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">×</span>
-
-    <div class="videoWrapper">
-
-        <video id="view-video" class="video-js videoPlayer" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
-
-          <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
-
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a web browser that
-            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
-
-        </video>
+  <span class="close">×</span>
+    <div class="stepInstructions">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+         <h3 id="stepTitle" class="panel-title">Step Info Goes Here</h3>
+        </div>
+      </div>
     </div>
+
+
+      
+      <div class="videoWrapper">
+          <video id="view-video" class="video-js videoPlayer" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
+
+            <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a web browser that
+              <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+            </video>
+
+      </div>
+
+      <div id="stepDescriptions" class="well">Step Description Goes Here</div>
+   
   </div>
 
 </div>    
+
+<!-- End Video Lightbox -->
+
 
 
 
 <div class="container">
 
-<button id="myBtn">Open Modal</button>
+<button id="playVideo">Open Modal</button>
 
 
   <div class="page-header tutorial_info">
