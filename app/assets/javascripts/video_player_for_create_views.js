@@ -28,6 +28,8 @@ window.addEventListener("load", function(){
 
     $(".videoPlayerTrigger").on('click', function(){
     var startTime = $(this).attr("value");
+    var modal = document.getElementById('videoLightBox');
+    modal.style.display = "block";
       myPlayer.currentTime(startTime);
       myPlayer.play()
     });
