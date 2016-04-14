@@ -7,9 +7,14 @@
       <%= submit_tag("Search") %>
     <% end %>
   </div>
+  <div class="resultsPresent">
+    <% @categories.each do |category| %>
+      <input type="button" id="<%= category %>" value="<%= category %>"/>
+    <% end %>
+  </div>
   <div class="resultsContainer">
   <% @results.each do |result| %>
-     <div class="results"><%= link_to(result.title, "/tutorials/#{result.id}") %>
+     <div class="results category<%= result.category %>"><%= link_to(result.title, "/tutorials/#{result.id}") %>
     <a href="#" class="previewLink">PreviewThing</a>
     </div>
     <div class="previewWindow" style="display: none"> 
@@ -17,3 +22,4 @@
   <% end %>
   </div>
 </div>
+
