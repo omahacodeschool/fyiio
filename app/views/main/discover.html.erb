@@ -1,8 +1,8 @@
-
- <h1>Learn how to do something amazing</h1>
-<%= form_tag("/search", method: "get") do %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
-<% end %>
-
-<h2>Create something awesome today!</h2>
+<div class="container text-center">
+  <h1>Learn how to do something amazing</h1>
+  <%= form_tag("/search", method: "get") do %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+  <h2>Create something awesome today!</h2>
+</div>

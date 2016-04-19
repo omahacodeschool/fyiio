@@ -35,24 +35,50 @@
 
 </head>
 <body class="<%= body_class %>">
-  <div id = "toolbars" class = "row">
-  <div class = "col-2 center"><%= link_to("Home", "/")%></div>
-  <div class = "col-2 center"><%= link_to("Discover", discover_path)%></div>
-  <div class = "col-2 center"><%= link_to("About", about_path) %></div>
-  <% if user_signed_in? %>
-    <div class = "col-2 center"><%= link_to('Dashboard', "/#{session[:company_username]}/dashboard")%></div>
-    <div><%= link_to('Logout', destroy_user_session_path, :method => :delete)%>
-    </div>
-  <% else %>
-    <div class = "col-2 center"><%= link_to('Sign In', new_user_session_path)%></div>
-    <div class = "col-2 center"><%= link_to('Create Account', "/companyInvites/authentication")%>
-    </div>
-  <% end %>
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <div id = "toolbars" class = "row">
 
-</div>
-  <%= render "flashes" -%>
+      <%= link_to("Discover", discover_path, :class => "btn btn-default navbar-btn btn pull-left")%>
+      
+
+      <% if user_signed_in? %>
+        <div>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-default navbar-btn pull-right pull-right") %>
+
+        </div>
+
+        <div>
+          <%= link_to('Dashboard', "/#{session[:company_username]}/dashboard", :class => "btn btn-info navbar-btn pull-right")%>
+        </div>
+
+        
+      <% else %>
+        <div>
+          <%= link_to('Sign In', new_user_session_path, :class => "btn btn-default navbar-btn btn pull-right")%>
+        </div>
+
+        <div>
+          <%= link_to('Create Account', "/companyInvites/authentication", :class => "btn btn-default navbar-btn btn pull-right")%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>
+  <div class="container">
+    <%= render "flashes" -%>
+  </div>
+
   <%= yield %>
+
+  <div class="panel-footer">
+    <span class="glyphicon glyphicon-home">
+      <%= link_to("Home", "/")%>
+    </span>  
+    <%= link_to("About", about_path) %>
+  </div>
   <%= render "javascript" %>
   <%= render "css_overrides" %>
 </body>
 </html>
+
