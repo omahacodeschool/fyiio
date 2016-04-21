@@ -72,10 +72,8 @@
   <%= yield %>
 
   <div class="panel-footer">
-    <span class="glyphicon glyphicon-home">
-      <%= link_to("Home", "/")%>
-    </span>  
-    <%= link_to("About", about_path) %>
+    <%= link_to("Home", "/", :class => "btn btn-default pull-left")%> 
+    <%= link_to("About", about_path, :class => "btn btn-default pull-left") %>
   </div>
   <%= render "javascript" %>
   <%= render "css_overrides" %>
