@@ -37,6 +37,10 @@ group :development, :test do
   gem "pry-byebug"
   gem "pry-rails"
   gem "rspec-rails", "~> 3.4.0"
+  gem 'pronto'
+  gem 'pronto-rubocop'
+  gem 'pronto-reek'
+  gem 'pronto-rails_best_practices'
 end
 
 group :development, :staging do
@@ -61,8 +65,3 @@ end
 
 gem 'carrierwave'
 gem 'pg_search'
-
-gem 'pronto'
-gem 'pronto-rubocop'
-gem 'pronto-reek'
-gem 'pronto-rails_best_practices'
