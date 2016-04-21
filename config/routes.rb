@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'tutorials/:tutorial_id' => "tutorials#view", as: :tutorials
   delete 'tutorials/:tutorial_id/delete' => "tutorials#delete", as: :delete_tutorial
   patch 'tutorials/:tutorial_id/add/chapter' => "tutorials#edit_add_chapter", as: :tutorials_add_chapter
+
  
   # chapters routes
   get 'tutorials/:tutorial_id/chapters/create' => "chapters#create", as: :chapters_create
