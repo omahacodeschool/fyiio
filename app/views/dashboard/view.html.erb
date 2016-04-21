@@ -1,8 +1,12 @@
 <div class="container">
-  <h1><%= "#{@company.name.capitalize} Dashboard" %></h1>
-  <div class="btn btn--create">
-    <%= link_to("Create Tutorial", tutorials_create_path) %>
+  <div class="jumbotron text-center">
+    <h1><%= "#{@company.name.capitalize} Dashboard" %></h1>
+    <p></p>
+    <%= link_to("Create Tutorial", tutorials_create_path, :class => "btn btn-primary btn-lg")%>
   </div>
+</div>
+
+<div class="container">  
   <div class="row">
     <div class="col-6">
       <h3>Channel Settings</h3>
