@@ -15,7 +15,7 @@ class StepPresenter
         ordering[step] = "WARNING"
       else
         counter += 1
-        ordering[step] = "STEP: #{counter}"
+        ordering[step] = "STEP #{counter}:"
       end
     end
     return ordering
@@ -45,6 +45,11 @@ class StepPresenter
 
   def get_title()
     @step.title
+  end
+
+  def get_step_number()
+    order_check()
+    @step_order
   end
   
   def content
