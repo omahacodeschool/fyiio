@@ -30,8 +30,8 @@ window.addEventListener("load", function(){
     var startTime = $(this).attr("value");
     var modal = document.getElementById('videoLightBox');
     modal.style.display = "block";
-      var stepContent = $(this).text();
-      var stepTitle = $("#stepTitle").html(stepContent);
+      $("#stepTitle").html($(this).data("stepTitle"));
+      $("#stepDescription").html($(this).data("stepDescription"));
       myPlayer.currentTime(startTime);
       myPlayer.play()
     });

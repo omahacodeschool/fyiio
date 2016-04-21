@@ -42,6 +42,10 @@ class StepPresenter
   def get_description()
     @step.description
   end
+
+  def get_title()
+    @step.title
+  end
   
   def content
     order_check()

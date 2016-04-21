@@ -28,7 +28,7 @@
 
       </div>
 
-      <div id="stepDescriptions" class="well">Step Description Goes Here</div>
+      <div id="stepDescription" class="well">Step Description Goes Here</div>
    
   </div>
 
@@ -96,7 +96,7 @@
           <ul class="list-group">
           <% chapter.steps.order(:start_time).each do |step| %>
           <% step_presenter = StepPresenter.new(step, chapter) %>
-            <li class="list-group-item"><a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %><p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a></li>
+            <li class="list-group-item"><a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %> data-step-title="<%= step_presenter.get_title() %>" data-step-description="<%= step_presenter.get_description() %>"><%= step_presenter.content %><p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a></li>
           <% end %>
           </ul>
         </div>
@@ -117,7 +117,7 @@
         <% chapter.steps.order(:start_time).each do |step| %>
         <% step_presenter = StepPresenter.new(step, chapter) %>
           <li>
-            <a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %>><%= step_presenter.content %> <%= step_presenter.get_percentage_left_in_chapter %><br>
+            <a href="#"class="videoPlayerTrigger" value=<%= step_presenter.get_start_time() %><%= step_presenter.content %>>
             <p style="display: none" class="stepEndTime"><%= step_presenter.get_end_time() %></p></a>
            <% end %>
          </li>
