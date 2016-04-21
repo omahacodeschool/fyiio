@@ -39,9 +39,10 @@
   <div class="container">
     <div id = "toolbars" class = "row">
 
+      <%= link_to("Home", "/", :class => "btn btn-default navbar-btn pull-left")%> 
+      <%= link_to("About", about_path, :class => "btn btn-default navbar-btn pull-left") %>
       <%= link_to("Discover", discover_path, :class => "btn btn-default navbar-btn btn pull-left")%>
       
-
       <% if user_signed_in? %>
         <div>
           <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-default navbar-btn pull-right pull-right") %>
@@ -70,13 +71,10 @@
   </div>
 
   <%= yield %>
-
-  <div class="panel-footer">
-    <%= link_to("Home", "/", :class => "btn btn-default pull-left")%> 
-    <%= link_to("About", about_path, :class => "btn btn-default pull-left") %>
-  </div>
+  
   <%= render "javascript" %>
-  <%= render "css_overrides" %>
+  <%= render "css_overrides" %>  
+
 </body>
 </html>
 
