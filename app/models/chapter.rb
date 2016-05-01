@@ -8,6 +8,18 @@ class Chapter < ActiveRecord::Base
   }
   validates_presence_of :title, :tutorial_id
 
+  # Converts video time for tutorial chapters.
+  # 
+  # Uses Time Class.
+  # Converts start time and endtime to UTC (GMT).
+  # Formats times according to the directives in the given format String ("%H:%M:%S").
+  #
+  # Arguments: The directives begin with a percent (%) character.
+  # %H Hour of the day.
+  # %M Minute of the hour.
+  # %S Second of the minute.
+  # 
+  # Returns an Integer
   def video_time_conversion_for_chapters
     start_time = Time.at(self.start_time).utc.strftime("%H:%M:%S")
     end_time = Time.at(self.end_time).utc.strftime("%H:%M:%S")
@@ -15,6 +27,7 @@ class Chapter < ActiveRecord::Base
     return "#{start_time} - #{end_time}"
   end
 
+  # 
   def get_draft_title_for_chapter
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
