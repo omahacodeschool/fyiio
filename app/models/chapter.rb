@@ -9,7 +9,7 @@ class Chapter < ActiveRecord::Base
   validates_presence_of :title, :tutorial_id
 
   # Converts video time for tutorial chapters.
-  # 
+  #
   # Uses Time Class.
   # Converts start time and endtime to UTC (GMT).
   # Formats times according to the directives in the given format String ("%H:%M:%S").
@@ -18,8 +18,8 @@ class Chapter < ActiveRecord::Base
   # %H Hour of the day.
   # %M Minute of the hour.
   # %S Second of the minute.
-  # 
-  # Returns an Integer
+  #
+  # Returns an Integer.
   def video_time_conversion_for_chapters
     start_time = Time.at(self.start_time).utc.strftime("%H:%M:%S")
     end_time = Time.at(self.end_time).utc.strftime("%H:%M:%S")
@@ -34,16 +34,21 @@ class Chapter < ActiveRecord::Base
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
 
-  # Gets a start time Array for a chapter.
+  # Gets the start time for a step in a chapter.
   #
-  # Uses pluck to query Steps column from Chapter Model for the start_times Array. 
+  # Populates start_times Array via pluck method to query start_time column of the associated Steps table.
   #
-  # If start_times Array is not empty Returns the minimum start time.
+  # Returns an Integer.
   def get_start_time_step_array_for_chapter
      start_times = self.steps.pluck(:start_time)
     return start_times.empty? ? 0 : start_times.min
   end
 
+  # Gets the end time for a step in a chapter.
+  #
+  # Populates end_times Array via pluck method to query end_time column of the associated Steps table.
+  #
+  # Returns an Integer.
   def get_end_time_step_array_for_chapter
      end_times = self.steps.pluck(:end_time)
     return end_times.empty? ? 0 : end_times.max
