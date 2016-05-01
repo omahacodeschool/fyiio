@@ -34,7 +34,12 @@ class Chapter < ActiveRecord::Base
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
 
-   def get_start_time_step_array_for_chapter
+  # Gets a start time Array for a chapter.
+  #
+  # Uses pluck to query Steps column from Chapter Model for the start_times Array. 
+  #
+  # If start_times Array is not empty Returns the minimum start time.
+  def get_start_time_step_array_for_chapter
      start_times = self.steps.pluck(:start_time)
     return start_times.empty? ? 0 : start_times.min
   end
