@@ -27,7 +27,9 @@ class Chapter < ActiveRecord::Base
     return "#{start_time} - #{end_time}"
   end
 
-  # 
+  # Gets the draft title for a chapter.
+  #
+  # Returns a String if the chapter is a draft.
   def get_draft_title_for_chapter
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
