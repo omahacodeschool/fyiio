@@ -48,10 +48,14 @@ class Tutorial < ActiveRecord::Base
   #  2. Draft chapters Array is empty? - Boolean via chapters table.
   #  3. Draft steps Array is empty? - Boolean via steps table.
   #
-  # If tutorial is a draft, or tutorial has draft chapters, or tutorial has draft steps.
+  # If tutorial is a draft, 
+  # or tutorial has draft chapters,
+  # or tutorial has draft steps.
   # => returns Boolean, draft_check == true
   #
-  # If tutorial is not a draft or tutorial, or tutorial has no draft chapters, or tutorial has no draft steps.
+  # If tutorial is not a draft or tutorial, 
+  # or tutorial has no draft chapters, 
+  # or tutorial has no draft steps.
   # => returns Boolean, draft_check == false
   def draft_check
     draft_tutorial = self.draft
@@ -67,14 +71,19 @@ class Tutorial < ActiveRecord::Base
 
   # Gets a privacy notice for a tutorial.
   #
-  # Returns a String "Public" or "Private" based on Boolean value of tutorial's public setting.
+  # Returns a String "Public" or "Private".
   #
   # If tutorial is public, Returns "Public" String.
-  # If tutorial is not public, Returns "Private" String. 
+  # If tutorial is not public, Returns "Private" String.
   def get_privacy_notice
     return self.public == true ? "Public" : "Private"
   end
 
+  # Gets a category notice.
+  # 
+  # Initially Sets notice = empty String.
+  # 
+  # If tutorial's category 
   def get_category_notice
     notice = ""
     if self.category == "1"
@@ -92,6 +101,7 @@ class Tutorial < ActiveRecord::Base
     return notice
   end
 
+  # 
   def get_draft_title_for_tutorial
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
