@@ -41,7 +41,18 @@ class Tutorial < ActiveRecord::Base
 
   end
 
-  # 
+  # Gets the draft status of a tutorial.
+  #
+  # Sets the following:
+  #  1. Draft status of tutorial - Boolean via self table.
+  #  2. Draft chapters Array is empty? - Boolean via chapters table.
+  #  3. Draft steps Array is empty? - Boolean via steps table.
+  #
+  # If tutorial is a draft, or tutorial has draft chapters, or tutorial has draft steps.
+  # => returns Boolean, draft_check == true
+  #
+  # If tutorial is not a draft or tutorial, or tutorial has no draft chapters, or tutorial has no draft steps.
+  # => returns Boolean, draft_check == false
   def draft_check
     draft_tutorial = self.draft
     draft_chapters = self.chapters.where({draft: true}).empty?
