@@ -12,6 +12,17 @@ class Tutorial < ActiveRecord::Base
 
   mount_uploader :video, VideoUploader
 
+  # Checks a user's access to tutorial.
+  #
+  # If the tutorial is not public.
+  #   Sets user by finding tutorial's user_id
+  #   If user's company_id does not match logged in user's company_id.
+  #     user can not view tutorial.
+  #   Else the user's company_id matches logged in user's company_id.
+  #     user can view tutorial
+  # Else the tutorial is public and the user can view the tutorial.
+  # 
+  # Returns a Boolean for can_view.
   def privacy_check(user_check)
     can_view = nil
 
@@ -30,6 +41,7 @@ class Tutorial < ActiveRecord::Base
 
   end
 
+  # 
   def draft_check
     draft_tutorial = self.draft
     draft_chapters = self.chapters.where({draft: true}).empty?
