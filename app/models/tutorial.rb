@@ -15,13 +15,13 @@ class Tutorial < ActiveRecord::Base
   # Checks a user's access to tutorial.
   #
   # If the tutorial is not public.
-  #   Sets user by finding tutorial's user_id
+  #   Sets user by finding tutorial's user_id.
   #   If user's company_id does not match logged in user's company_id.
   #     user can not view tutorial.
   #   Else the user's company_id matches logged in user's company_id.
   #     user can view tutorial
   # Else the tutorial is public and the user can view the tutorial.
-  # 
+  #
   # Returns a Boolean for can_view.
   def privacy_check(user_check)
     can_view = nil
@@ -48,13 +48,13 @@ class Tutorial < ActiveRecord::Base
   #  2. Draft chapters Array is empty? - Boolean via chapters table.
   #  3. Draft steps Array is empty? - Boolean via steps table.
   #
-  # If tutorial is a draft, 
+  # If tutorial is a draft,
   # or tutorial has draft chapters,
   # or tutorial has draft steps.
   # => returns Boolean, draft_check == true
   #
-  # If tutorial is not a draft or tutorial, 
-  # or tutorial has no draft chapters, 
+  # If tutorial is not a draft or tutorial,
+  # or tutorial has no draft chapters,
   # or tutorial has no draft steps.
   # => returns Boolean, draft_check == false
   def draft_check
@@ -79,11 +79,17 @@ class Tutorial < ActiveRecord::Base
     return self.public == true ? "Public" : "Private"
   end
 
-  # Gets a category notice.
-  # 
+  # Gets a tutorial's category notice.
+  #
   # Initially Sets notice = empty String.
+  #
+  # If tutorial's category is equal to String "1",
+  # => Sets notice String equal to "CATEGORY 1".
+  # If tutorial's category is equal to String "2",
+  # => Sets notice String equal to "CATEGORY 2.""
+  # etc...
   # 
-  # If tutorial's category 
+  # Returns the String value for notice.
   def get_category_notice
     notice = ""
     if self.category == "1"
@@ -100,8 +106,7 @@ class Tutorial < ActiveRecord::Base
 
     return notice
   end
-
-  # 
+  
   def get_draft_title_for_tutorial
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
