@@ -29,13 +29,16 @@ RSpec.describe Chapter, type: :model do
   # The first context of this test is passing, but it's a false-positive, since the method also returns 0 if the array of a Chapter's Steps' start_times is empty. So both contexts can be thought of as failing, currently.
   # This is happening because, at the time we call get_start_time_step_array_for_chapter on chapter, its id is nil. No idea why. Our guess is that the chapter is not actually being saved, because the model validates presence of a tutorial_id, meaning we need a Tutorial. Moving backward from there we need to also have a User and Company. Not sure how to create a test User here, since Devise requires that the Users have encrypted passwords etc. 
 
+  # UPDATE: I talked with Sumeet, and I made the issue with the User overly-complicated. Devise module will do the heavy-lifting for us. All we will have to do is pass in a first_name, last_name, email, and password for the test User.
+  # BUT if we don't want to do that, one work around would be to use chapter = Chapter.new() and chapter.save instead of chapter = Chapter.create(), because we can pass an argument {validate: false} into the save method that will override our validations.
+
   describe "#get_start_time_step_array_for_chapter" do
     context "start time of first Step is 0" do
       it "returns the start time of the first Step of the Chapter" do
         # company = Company.create(name: "", username: "", address_1: "", city: "", state: "", zip: "")
         # user = User.create(first_name: "", last_name: "User", company_id: company.id)
         # tutorial = Tutorial.create()
-        chapter = Chapter.create(title: "test", tutorial_id: 1)
+        chapter = Chapter.create(title: "test")
         step1 = Step.create(title: "step1", start_time: 0, end_time: 60, 
                         chapter_id: chapter.id)
         step2 = Step.create(title: "step2", start_time: 60, end_time: 120, 
