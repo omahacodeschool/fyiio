@@ -14,6 +14,8 @@ class Tutorial < ActiveRecord::Base
 
   # Defines if a user has access to a tutorial.
   #
+  # Takes an Argument 'user_check'.
+  #
   # If the tutorial is not public.
   #   Sets user by finding tutorial's user_id.
   #   If user's company_id does not match logged in user's company_id.
@@ -121,6 +123,9 @@ class Tutorial < ActiveRecord::Base
       #@new_chapters << chapter 
   end
 
+  # Will save a new chapter if chapter is valid.
+  #
+  # Returns a new Chapter Object.
   def save_if_valid
     if @new_chapter.valid?
       @new_chapter.save
