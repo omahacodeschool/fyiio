@@ -106,7 +106,12 @@ class Tutorial < ActiveRecord::Base
 
     return notice
   end
-  
+
+  # Gets draft title for a tutorial
+  #
+  # If the tutorial is a draft:
+  # => Returns a String for DRAFT:
+  # => Returns a String to EDIT:
   def get_draft_title_for_tutorial
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
