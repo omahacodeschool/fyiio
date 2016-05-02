@@ -12,7 +12,7 @@ class Tutorial < ActiveRecord::Base
 
   mount_uploader :video, VideoUploader
 
-  # Checks a user's access to tutorial.
+  # Defines if a user has access to a tutorial.
   #
   # If the tutorial is not public.
   #   Sets user by finding tutorial's user_id.
@@ -79,17 +79,9 @@ class Tutorial < ActiveRecord::Base
     return self.public == true ? "Public" : "Private"
   end
 
-  # Gets a tutorial's category notice.
+  # Gets a tutorial's category.
   #
-  # Initially Sets notice = empty String.
-  #
-  # If tutorial's category is equal to String "1",
-  # => Sets notice String equal to "CATEGORY 1".
-  # If tutorial's category is equal to String "2",
-  # => Sets notice String equal to "CATEGORY 2.""
-  # etc...
-  # 
-  # Returns the String value for notice.
+  # Returns the String for notice.
   def get_category_notice
     notice = ""
     if self.category == "1"
@@ -110,24 +102,30 @@ class Tutorial < ActiveRecord::Base
   # Gets draft title for a tutorial
   #
   # If the tutorial is a draft:
-  # => Returns a String for DRAFT:
-  # => Returns a String to EDIT:
+  # => Returns a String: "DRAFT: tutorial.title.upcase"
+  # If the tutorial is not a draft:
+  # => Returns a String "EDIT: tutorial.title.upcase"
   def get_draft_title_for_tutorial
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
 
-def create_chapters(params)
+  # Creates new chapters.
+  #
+  # Takes params arguments.
+  # 
+  # Returns a new Chapter Object.
+  def create_chapters(params)
     #@new_chapters = []
     #params.each do |key, value|
-      @new_chapter = self.chapters.new(title: params[:title], description: params[:description], draft: params[:draft])
+    @new_chapter = self.chapters.new(title: params[:title], description: params[:description], draft: params[:draft])
       #@new_chapters << chapter 
-    end
-
-def save_if_valid
-  if @new_chapter.valid?
-    @new_chapter.save
   end
-end
+
+  def save_if_valid
+    if @new_chapter.valid?
+      @new_chapter.save
+    end
+  end
 
 
   # def save_valid_chapter
@@ -157,28 +155,5 @@ end
   # def get_all_new_chapters
   #   @new_chapters
   # end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 end
