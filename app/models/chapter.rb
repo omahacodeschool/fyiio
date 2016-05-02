@@ -54,14 +54,19 @@ class Chapter < ActiveRecord::Base
     return end_times.empty? ? 0 : end_times.max
   end
 
+  # Sets a chapter start and end time based on step times.
+  #
+  # Uses previous methods to define starts and ends variables.
+  #
+  # Updates Chapter table object start_time and end_time.
+  #
+  # Saves Chapter tabel object.
   def set_chapter_start_and_end_time_based_on_step_times
     starts = get_start_time_step_array_for_chapter
     ends = get_end_time_step_array_for_chapter
     self.update(start_time: starts, end_time: ends)
     self.save
   end
-
- # Sorts through params in the controller to validate and save multiple steps for a chapter at once
 
   def create_many_steps(params)
     @new_steps = []
@@ -95,10 +100,6 @@ class Chapter < ActiveRecord::Base
   def get_all_new_steps
     @new_steps
   end
- 
-
-
-
 
 end
 
