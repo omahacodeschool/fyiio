@@ -65,6 +65,12 @@ class Tutorial < ActiveRecord::Base
     end
   end
 
+  # Gets a privacy notice for a tutorial.
+  #
+  # Returns a String "Public" or "Private" based on Boolean value of tutorial's public setting.
+  #
+  # If tutorial is public, Returns "Public" String.
+  # If tutorial is not public, Returns "Private" String. 
   def get_privacy_notice
     return self.public == true ? "Public" : "Private"
   end
