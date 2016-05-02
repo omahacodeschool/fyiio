@@ -36,7 +36,8 @@ class Chapter < ActiveRecord::Base
   # Returns an Integer.
   def get_start_time_step_array_for_chapter
      start_times = self.steps.pluck(:start_time)
-    return start_times.empty? ? 0 : start_times.min
+     # binding.pry
+     return start_times.empty? ? 0 : start_times.min
     # Returns 0 if the array is empty (no Steps) OR the minimum value in the array (the beginning time of the first Step)
   end
 
