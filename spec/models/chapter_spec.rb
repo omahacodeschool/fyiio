@@ -26,11 +26,14 @@ RSpec.describe Chapter, type: :model do
     end
   end
 
+  # The first context of this test is passing, but it's a false-positive, since the method also returns 0 if the array of a Chapter's Steps' start_times is empty. So both contexts can be thought of as failing, currently.
+  # This is happening because, at the time we call get_start_time_step_array_for_chapter on chapter, its id is nil. No idea why. Our guess is that the chapter is not actually being saved, because the model validates presence of a tutorial_id, meaning we need a Tutorial. Moving backward from there we need to also have a User and Company. Not sure how to create a test User here, since Devise requires that the Users have encrypted passwords etc. 
+
   describe "#get_start_time_step_array_for_chapter" do
     context "start time of first Step is 0" do
       it "returns the start time of the first Step of the Chapter" do
-        # company = Company.create(name: "test company", username: "username", address_1: "1234 Fake St.", city: "Omaha", state: "NE", zip: "68132")
-        # user = User.create(first_name: "User", last_name: "User", company_id: company.id)
+        # company = Company.create(name: "", username: "", address_1: "", city: "", state: "", zip: "")
+        # user = User.create(first_name: "", last_name: "User", company_id: company.id)
         # tutorial = Tutorial.create()
         chapter = Chapter.create(title: "test", tutorial_id: 1)
         step1 = Step.create(title: "step1", start_time: 0, end_time: 60, 
@@ -40,8 +43,7 @@ RSpec.describe Chapter, type: :model do
         step3 = Step.create(title: "step3", start_time: 120, end_time: 180, 
                         chapter_id: chapter.id)
         assert_equal(0, chapter.get_start_time_step_array_for_chapter)
-        # this is currently passing, but it's a false-positive
-        # do we need to clear the db here?
+        # do we need to clear the test db here?
       end
     end
 
@@ -53,6 +55,7 @@ RSpec.describe Chapter, type: :model do
         step2 = Step.create(title: "step2", start_time: 120, end_time: 180, 
                         chapter_id: chapter.id)
         assert_equal(60, chapter.get_start_time_step_array_for_chapter)
+        # do we need to clear the test db here?
       end
     end
   end
