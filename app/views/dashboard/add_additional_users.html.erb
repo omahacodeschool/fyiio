@@ -1,5 +1,11 @@
-<br><br>
-<%= form_tag(invite_users_confirmation_path(session[:company_username])) do %>
-  <input type="email" name="email" value="<%= params[:email] %>" required="true" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" placeholder="email address"> <br />
-  <div id="verification_submit"><%= submit_tag 'Invite' %></div>
-<% end %>
+<div class="container text-center">
+  <div class="page-header">
+    <h1>Invite your friends</h1>
+  </div>
+  <%= form_tag(invite_users_confirmation_path(session[:company_username])) do %>
+    <input type="email" name="email" value="<%= params[:email] %>" required="true" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" placeholder="email address">
+    <br><br>
+    <div id="verification_submit"><%= submit_tag 'Invite', :class => "btn btn-default" %></div>
+  <% end %>
+
+</div>

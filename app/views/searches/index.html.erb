@@ -1,21 +1,24 @@
 
 <div class="container text-center">
-<h1>Search results!</h1>
+  <div class="page-header">
+    <h1>Search results!</h1>
+  </div>
   <div> 
     <%= form_tag("/search", method: "get") do %>
       <%= text_field_tag(:q) %>
-      <%= submit_tag("Search") %>
+      <%= submit_tag "Search", class: "btn btn-default" %>
     <% end %>
   </div>
+  <br>
   <div class="resultsPresent">
     <% @categories.each do |category| %>
-      <input type="button" id="<%= category %>" value="<%= category %>"/>
+      <input type="button" id="<%= category %>" value="<%= category %>" class="btn btn-default"/>
     <% end %>
   </div>
   <div class="resultsContainer">
   <% @results.each do |result| %>
      <div class="results category<%= result.category %>"><%= link_to(result.title, "/tutorials/#{result.id}") %>
-    <a href="#" class="previewLink">PreviewThing</a>
+    <a href="#" class="previewLink btn btn-default">Preview</a>
     </div>
     <div class="previewWindow" style="display: none"> 
     </div>

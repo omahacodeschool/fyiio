@@ -1,68 +1,68 @@
+<div class="container">
+  <div class="page-header">
+    <h1><%= @edit_tutorial.get_draft_title_for_tutorial %></h1>
+  </div>
+  <%= bootstrap_form_for  @edit_tutorial, :url => tutorials_edit_confirmation_path(@edit_tutorial.id) do |f| %>
+    <% if @edit_tutorial.errors.full_messages.any? %>
+       <% @edit_tutorial.errors.full_messages.each do |error_message| %>
+        <%= error_message %> <br />
+      <% end %>
+    <% end %>
+    <br><br>
+
+    <video id="view-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
+
+      <source src=<%= "#{@edit_tutorial.video}"%> type='video/mp4'>
+
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a web browser that
+        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+      </p>
+
+    </video>
+
+    <br><br>
+
+    <%= f.select :category, [['CATEGORY1', 1], ['CATEGORY2', 2], ['CATEGORY3', 3], ['CATEGORY4', 4], ['CATEGORY5', 5]] %>
+    <%= f.text_field :title %>
+    <%= f.text_area :description %>
+    <%= f.check_box :public %>
+    <%= f.check_box :draft %>
+    <%= f.file_field :video %>
+    <%= f.submit %>
+  <% end %>
+    
+  <br>
 
 
-<h1><%= @edit_tutorial.get_draft_title_for_tutorial %></h1>
-<%= form_for  @edit_tutorial, :url => tutorials_edit_confirmation_path(@edit_tutorial.id) do |f| %>
-  <% if @edit_tutorial.errors.full_messages.any? %>
-     <% @edit_tutorial.errors.full_messages.each do |error_message| %>
-      <%= error_message %> <br />
+  <h3> Chapters </h3>
+  <% @chapters.each do |chapter| %>
+    <% if chapter.draft == true %>
+      <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id), :class => "btn btn-default") %><div class="draft_flag" >-- DRAFT</div><br>
+    <%else %>
+      <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id), :class => "btn btn-default") %><br>
     <% end %>
   <% end %>
+    
+
+  <button id="showNewChapterForm" class="btn btn-default">Add New Chapter</button>
+
+
+    
+    <div id="new_chapter_form" style="display:none">
+    <%= bootstrap_form_for  @edit_tutorial, :url => tutorials_add_chapter_path(@edit_tutorial) do |f| %>
+    <%= f.fields_for :chapters, Chapter.new do |chapter| %>
+    <%= chapter.text_field :title %>
+    <%= chapter.text_area :description %>
+    <%= chapter.check_box :draft %>
+    <%= f.submit "Add Chapter to #{@edit_tutorial.title} Tutorial" %>
+    <% end %>
+  <% end %>
+    </div>
+
   <br><br>
 
-
-  <video id="view-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
-
-    <source src=<%= "#{@edit_tutorial.video}"%> type='video/mp4'>
-
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a web browser that
-      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-    </p>
-
-  </video>
-
-
-
-  Category: <%= f.select :category, [['CATEGORY1', 1], ['CATEGORY2', 2], ['CATEGORY3', 3], ['CATEGORY4', 4], ['CATEGORY5', 5]] %><br />
-  Title: <%= f.text_field :title %><br />
-  Description:<br /> <%= f.text_area :description %><br />
-  Public: <%= f.check_box :public %><br />
-  Draft: <%= f.check_box :draft %><br />
-  Replace Video: <%= f.file_field :video %><br />
-  <%= f.submit %>
-<% end %>
-  
-<br><br>
-
-
-<h3> Chapters </h3>
-<% @chapters.each do |chapter| %>
-  <% if chapter.draft == true %>
-    <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id)) %><div class="draft_flag" >-- DRAFT</div><br>
-  <%else %>
-    <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id)) %><br>
-  <% end %>
-<% end %>
-  
-
-<button id="showNewChapterForm">Add New Chapter</button>
-
-
-  
-  <div id="new_chapter_form" style="display:none">
-  <%= form_for  @edit_tutorial, :url => tutorials_add_chapter_path(@edit_tutorial) do |f| %>
-  <%= f.fields_for :chapters, Chapter.new do |chapter| %>
-  Title:<%= chapter.text_field :title %><br />
-  Description:<%= chapter.text_area :description %><br />
-  Draft: <%= chapter.check_box :draft %><br />
-  <%= f.submit "Add Chapter to #{@edit_tutorial.title} Tutorial" %>
-  <% end %>
-<% end %>
-  </div>
-
-<br><br>
-
-<%= link_to("+", chapters_create_path(@edit_tutorial.id)) %>
-<br>
-<br>
-<p><%= link_to("Done", tutorials_finished_editing_path(@edit_tutorial.id)) %></p>
+  <%= link_to("+", chapters_create_path(@edit_tutorial.id), :class => "btn btn-default") %>
+  <br><br>
+  <p><%= link_to("Done", tutorials_finished_editing_path(@edit_tutorial.id),:class => "btn btn-default") %></p>
+</div>

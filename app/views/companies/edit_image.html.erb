@@ -1,6 +1,7 @@
-<%= form_for  @edit_company, :url => edit_company_image_confirmation_path do |f| %>
-<!-- This is the form to change the profile image for this company. -->
-  Profile Image: <%= f.file_field :profle_image %><br />
-  <%= f.submit 'Update' %>
-<% end %>
-
+<div class="container">
+  <%= bootstrap_form_for  @edit_company, :url => edit_company_image_confirmation_path do |f| %>
+  <!-- This is the form to change the profile image for this company. -->
+    <%= f.file_field :profle_image %>
+    <%= f.submit 'Update' %>
+  <% end %>
+</div>

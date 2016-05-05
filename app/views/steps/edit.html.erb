@@ -1,53 +1,56 @@
-<%= link_to("<- Chapter: #{@chapter.title}", chapters_edit_path(@tutorial.id, @chapter.id)) %>
-<p><%= link_to("Done", tutorials_finished_editing_path(@tutorial.id)) %></p>
+<div class="container">
+  <%= link_to("<- Chapter: #{@chapter.title}", chapters_edit_path(@tutorial.id, @chapter.id)) %>
+  <p><%= link_to("Done", tutorials_finished_editing_path(@tutorial.id)) %></p>
+  <div class="page-header">
+    <h1><%= @edit_step.get_draft_title_for_step %></h1>
+  </div>
+  <%= "Current Duration (will updated after any changes are saved): #{@edit_step.video_time_conversion_for_steps}" %>
+    
+    <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
 
-<h1><%= @edit_step.get_draft_title_for_step %></h1>
-<%= "Current Duration (will updated after any changes are saved): #{@edit_step.video_time_conversion_for_steps}" %>
-  
-  <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
+      <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
 
-    <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a web browser that
+        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+      </p>
 
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a web browser that
-      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-    </p>
-
-  </video>
-  <br>
-  <br>
-  <button id="setStepStartTime" class="startTime" > Start </button>
-  <button id="setStepEndTime" class="endTime" > End </button>
+    </video>
+    <br>
+    <br>
+    <button id="setStepStartTime" class="startTime" > Start </button>
+    <button id="setStepEndTime" class="endTime" > End </button>
 
 
-<%= form_for @edit_step, :url => steps_edit_confirmation_path(@tutorial.id, @chapter.id, @edit_step.id) do |f| %>
+  <%= bootstrap_form_for @edit_step, :url => steps_edit_confirmation_path(@tutorial.id, @chapter.id, @edit_step.id) do |f| %>
 
-  <% if @edit_step.errors.full_messages.any? %>
-     <% @edit_step.errors.full_messages.each do |error_message| %>
-      <%= error_message %> <br />
+    <% if @edit_step.errors.full_messages.any? %>
+       <% @edit_step.errors.full_messages.each do |error_message| %>
+        <%= error_message %> <br />
+      <% end %>
     <% end %>
+    <br><br>
+
+    <%= f.text_field :title %>
+    <%= f.text_area :description %>
+    <%= f.hidden_field :start_time %>
+    <%= f.hidden_field :end_time %>
+    <%= f.check_box :draft %>
+    <%= f.check_box :warning %>
+    <%= f.submit 'Update' %>
   <% end %>
   <br><br>
-
-  Title: <%= f.text_field :title %><br />
-  Description:<br /> <%= f.text_area :description %><br />
-  <%= f.hidden_field :start_time %><br />
-  <%= f.hidden_field :end_time %><br />
-  Draft: <%= f.check_box :draft %><br />
-  Warning: <%= f.check_box :warning %><br />
-  <%= f.submit 'Update' %>
-<% end %>
-<br><br>
-<%= link_to "Delete", delete_step_path(@tutorial.id, @chapter.id, @edit_step.id), method: :delete,
-                                  data: { confirm: "Are you sure you want to delete this step?" } %>
-<br><br>
-<h3> Steps: </h3>
-  <% @steps.each do |step| %>
-    <% if step.draft == true %>
-       <%= link_to("Edit Step #{step.title}", steps_edit_path(@tutorial.id, @chapter.id, step.id)) %> <div class="draft_flag" >-- DRAFT</div>
-    <% else %>
-      <%= link_to("Edit Step #{step.title}", steps_edit_path(@tutorial.id, @chapter.id, step.id)) %>
+  <%= link_to "Delete", delete_step_path(@tutorial.id, @chapter.id, @edit_step.id), method: :delete,
+                                    data: { confirm: "Are you sure you want to delete this step?" } %>
+  <br><br>
+  <h3> Steps: </h3>
+    <% @steps.each do |step| %>
+      <% if step.draft == true %>
+         <%= link_to("Edit Step #{step.title}", steps_edit_path(@tutorial.id, @chapter.id, step.id)) %> <div class="draft_flag" >-- DRAFT</div>
+      <% else %>
+        <%= link_to("Edit Step #{step.title}", steps_edit_path(@tutorial.id, @chapter.id, step.id)) %>
+      <% end %>
+      <br>
     <% end %>
-    <br>
-  <% end %>
-  <%= link_to("+", steps_create_path(@tutorial.id, @chapter.id)) %><br>
+    <%= link_to("+", steps_create_path(@tutorial.id, @chapter.id)) %><br>
+</div>
