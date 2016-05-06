@@ -14,8 +14,8 @@
     </video>
     <br>
     <br>
-    <button id="setStepStartTime" class="startTime" > Set Video Start Time </button>
-    <button id="setStepEndTime" class="endTime" > Set Video End Time </button>
+    <button id="setStepStartTime" class="startTime btn btn-default" > Set Video Start Time </button>
+    <button id="setStepEndTime" class="endTime btn btn-default" > Set Video End Time </button>
 
 
   <%= bootstrap_form_for @chapter, url: steps_create_confirmation_path(@tutorial.id, @chapter.id), method: :post do |f| %>
@@ -23,7 +23,7 @@
       <% @new_steps.each do |step| %>
       <%  if step.errors.full_messages.any? %>
         <div id="error_explanation">
-        <br><%= pluralize(step.errors.count, "error") %> 
+        <%= pluralize(step.errors.count, "error") %> 
             prohibited this step from being saved: <br>
               <ul>
         <% step.errors.full_messages.each do |error_message| %>
@@ -62,11 +62,12 @@
     </div>
 
     <%= submit_tag "Add Another Step", :type => 'button', :id => 'addStep', 
-            :onclick => 'addStepField()' %>    
+            :onclick => 'addStepField()', :class => "btn btn-default" %>    
 
-
+    <br>
+    <br>
     <div class="actions">
-      <%= f.submit "Create Steps" %>
+      <%= f.submit "Create Steps", :class => "btn btn-default" %>
     <div>
     <% end %>
   <% end %>

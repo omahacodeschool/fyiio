@@ -1,5 +1,5 @@
 
-<div class="container text-center">
+<div class="container">
   <div class="page-header">
     <h1>Search results!</h1>
   </div>
@@ -16,13 +16,16 @@
     <% end %>
   </div>
   <div class="resultsContainer">
-  <% @results.each do |result| %>
-     <div class="results category<%= result.category %>"><%= link_to(result.title, "/tutorials/#{result.id}") %>
-    <a href="#" class="previewLink btn btn-default">Preview</a>
-    </div>
-    <div class="previewWindow" style="display: none"> 
-    </div>
-  <% end %>
+    <% @results.each do |result| %>
+       <div class="results category<%= result.category %>"><%= link_to(result.title, "/tutorials/#{result.id}") + " | " + "#{result.description}"%>
+       </div>
+    <% end %>
   </div>
 </div>
 
+<!-- <a href="#" class="previewLink btn btn-default">Preview</a> -->
+    <!-- </div> -->
+    <!-- <div class="previewWindow" style="display: none"> 
+    </div>
+ -->
+ 

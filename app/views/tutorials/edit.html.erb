@@ -32,37 +32,16 @@
     <%= f.submit %>
   <% end %>
     
-  <br>
-
-
   <h3> Chapters </h3>
   <% @chapters.each do |chapter| %>
     <% if chapter.draft == true %>
       <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id), :class => "btn btn-default") %><div class="draft_flag" >-- DRAFT</div><br>
     <%else %>
-      <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id), :class => "btn btn-default") %><br>
+      <%= link_to("Edit Chapter #{chapter.title}", chapters_edit_path(@edit_tutorial.id, chapter.id), :class => "btn btn-default") %>
     <% end %>
   <% end %>
-    
 
-  <button id="showNewChapterForm" class="btn btn-default">Add New Chapter</button>
-
-
-    
-    <div id="new_chapter_form" style="display:none">
-    <%= bootstrap_form_for  @edit_tutorial, :url => tutorials_add_chapter_path(@edit_tutorial) do |f| %>
-    <%= f.fields_for :chapters, Chapter.new do |chapter| %>
-    <%= chapter.text_field :title %>
-    <%= chapter.text_area :description %>
-    <%= chapter.check_box :draft %>
-    <%= f.submit "Add Chapter to #{@edit_tutorial.title} Tutorial" %>
-    <% end %>
-  <% end %>
-    </div>
-
-  <br><br>
-
-  <%= link_to("+", chapters_create_path(@edit_tutorial.id), :class => "btn btn-default") %>
+  <%= link_to("Add Chapter", chapters_create_path(@edit_tutorial.id), :class => "btn btn-default") %>
   <br><br>
   <p><%= link_to("Done", tutorials_finished_editing_path(@edit_tutorial.id),:class => "btn btn-default") %></p>
 </div>

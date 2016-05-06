@@ -68,6 +68,7 @@ class TutorialsController < ApplicationController
     if draft_check == true
       render "tutorial_draft"
     else
+      # TODO google rails determine if request is XHR
       render "view"
     end
   end

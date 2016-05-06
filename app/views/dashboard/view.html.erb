@@ -27,45 +27,50 @@
   </div>
 </div>
 
-<div class="tabs container">
-  <div class="tab">
-    <input type="radio" id="tab-1" name="tab-group-1" checked>
-    <label for="tab-1"><span class="label label-default">Published Content</span></label>
-       
-    <div class="row tab_content"> <!-- Published tutorials will go here -->
-      <% if @all_finished_tutorials != nil %>
-        <% @all_finished_tutorials.each do |tutorial| %>
-          <div class="col-4 thumbnail">
-          <img class="thumbnail__image" src="http://lorempixel.com/200/150/">
-          <p class="thumbnail__title"><%= link_to(tutorial.title, tutorials_path(tutorial.id)) %></p>
-          <p class="thumbnail__desc"><%= tutorial.description %></p>
-          <%= link_to "Edit", tutorials_edit_path(tutorial.id), :class => "btn btn-default" %>
-          <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" }, :class => "btn btn-default" %>
-          </div>
+
+
+<div class="container">    
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#published_content" aria-controls="draft content" role="tab" data-toggle="tab"><span class="label label-default">Published Content</span></a></li>
+    <li role="presentation"><a href="#draft_content" aria-controls="draft content" role="tab" data-toggle="tab"><span class="label label-default">Draft Content</span></a></li>  
+  </ul>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="published_content">
+      <div class="row"> <!-- Published tutorials will go here -->
+        <% if @all_finished_tutorials != nil %>
+          <% @all_finished_tutorials.each do |tutorial| %>
+            <div class="col-4 thumbnail">
+            <img class="thumbnail__image" src="http://lorempixel.com/200/150/">
+            <p class="thumbnail__title"><%= link_to(tutorial.title, tutorials_path(tutorial.id)) %></p>
+            <p class="thumbnail__desc"><%= tutorial.description %></p>
+            <%= link_to "Edit", tutorials_edit_path(tutorial.id), :class => "btn btn-default" %>
+            <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" }, :class => "btn btn-default" %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-  </div>
-    
-  <div class="tab">
-    <input type="radio" id="tab-2" name="tab-group-1">
-    <label for="tab-2"><span class="label label-default">Draft Content</span></label>
-       
-    <div class="row tab_content"> <!-- Draft tutorials will go here -->
-      <% if @all_tutorial_drafts != nil %>
-        <% @all_tutorial_drafts.each do |tutorial| %>
-          <div class="col-4 thumbnail">
-          <img class="thumbnail__image" src="http://lorempixel.com/200/150/cats">
-          <p class="thumbnail__title"><%= link_to(tutorial.title, tutorials_path(tutorial.id)) %></p>
-          <p class="thumbnail__desc"><%= tutorial.description %></p>
-          <%= link_to "Edit", tutorials_edit_path(tutorial.id), :class => "btn btn-default" %> 
-          <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" }, :class => "btn btn-default" %>
-          </div>
+    <div role="tabpanel" class="tab-pane fade" id="draft_content">
+      <div class="row"> <!-- Draft tutorials will go here -->
+        <% if @all_tutorial_drafts != nil %>
+          <% @all_tutorial_drafts.each do |tutorial| %>
+            <div class="col-4 thumbnail">
+            <img class="thumbnail__image" src="http://lorempixel.com/200/150/cats">
+            <p class="thumbnail__title"><%= link_to(tutorial.title, tutorials_path(tutorial.id)) %></p>
+            <p class="thumbnail__desc"><%= tutorial.description %></p>
+            <%= link_to "Edit", tutorials_edit_path(tutorial.id), :class => "btn btn-default" %> 
+            <%= link_to "Delete", delete_tutorial_path(tutorial.id), method: :delete, data: { confirm: "Are you sure you want to delete the tutorial: #{tutorial.title}?" }, :class => "btn btn-default" %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
+
+
 
 
 <style>

@@ -1,8 +1,11 @@
 <div class="container">
-  <%= link_to("<- Tutorial: #{@tutorial.title}", tutorials_edit_path(@tutorial.id)) %><br>
-  <!-- The above code brings in the title of the tutorial we are currently going to edit. The code below is a done link that takes us away from this page and out of our editing status. -->
-  <p><%= link_to("Done", tutorials_finished_editing_path(@tutorial.id)) %></p>
-
+  <div class="row">
+    <div class="col-6">
+    <%= link_to("<- Tutorial: #{@tutorial.title}", tutorials_edit_path(@tutorial.id), :class => "btn btn-default") %><br>
+    <!-- The above code brings in the title of the tutorial we are currently going to edit. The code below is a done link that takes us away from this page and out of our editing status. -->
+    <%= link_to("Done", tutorials_finished_editing_path(@tutorial.id), :class => "btn btn-default") %>
+    </div>
+  </div>
   <!-- The code below brings in the chapter title. It then creates the form with previously filled in information for the user to edit and change. -->
   <div class="page-header">
     <h1><%= @edit_chapter.get_draft_title_for_chapter %></h1>
@@ -25,7 +28,7 @@
 
   <br><br>
   <!-- This is a simple link to delete the chapter and the contents within. This will also delete the corresponding steps thanks to the 'belongs_to' relation in the chapter model. It will alert you to how many steps are within the chapter before deleting. -->
-    <%= link_to "Delete Chapter", delete_chapter_path, method: :delete, data: { confirm: "Are you sure you want to delete the chapter: #{@edit_chapter.title}? It has #{@steps.count} steps." } %>
+    <%= link_to "Delete Chapter", delete_chapter_path, method: :delete, data: { confirm: "Are you sure you want to delete the chapter: #{@edit_chapter.title}? It has #{@steps.count} steps." }, :class => "btn btn-default" %>
   <br><br>
 
   <h3> Edit Steps </h3>
@@ -38,7 +41,7 @@
       <% end %>
       <br>
     <% end %>
-    <br><br>
+    <br>
     <!-- This link below takes you to the creation page for steps within this chapter. You can create a new step and once done you can click that button again to create more. -->
-     <%= link_to("+", steps_create_path(@tutorial.id, @edit_chapter.id)) %>
+     <%= link_to("Add Step", steps_create_path(@tutorial.id, @edit_chapter.id), :class => "btn btn-default") %>
 </div>
