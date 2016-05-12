@@ -66,3 +66,5 @@ end
 
 gem 'carrierwave'
 gem 'pg_search'
+gem 'fog'
+gem 'fog-aws'
