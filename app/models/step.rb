@@ -6,6 +6,9 @@ class Step < ActiveRecord::Base
   }
   validates_presence_of :title, :chapter_id, :start_time, :end_time
 
+  # Defines start time and end time
+  #
+  # Returns a String
   def video_time_conversion_for_steps
     start_time = Time.at(self.start_time).utc.strftime("%H:%M:%S")
     end_time = Time.at(self.end_time).utc.strftime("%H:%M:%S")
@@ -13,6 +16,9 @@ class Step < ActiveRecord::Base
     return "#{start_time} - #{end_time}"
   end
 
+  # Gets draft video step title if step is a draft.
+  # 
+  # Returns a Sting
   def get_draft_title_for_step
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end

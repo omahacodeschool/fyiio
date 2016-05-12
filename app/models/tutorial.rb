@@ -12,6 +12,19 @@ class Tutorial < ActiveRecord::Base
 
   mount_uploader :video, VideoUploader
 
+  # Defines if a user has access to a tutorial.
+  #
+  # Takes an Argument 'user_check'.
+  #
+  # If the tutorial is not public.
+  #   Sets user by finding tutorial's user_id.
+  #   If user's company_id does not match logged in user's company_id.
+  #     user can not view tutorial.
+  #   Else the user's company_id matches logged in user's company_id.
+  #     user can view tutorial
+  # Else the tutorial is public and the user can view the tutorial.
+  #
+  # Returns a Boolean for can_view.
   def privacy_check(user_check)
     can_view = nil
 
@@ -30,6 +43,22 @@ class Tutorial < ActiveRecord::Base
 
   end
 
+  # Gets the draft status of a tutorial.
+  #
+  # Sets the following:
+  #  1. Draft status of tutorial - Boolean via self table.
+  #  2. Draft chapters Array is empty? - Boolean via chapters table.
+  #  3. Draft steps Array is empty? - Boolean via steps table.
+  #
+  # If tutorial is a draft,
+  # or tutorial has draft chapters,
+  # or tutorial has draft steps.
+  # => returns Boolean, draft_check == true
+  #
+  # If tutorial is not a draft or tutorial,
+  # or tutorial has no draft chapters,
+  # or tutorial has no draft steps.
+  # => returns Boolean, draft_check == false
   def draft_check
     draft_tutorial = self.draft
     draft_chapters = self.chapters.where({draft: true}).empty?
@@ -42,10 +71,19 @@ class Tutorial < ActiveRecord::Base
     end
   end
 
+  # Gets a privacy notice for a tutorial.
+  #
+  # Returns a String "Public" or "Private".
+  #
+  # If tutorial is public, Returns "Public" String.
+  # If tutorial is not public, Returns "Private" String.
   def get_privacy_notice
     return self.public == true ? "Public" : "Private"
   end
 
+  # Gets a tutorial's category.
+  #
+  # Returns the String for notice.
   def get_category_notice
     notice = ""
     if self.category == "1"
@@ -63,22 +101,36 @@ class Tutorial < ActiveRecord::Base
     return notice
   end
 
+  # Gets draft title for a tutorial
+  #
+  # If the tutorial is a draft:
+  # => Returns a String: "DRAFT: tutorial.title.upcase"
+  # If the tutorial is not a draft:
+  # => Returns a String "EDIT: tutorial.title.upcase"
   def get_draft_title_for_tutorial
     return self.draft == true ? "DRAFT: #{self.title.upcase}" : "EDIT: #{self.title.upcase}"
   end
 
-def create_chapters(params)
+  # Creates new chapters.
+  #
+  # Takes params arguments.
+  # 
+  # Returns a new Chapter Object.
+  def create_chapters(params)
     #@new_chapters = []
     #params.each do |key, value|
-      @new_chapter = self.chapters.new(title: params[:title], description: params[:description], draft: params[:draft])
+    @new_chapter = self.chapters.new(title: params[:title], description: params[:description], draft: params[:draft])
       #@new_chapters << chapter 
-    end
-
-def save_if_valid
-  if @new_chapter.valid?
-    @new_chapter.save
   end
-end
+
+  # Will save a new chapter if chapter is valid.
+  #
+  # Returns a new Chapter Object.
+  def save_if_valid
+    if @new_chapter.valid?
+      @new_chapter.save
+    end
+  end
 
 
   # def save_valid_chapter
@@ -108,28 +160,5 @@ end
   # def get_all_new_chapters
   #   @new_chapters
   # end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 end
