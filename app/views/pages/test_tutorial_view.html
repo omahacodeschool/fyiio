@@ -1,0 +1,61 @@
+<div class="tutorial_info"> 
+  <h1><%= @tutorial.title %></h1>
+  <%= @tutorial.get_privacy_notice %><br>
+   <%=  @tutorial.get_category_notice %> <br>
+  <%= @tutorial.description %><br><br>
+</div>
+
+
+<div id= "chapterTitlesAndDescriptions">
+  <% @chapters.each_with_index do |chapter, index| %>
+    <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
+    <%= chapter_presenter.content %><br>
+    <%= chapter_presenter.get_description %><br>
+   <% end %>
+</div>
+  
+  <video id="view-video" class="video-js" controls preload="auto" width="640" height="264" poster="http://dummyimage.com/640x264/000/fff" data-setup="{}">
+
+    <source src=<%= "#{@tutorial.video}"%> type='video/mp4'>
+
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+
+  </video>
+  <br>
+  <br>
+
+
+<h1> Chapter Table of Contents </h1>
+<% @chapters.each_with_index do |chapter, index| %>
+  <ul>  <% chapter_presenter = ChapterPresenter.new(chapter, index) %>
+  <%= chapter_presenter.content %>
+  <% step_presenter = StepCollectionPresenter.new(chapter.steps.order(:start_time) %>
+  <% step_presenter.empty_check.each do |step| %>
+    <li>
+      <%= step[0] %>
+      <%= step[1] %><br>
+      <%= step[2] %><br>
+      <%= step[3] %><br>
+     <% end %>
+   </li>
+  </ul>
+<% end %>
+
+
+
+<h1> Instructions </h1>
+<% @chapters.each_with_index do |chapter, index| %>
+  <% step_presenter = StepCollectionPresenter.new(chapter.steps.order(:start_time) %>
+  <% step_presenter.empty_check.each do |step| %>
+    <li class="Chapter#{index + 1}StepDescriptions"> <input type="checkbox" name="chapter#{chapter.id}Step#{step.id}">
+      <%= step[0] %>
+      <%= step[1] %><br>
+      <%= step[4] %><br>
+     <% end %>
+   </li>
+  </ul>
+<% end %>
+
